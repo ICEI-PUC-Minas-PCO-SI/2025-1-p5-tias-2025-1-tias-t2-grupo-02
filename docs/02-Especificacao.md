@@ -1,10 +1,8 @@
 # Especificação do projeto
 
-<span style="color:red">Pré-requisitos: <a href="01-Contexto.md"> Documentação de contexto</a></span>
+Nesta seção, são apresentados os requisitos necessários para o desenvolvimento do sistema de gestão de pacientes e controle de medicamentos. A especificação foi elaborada com base na análise das necessidades dos usuários e nas particularidades do ambiente da instituição, visando garantir que a solução seja funcional, eficiente e segura.
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto.
+Foram utilizadas técnicas como levantamento de requisitos através de entrevistas, análise de processos e construção de histórias de usuários. Além disso, foi aplicado um método de priorização por níveis (Alta, Média e Baixa), levando em conta a criticidade de cada funcionalidade para o funcionamento do sistema e o impacto direto na experiência do usuário e na operação da instituição.
 
 ## Personas
 
@@ -42,60 +40,53 @@ Apresente aqui as histórias de usuários que são relevantes para o projeto da 
 
 ## Requisitos
 
-As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade dos requisitos, aplique uma técnica de priorização e detalhe como essa técnica foi aplicada.
+As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
 
 ### Requisitos funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Cadastro de Pacientes | ALTA | 
+|RF-002| Edição de dados de paciente | ALTA |
+|RF-003| Cadastro de Dados Médicos | ALTA | 
+|RF-004| Consulta de informações de paciente | ALTA | 
+|RF-005| Busca Rápida por Pacientes | ALTA | 
+|RF-006| Autenticação de usuário | MÉDIA | 
+|RF-007| Adicionar medicamentos ao estoque | MÉDIA | 
+|RF-008| Baixa automática de estoque | MÉDIA | 
 
 ### Requisitos não funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em dispositivos móveis | MÉDIA | 
-|RNF-002| Deve processar as requisições do usuário em no máximo 3 segundos |  BAIXA | 
+|RNF-001| O site deve carregar rapidamente, com um tempo de resposta inferior a 2 segundos | MÉDIA | 
+|RNF-002| Deve ser capaz de suportar aumento no número de usuários e dados sem degradação. |  MÉDIA | 
+|RNF-003| Garantir que apenas usuários autorizados possam acessar informações especificas. | ALTA | 
+|RNF-004| A interface deve ser fácil de usar, navegação clara e acessível para todos.  | MÉDIA | 
+|RNF-005| O site deve estar disponível 99.9% do tempo, com planos de contingência de falhas.  | ALTA | 
+|RNF-006| Implementar sistemas de backup regulares e procedimentos de recuperação de desastres | MÉDIA | 
+|RNF-007| O código deve ser bem documentado, para facilitar manutenções  | MÉDIA | 
 
-Com base nas histórias de usuários, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
+### Requisitos de domínio
 
-- [Requisitos funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos não funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-
-Lembre-se de que cada requisito deve corresponder a uma e somente uma característica-alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas histórias de usuários foram cobertos.
-
-> **Links úteis**:
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|ID     | Descrição do Requisito  |Prioridade |
+|-------|-------------------------|----|
+|RD-001| OS medicamentos adquiridos devem ser registrados no sistema.  | MÉDIA | 
+|RD-002| As restrições alimentares dos pacientes são informações críticas que afetam diretamente sua saúde e bem-estar, devendo ser rigorosamente observadas por toda a equipe do asilo.  | MÉDIA | 
+|RD-003| A confidencialidade das informações médicas dos pacientes é um direito fundamental que deve ser respeitado pelo asilo, garantindo a privacidade e a segurança dos dados.  | ALTA | 
 
 ## Restrições
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
 O projeto está restrito aos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |001| O projeto deverá ser entregue até o final do semestre |
-|002| O custo total do projeto não deve exceder o orçamento definido       |
+|002| O custo total do projeto não deve exceder o orçamento definido |
+|003| O projeto deverá ser hospedado em algum ambiente virtual |
+|004| O custo mensal da hospedagem da aplicação deve ser inferior a 200 reais |
 
 ## Diagrama de casos de uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos. Ele utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. O diagrama contempla a fronteira do sistema e o detalhamento dos requisitos funcionais, com a indicação dos atores, casos de uso e seus relacionamentos.
-
-As referências abaixo irão auxiliá-lo na geração do artefato “diagrama de casos de uso”.
-
-> **Links úteis**:
-> - [Criando casos de uso](https://www.ibm.com/docs/pt-br/engineering-lifecycle-management-suite/design-rhapsody/10.0?topic=cases-creating-use)
-> - [Como criar diagrama de caso de uso: tutorial passo a passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+![Diagrama de Caso de Uso](https://github.com/user-attachments/assets/db1bf15c-eb2b-40d0-a40b-e9028b4d4188)
