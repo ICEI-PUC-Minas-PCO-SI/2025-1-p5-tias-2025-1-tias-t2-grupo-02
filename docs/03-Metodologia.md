@@ -1,9 +1,7 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
-
-Descreva aqui a metodologia de trabalho do grupo para abordar o problema. Inclua definições sobre os ambientes de trabalho utilizados pela equipe para desenvolver o projeto. Isso abrange a relação dos ambientes utilizados, a estrutura para a gestão do código-fonte, além da definição do processo e das ferramentas por meio dos quais a equipe se organiza (gestão de equipes).
+A metodologia adotada pelo grupo inclui gerenciamento do código-fonte utilizando Git e GitHub, com ambientes distintos para desenvolvimento, testes e produção. O Docker é utilizado para execução local da aplicação, e após homologação, a aplicação será hospedada na Hostinger.
 
 
 ## Controle de versão
@@ -13,82 +11,52 @@ A ferramenta de controle de versão adotada no projeto foi o [Git](https://git-s
 O projeto segue a seguinte convenção para o nome de branches:
 
 - `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
+- `tested`: versão já testada do software
 - `testing`: versão em testes do software
 - `dev`: versão de desenvolvimento do software
-
-Quanto à gerência de issues, o projeto adota a seguinte convenção para etiquetas:
-
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
-
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gestão de tags, merges, commits e branches é realizada. Discuta também como a gestão de issues foi feita.
-
-> **Links úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e GitHub](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
-> - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
+- `feature/nome-da-feature`: branch de implementação de uma funcionalidade
+- `bugFix/nome-da-feature`: branch de correnção de uma funcionalidade
+- `improve/nome-da-feature`: branch de melhoria de uma funcionalidade
 
 ## Planejamento do projeto
 
-###  Divisão de papéis
+### Matriz de Responsabilidades
 
-> Apresente a divisão de papéis entre os membros do grupo em cada Sprint. O desejável é que, em cada Sprint, o aluno assuma papéis diferentes na equipe. Siga o modelo do exemplo abaixo:
+| Atividades | Ana Clara | Ana Flávia | Diogo | Eduarda | Igor | Pedro | Clínica |
+|-------------|-----------|------------|-------|---------|------|-------|---------|
+| Visita ao local escolhido para entendimento das necessidades | I | I | R | I | R | I | C |
+| Levantamento de requisitos e solução para o problema apresentado | R | R | R | R | R | R | C |
+| Preenchimento Documento Atividade 1 | R | R | R | R | R | R | I |
+| Realização dos Slides Atividade 1 | R | C | C | C | C | C | C |
+| Apresentação e discussão sobre o problema identificado e proposta de projeto | R | R | R | R | R | R | C |
+| Preenchimento Documento Atividade 2 | R | R | R | R | R | R | I |
+| Realização da Proposta | R | R | R | R | R | R | A |
+| Realização dos Slides Atividade 2 | C | C | C | C | R | C | C |
+| Apresentação - Caracterização da comunidade e Requisitos - Ajustes na proposta | R | R | R | R | R | R | C |
+| Protótipo das telas | R | R | R | R | R | R | A |
+| Realização da proposta de implementação | R | R | R | R | R | R | A |
+| Apresentação das telas | R | R | R | R | R | R | I |
+| Apresentação de telas e diagramas de Casos de Uso | R | R | R | R | R | R | I |
+| Correção dos entregas passadas | R | R | R | R | R | R | I |
+| Realização dos Slides Atividade 3 | R | C | C | C | C | C | C |
+| Desenvolvimento do sistema (programação das funcionalidades) | R | R | R | R | R | R | I |
+| Testes de funcionalidades | R | R | R | R | R | R | I |
+| Ajustes pós-testes | R | R | R | R | R | R | I |
+| Apresentação do software à comunidade | R | R | R | R | R | R | A |
+| Entrega Final | R | R | R | R | R | R | I |
+| Mostra Tecnológica Interdisciplinar | R | R | R | R | R | R | I |
+| Treinamento dos usuários (pessoal da Clínica) | R | R | R | R | R | R | C |
+| Coleta de feedback dos usuários | R | R | R | R | R | R | C |
+| Correções finais e atualização do sistema | R | R | R | R | R | R | I |
 
-#### Sprint 1
-- _Scrum master_: AlunaX
-- Protótipos: AlunoY
-- Testes: AlunoK
-- Documentação: AlunaZ
+---
 
-#### Sprint 2
-- _Scrum master_: AlunaY
-- Desenvolvedor _front-end_: AlunoX
-- Desenvolvedor _back-end_: AlunoK
-- Testes: AlunaZ
+### Legenda
 
-###  Quadro de tarefas
-
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
-
-#### Sprint 1
-
-Atualizado em: 21/04/2024
-
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
-
-#### Sprint 2
-
-Atualizado em: 21/04/2024
-
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
-
-
-Legenda:
-- ✔️: terminado
-- 📝: em execução
-- ⌛: atrasado
-- ❌: não iniciado
-
-
-> **Links úteis**:
-> - [11 passos essenciais para implantar Scrum no seu projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
-> - [Os papéis do Scrum e a verdade sobre cargos nessa técnica](https://www.atlassian.com/br/agile/scrum/roles)
+- **A – Aprovador:** Quem aprova ou valida formalmente a atividade.
+- **R – Responsável:** Quem executa formalmente a atividade.
+- **C – Consultado:** Quem gera informações que agregam valor ou apoia na execução.
+- **I – Informado:** Quem precisa ser notificado do resultado da atividade.
 
 ### Processo
 
@@ -108,15 +76,8 @@ Os artefatos do projeto são desenvolvidos a partir de diversas plataformas. Tod
 
 ### Ferramentas
 
-Liste todas as ferramentas que foram empregadas no projeto, justificando a escolha delas, sempre que possível.
-
-Exemplo: os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito é apresentada na tabela que se segue.
-
 | Ambiente                            | Plataforma                         | Link de acesso                         |
 |-------------------------------------|------------------------------------|----------------------------------------|
-| Repositório de código fonte         | GitHub                             | http://....                            |
-| Documentos do projeto               | GitHub                             | http://....                            |
-| Projeto de interface                | Figma                              | http://....                            |
-| Gerenciamento do projeto            | GitHub Projects                    | http://....                            |
-| Hospedagem                          | Vercel                             | http://....                            |
- 
+| Repositório de código fonte         | GitHub                             | https://github.com/ICEI-PUC-Minas-PCO-SI/TIAS-2025 |
+| Projeto de interface                | Figma                              | https://www.figma.com/design/VqTzr0XPoxf7ExrdXQ6Gvm/Untitled?node-id=0-1&p=f&t=GLlCR4eIMJev9y6H-0 |
+| Hospedagem                          | Hostinger                             | ... |
