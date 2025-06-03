@@ -1,51 +1,80 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto. Visando contextualizar melhor o projeto e destacar sua importância para a disciplina, que é **extensionista**, acrescente todas as informações relevantes que julgar necessárias.
+O projeto “Jeitinho da Vovó e do Vovô” tem como objetivo desenvolver uma aplicação web, responsiva e otimizada para dispositivos móveis, voltada para a gestão de informações dos pacientes da Casa de Repouso do Jeitinho da Vovó e do Vovô. A necessidade surgiu a partir da observação das dificuldades enfrentadas pelos colaboradores na gestão de dados dos residentes, que atualmente são armazenados em registros físicos e em um sistema que não atende plenamente às suas necessidades.
+
+A Casa de Repouso é uma instituição que oferece moradia, cuidados médicos e suporte emocional para pessoas em situação de vulnerabilidade, especialmente idosos que necessitam de acompanhamento diário. A falta de um sistema prático, acessível e adequado impacta diretamente na eficiência dos atendimentos, no controle de medicações e na organização das informações médicas e pessoais dos residentes.
+
+Este projeto se insere na disciplina extensionista, pois promove a aplicação prática dos conhecimentos acadêmicos na solução de um problema real da comunidade. Além de melhorar significativamente os processos internos da instituição, o sistema proporcionará mais qualidade no atendimento, segurança nas informações e bem-estar aos residentes.
 
 ## Cliente 
-Nesta seção, devem ser apresentadas informações essenciais sobre o cliente (parceiro) para garantir um entendimento mais preciso do projeto como uma iniciativa extensionista.  
+Casa de Repouso Jeitinho da Vovó e do Vovô
 
-Recomenda-se incluir dados como missão, visão e valores da organização, além de seu ramo de atuação, porte, nicho de mercado e principais desafios enfrentados. Também é relevante fornecer informações sobre sua localização, histórico, impacto social e possíveis demandas específicas. Quanto mais detalhadas forem essas informações, mais embasada será a análise do contexto, permitindo uma abordagem estratégica e alinhada às necessidades do cliente.
+* Missão: Oferecer cuidado, acolhimento, bem-estar e qualidade de vida para pessoas que necessitam de assistência contínua, com foco no respeito, na dignidade e na individualidade de cada residente.
+  
+* Visão: Ser referência em cuidado humanizado, proporcionando um ambiente seguro, afetivo e que valorize a vida dos seus moradores.
+
+* Valores: Respeito, empatia, responsabilidade, ética, comprometimento, acolhimento e amor ao próximo.
+
+* Ramo de atuação: Assistência à saúde, cuidado de idosos.
+
+* Porte: Pequena empresa, de caráter familiar, com atuação local.
+
+* Nicho: Casa de repouso e assistência geriátrica.
+
+* Localização: Rua Império, nº 25, Bairro Inconfidentes, Contagem, Minas Gerais.
+
+* Histórico: A Casa de Repouso foi fundada com o propósito de oferecer um lar seguro e acolhedor para idosos que, por diversos motivos, não têm quem cuide deles no dia a dia. Atualmente, conta com 10 colaboradores fixos, além de prestadores de serviços como fisioterapeutas e nutricionistas.
+
+* Impacto social: Proporciona qualidade de vida, suporte emocional e cuidados médicos para seus residentes, além de aliviar familiares que não podem prover esse acompanhamento diário.
+
+Principais desafios: Dificuldades na gestão dos dados dos pacientes, como prontuários, medicações e laudos médicos, feitos majoritariamente em papel e em um sistema complexo, pouco adaptável às necessidades da instituição.
 
 ## Problema
-Aqui, a equipe deve fornecer uma descrição detalhada do problema a ser resolvido. Não é o momento adequado para abordar questões técnicas relacionadas ao desenvolvimento da aplicação. O objetivo é compreender e comunicar de maneira precisa qual é o desafio ou necessidade que motiva a criação da aplicação.
+Atualmente, a Casa de Repouso enfrenta dificuldades significativas na gestão das informações dos seus residentes, uma vez que os dados são armazenados de forma física (em papéis, fichas e prontuários impressos) e também em um sistema (Gerifácil) que não supre plenamente as necessidades da equipe.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
+Esse cenário gera desafios como:
+*Dificuldade de acesso rápido às informações críticas, como medicações, laudos e contatos de familiares.
 
-O grupo pode optar por fazer uso de ferramentas como Design Thinking, que permite uma visão completa do problema.
+* Risco de perda ou extravio de documentos físicos.
 
-> **Links úteis**:
-> - [Objetivos, problema de pesquisa e justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz certezas, suposições e dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+* Sistemas pouco intuitivos e superdimensionados, com excesso de funções desnecessárias para a realidade da instituição.
+
+* Baixa mobilidade, já que o sistema atual não é adaptado para dispositivos móveis, limitando o acesso às informações de qualquer lugar dentro da instituição.
+
+Diante disso, surge a necessidade de um sistema mais simples, intuitivo, seguro e portátil, que centralize e organize os dados dos residentes, proporcionando eficiência no trabalho dos colaboradores e segurança no cuidado aos pacientes.
 
 ## Objetivos
 
-Aqui, você deve descrever os objetivos do trabalho, indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima.
+Desenvolver uma aplicação web responsiva e segura que otimize a gestão das informações dos residentes da Casa de Repouso Jeitinho da Vovó e do Vovô, facilitando o acesso e a organização dos dados de forma prática e eficiente.
 
-Além disso, apresente alguns (pelo menos 3) objetivos específicos, dependendo de onde você pretende concentrar sua prática investigativa ou como deseja aprofundar seu trabalho.
- 
-> **Links úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Objetivos Específicos:
+*Elicitar os requisitos funcionais e não funcionais necessários para atender às demandas da instituição.
+
+* Projetar uma arquitetura de sistema robusta, simples e de fácil manutenção, contemplando banco de dados, interface e segurança.
+
+* Implementar funcionalidades para cadastro, consulta e edição de informações dos pacientes, incluindo dados médicos, medicações e contatos.
+
+* Garantir segurança e controle de acesso aos dados sensíveis, com autenticação de usuários e diferentes níveis de permissão.
+
+* Realizar testes de funcionalidade, usabilidade e segurança, garantindo que o sistema atenda às expectativas dos usuários finais antes da implantação.
 
 ## Justificativa
+A criação deste sistema se justifica pela necessidade real e urgente de otimizar os processos internos da Casa de Repouso, garantindo maior eficiência, segurança e qualidade no atendimento aos seus residentes.
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+O uso de registros físicos, além de ineficiente, oferece riscos operacionais como perda de informações, dificuldade de acesso e erros humanos. O sistema atual, embora robusto, é complexo, difícil de operar para os colaboradores e não oferece mobilidade, além de ter um custo elevado para uma instituição de pequeno porte.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Diante disso, nosso projeto busca solucionar esses desafios por meio de uma plataforma simples, acessível, portátil e segura, alinhada às reais necessidades da instituição. Além disso, essa iniciativa cumpre um importante papel social e educacional, uma vez que promove a aplicação dos conhecimentos adquiridos no curso em benefício direto da comunidade, fortalecendo o compromisso extensionista da universidade.
 
 ## Público-alvo
+O público-alvo do sistema são os colaboradores da Casa de Repouso Jeitinho da Vovó e do Vovô, que atuam diretamente na gestão e no cuidado dos residentes. Isso inclui:
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+Diretora Administrativa: Responsável pela supervisão geral, organização dos dados e gestão dos colaboradores.
+Cuidadores: Utilizarão o sistema para acessar informações como laudos médicos, medicações, alergias e dados de contato de familiares.
+Profissionais de saúde terceirizados (fisioterapeutas, nutricionistas): Precisam acessar informações médicas dos pacientes para acompanhamento e planejamento dos atendimentos.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
+Perfil dos usuários:
+A maioria possui nível básico a intermediário de conhecimento em tecnologia.
+Estão habituados ao uso de celulares e computadores, mas não necessariamente possuem experiência com sistemas complexos.
+Valorizam soluções intuitivas, de fácil navegação, com informações organizadas de forma clara e objetiva.
+A rotina é dinâmica, portanto, há necessidade de acesso rápido e prático às informações, preferencialmente por meio de dispositivos móveis.
 
-> **Links úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público-alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
