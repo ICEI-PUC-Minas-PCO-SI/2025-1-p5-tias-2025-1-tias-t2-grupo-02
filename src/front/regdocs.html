@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Documentos | Casa de Repouso Do Jeitinho da Vovó</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img src="logo.jpg" alt="Logo Vovó">
+    <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Pacientes</a>
+        <a href="#">Medicamentos</a>
+        <a href="#">Atividades</a>
+        <a href="#">Relatórios</a>
+        <a href="#">Ajuda</a>
+    </nav>
+</header>
+
+<main class="container-doc">
+    <h2>Registro de Documentos</h2>
+    <form class="form-doc">
+        <div class="form-group">
+            <label for="tipo">Tipo de Documento</label>
+            <select id="tipo" required>
+                <option value="">Selecione</option>
+                <option value="rg">RG</option>
+                <option value="cpf">CPF</option>
+                <option value="receita">Receita Médica</option>
+                <option value="outro">Outro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" id="descricao" placeholder="Descreva o documento" required>
+        </div>
+
+        <div class="form-group">
+            <label for="emissao">Data da Emissão</label>
+            <input type="date" id="emissao" required>
+        </div>
+
+        <div class="form-group">
+            <label for="validade">Data da Validade</label>
+            <input type="date" id="validade">
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="btn-upload">
+                📎 Anexar documentos
+            </button>
+
+            <button type="button" class="btn-view">
+                📂 Visualizar documentos
+            </button>
+        </div>
+          
+    </form>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="logo.jpg" alt="Logo Casa de Repouso">
+            <p>Casa de Repouso<br>Do Jeitinho da Vovó</p>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h4>Sistema</h4>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Pacientes</a></li>
+                    <li><a href="#">Medicamentos</a></li>
+                    <li><a href="#">Atividades</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Suporte</h4>
+                <ul>
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Tutoriais</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Reportar Problema</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">LGPD</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>
