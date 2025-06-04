@@ -1,13 +1,13 @@
 package com.tias.back.repository;
 
-import com.tias.back.entity.Contact;
+import com.tias.back.entity.Documentation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface ContactRepository extends JpaRepository<Contact, UUID> {
+public interface DocumentationRepository extends JpaRepository<Documentation, UUID> {
     // Aqui você pode declarar métodos de busca customizados, por exemplo:
-    // Optional<Contact> findByEmail(String email);
+    // Optional<Documentation> findByEmail(String email);
 }

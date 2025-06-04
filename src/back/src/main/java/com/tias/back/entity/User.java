@@ -1,6 +1,7 @@
 package com.tias.back.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class User {
 
     private Integer cpf;
 
+    @Email(message = "Email deve ser válido")
     private String email;
 
     private Integer activatedAt;
