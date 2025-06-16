@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,17 +17,17 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "userId", updatable = false, nullable = false)
+    @Column(name = "user_id")
     private UUID userId;
 
     private String name;
 
-    private Integer cpf;
+    private String cpf;
 
     @Email(message = "Email deve ser válido")
     private String email;
 
-    private Integer activatedAt;
+    @Column(name = "is_active")
+    public boolean isActive;
 
-    private Integer deactivatedAt;
 }
