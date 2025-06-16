@@ -1,13 +1,15 @@
 package com.tias.back.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+       uniqueConstraints = {
+           @UniqueConstraint(columnNames = "cpf"),
+           @UniqueConstraint(columnNames = "email")
+       })
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,17 +19,16 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
     private UUID userId;
 
     private String name;
 
+    @Column(name = "cpf", nullable = false, length = 11)
     private String cpf;
 
-    @Email(message = "Email deve ser válido")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "is_active")
-    public boolean isActive;
-
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive;
 }
