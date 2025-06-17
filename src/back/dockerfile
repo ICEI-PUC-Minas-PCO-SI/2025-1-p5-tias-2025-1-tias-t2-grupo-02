@@ -1,0 +1,21 @@
+# Build stage: usa Maven + JDK para compilar o projeto
+FROM maven:3-openjdk-17-slim AS build
+
+WORKDIR /app
+
+# Copia o pom e fontes para dentro do container
+COPY . .
+
+# Builda o jar sem executar testes (pode remover -DskipTests para rodar testes)
+RUN mvn clean package -DskipTests
+
+# Runtime stage: imagem leve só com JDK para rodar o jar
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# Copia o jar gerado da etapa de build
+COPY --from=build /app/target/*.jar app.jar
+
+# Comando para rodar o backend
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
