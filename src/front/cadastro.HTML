@@ -15,12 +15,11 @@
       <h1 class="text-xl font-semibold text-[#1d1d1d]">Casa de Repouso Do Jeitinho da Vovó</h1>
     </div>
     <nav class="space-x-6 text-sm">
-      <a href="#" class="hover:underline">Início</a>
-      <a href="#" class="hover:underline">Pacientes</a>
-      <a href="#" class="hover:underline">Medicamentos</a>
-      <a href="#" class="hover:underline">Atividades</a>
-      <a href="#" class="hover:underline">Relatórios</a>
-      <a href="#" class="hover:underline font-semibold underline">Ajuda</a>
+      <a href="Dash.html" class="hover:underline">Início</a>
+      <a href="pesquisa_paciente.html" class="hover:underline font-semibold underline">Pacientes</a>
+      <a href="gerenciamento.html" class="hover:underline">Medicamentos</a>
+      <a href="relatorio.HTML" class="hover:underline">Relatórios</a>
+      <a href="help_page_final.html" class="hover:underline">Ajuda</a>
     </nav>
   </header>
 
@@ -201,9 +200,9 @@
 
     <!-- Botões -->
     <div class="mt-6 flex gap-4 justify-end">
-      <button class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Cancelar</button>
-      <button class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
-      <button class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
+      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Cancelar</button>
+      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
+      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
     </div>
   </main>
 
@@ -212,7 +211,7 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between">
       <!-- Logo -->
       <div class="flex items-center mb-4 md:mb-0">
-        <img src="logo.png" alt="Logo da Casa de Repouso" class="w-10 h-10 mr-2" />
+        <img src="logo.jpg" alt="Logo da Casa de Repouso" class="w-10 h-10 mr-2" />
         <span class="text-xs">Casa de Repouso Do Jeitinho da Vovó</span>
       </div>
 
@@ -221,28 +220,29 @@
         <div>
           <h3 class="font-semibold mb-1">Sistema</h3>
           <ul class="space-y-0.5">
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Pacientes</a></li>
-            <li><a href="#">Medicamentos</a></li>
-            <li><a href="#">Atividades</a></li>
-            <li><a href="#">Relatórios</a></li>
+                    <li><a href="Dash.html">Início</a></li>
+                    <li><a href="pesquisa_paciente.html">Pacientes</a></li>
+                    <li><a href="gerenciamento.html">Medicamentos</a></li>
+                    <li><a href="help_page_final.html">Relatórios</a></li>
           </ul>
         </div>
         <div>
           <h3 class="font-semibold mb-1">Suporte</h3>
           <ul class="space-y-0.5">
-            <li><a href="#">Central de Ajuda</a></li>
-            <li><a href="#">Tutoriais</a></li>
-            <li><a href="#">Contato</a></li>
-            <li><a href="#">Reportar Problema</a></li>
+                    <li><a href="help_page_final.html">Central de Ajuda</a></li>
+                    <li><a href="#">Tutoriais</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Reportar Problema</a></li>
           </ul>
         </div>
         <div>
           <h3 class="font-semibold mb-1">Legal</h3>
           <ul class="space-y-0.5">
-            <li><a href="#">Termos de Uso</a></li>
-            <li><a href="#">Política de Privacidade</a></li>
-            <li><a href="#">LGPD</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">LGPD</a></li>
+
+
           </ul>
         </div>
       </div>

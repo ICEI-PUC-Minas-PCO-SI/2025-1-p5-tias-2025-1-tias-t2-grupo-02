@@ -727,27 +727,36 @@
                 <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
             </div>
             <div class="nav-container">
-                <a href="#" class="nav-link">Início</a>
-                <a href="#" class="nav-link active">Pacientes</a>
-                <a href="#" class="nav-link">Medicamentos</a>
-                <a href="#" class="nav-link">Atividades</a>
-                <a href="#" class="nav-link">Relatórios</a>
-                <a href="#" class="nav-link">Ajuda</a>
+                <a href="Dash.html" class="nav-link">Início</a>
+                <a href="pesquisa_paciente.html" class="nav-link active">Pacientes</a>
+                <a href="gerenciamento.html" class="nav-link">Medicamentos</a>
+                <a href="relatorio.HTML" class="nav-link">Relatórios</a>
+                <a href="help_page_final.html" class="nav-link">Ajuda</a>
             </div>
         </header>
 
         <!-- Main Content -->
         <div class="main-container">
             <!-- Page Header -->
-            <div class="page-header">
-                <div class="page-icon">
-                    <i class="icon users-icon"></i>
-                </div>
-                <div>
-                    <h1 class="page-title">Pesquisa de Pacientes</h1>
-                    <p class="page-subtitle">Utilize os filtros abaixo para encontrar pacientes cadastrados no sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
-                </div>
-            </div>
+<div class="page-header" style="justify-content: space-between; width: 100%;">
+    <div style="display: flex; align-items: center;">
+        <div class="page-icon">
+            <i class="icon users-icon"></i>
+        </div>
+        <div>
+            <h1 class="page-title">Pesquisa de Pacientes</h1>
+            <p class="page-subtitle">Utilize os filtros abaixo para encontrar pacientes cadastrados no sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" onclick="location.href='estoque.HTML'">
+            <i class="icon search-icon"></i>
+            GERENCIMENTO DE ESTOQUE POR PACIENTE
+        </button>
+    </div>
+</div>
+
+
 
             <!-- Search Container -->
             <div class="search-container">
@@ -1008,22 +1017,25 @@
                     </div>
                 </div>
                 
-                <div class="footer-links">
                     <div class="footer-column">
-                        <h3 class="footer-column-title">Navegação</h3>
-                        <a href="#" class="footer-link">Início</a>
-                        <a href="#" class="footer-link">Pacientes</a>
-                        <a href="#" class="footer-link">Medicamentos</a>
-                        <a href="#" class="footer-link">Atividades</a>
-                        <a href="#" class="footer-link">Relatórios</a>
+                        <h3 class="footer-column-title">Sistema</h3>
+                        <a href="Dash.html" class="footer-link">Início</a>
+                        <a href="pesquisa_paciente.html" class="footer-link">Pacientes</a>
+                        <a href="gerenciamento.html" class="footer-link">Medicamentos</a>
+                        <a href="relatorio.HTML" class="footer-link">Relatórios</a>
                     </div>
-                    
                     <div class="footer-column">
                         <h3 class="footer-column-title">Suporte</h3>
-                        <a href="#" class="footer-link">Central de Ajuda</a>
+                        <a href="help_page_final.html" class="footer-link">Central de Ajuda</a>
+                        <a href="#" class="footer-link">Tutoriais</a>
                         <a href="#" class="footer-link">Contato</a>
-                        <a href="#" class="footer-link">Política de Privacidade</a>
+                        <a href="#" class="footer-link">Reportar Problema</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-column-title">Legal</h3>
                         <a href="#" class="footer-link">Termos de Uso</a>
+                        <a href="#" class="footer-link">Política de Privacidade</a>
+                        <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" class="footer-link">LGPD</a>
                     </div>
                 </div>
             </div>
@@ -1169,10 +1181,10 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="closeModalBtn">Fechar</button>
-                <button class="btn btn-primary">
-                    <i class="icon edit-icon"></i>
-                    Editar Paciente
-                </button>
+<button class="btn btn-primary" onclick="location.href='cadastro.html'">
+    <i class="icon edit-icon"></i>
+    Editar Paciente
+</button>
             </div>
         </div>
     </div>
