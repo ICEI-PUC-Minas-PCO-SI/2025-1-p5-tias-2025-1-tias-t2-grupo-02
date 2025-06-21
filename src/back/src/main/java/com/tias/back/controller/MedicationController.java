@@ -1,6 +1,7 @@
 package com.tias.back.controller;
 
-import com.tias.back.dto.MedicationDTO;
+import com.tias.back.dto.MedicationRequestDTO;
+import com.tias.back.dto.MedicationResponseDTO;
 import com.tias.back.service.MedicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,26 @@ public class MedicationController {
     }
 
     @PostMapping
-    public ResponseEntity<MedicationDTO> create(@RequestBody MedicationDTO dto) {
-        MedicationDTO created = service.create(dto);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    public ResponseEntity<MedicationResponseDTO> create(@RequestBody MedicationRequestDTO dto) {
+        MedicationResponseDTO created = service.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicationDTO> getById(@PathVariable UUID id) {
-        MedicationDTO dto = service.getById(id);
-        return ResponseEntity.ok(dto);
+    public ResponseEntity<MedicationResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @GetMapping
-    public List<MedicationDTO> getAll() {
+    public List<MedicationResponseDTO> getAll() {
         return service.getAll();
     }
 
     @PutMapping("/{id}")
-    public MedicationDTO update(@PathVariable UUID id, @RequestBody MedicationDTO dto) {
-        return service.update(id, dto);
+    public ResponseEntity<MedicationResponseDTO> update(
+            @PathVariable UUID id,
+            @RequestBody MedicationRequestDTO dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.tias.back.controller;
 
-import com.tias.back.dto.ContactDTO;
+import com.tias.back.dto.ContactRequestDTO;
+import com.tias.back.dto.ContactResponseDTO;
 import com.tias.back.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,26 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<ContactDTO> create(@RequestBody ContactDTO dto) {
-        ContactDTO created = service.create(dto);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    public ResponseEntity<ContactResponseDTO> create(@RequestBody ContactRequestDTO dto) {
+        ContactResponseDTO created = service.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContactDTO> getById(@PathVariable UUID id) {
-        ContactDTO dto = service.getById(id);
-        return ResponseEntity.ok(dto);
+    public ResponseEntity<ContactResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @GetMapping
-    public List<ContactDTO> getAll() {
+    public List<ContactResponseDTO> getAll() {
         return service.getAll();
     }
 
     @PutMapping("/{id}")
-    public ContactDTO update(@PathVariable UUID id, @RequestBody ContactDTO dto) {
-        return service.update(id, dto);
+    public ResponseEntity<ContactResponseDTO> update(
+            @PathVariable UUID id,
+            @RequestBody ContactRequestDTO dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.tias.back.controller;
 
-import com.tias.back.dto.DocumentationDTO;
+import com.tias.back.dto.DocumentationRequestDTO;
+import com.tias.back.dto.DocumentationResponseDTO;
 import com.tias.back.service.DocumentationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,26 @@ public class DocumentationController {
     }
 
     @PostMapping
-    public ResponseEntity<DocumentationDTO> create(@RequestBody DocumentationDTO dto) {
-        DocumentationDTO created = service.create(dto);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    public ResponseEntity<DocumentationResponseDTO> create(@RequestBody DocumentationRequestDTO dto) {
+        DocumentationResponseDTO created = service.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DocumentationDTO> getById(@PathVariable UUID id) {
-        DocumentationDTO dto = service.getById(id);
-        return ResponseEntity.ok(dto);
+    public ResponseEntity<DocumentationResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @GetMapping
-    public List<DocumentationDTO> getAll() {
+    public List<DocumentationResponseDTO> getAll() {
         return service.getAll();
     }
 
     @PutMapping("/{id}")
-    public DocumentationDTO update(@PathVariable UUID id, @RequestBody DocumentationDTO dto) {
-        return service.update(id, dto);
+    public ResponseEntity<DocumentationResponseDTO> update(
+            @PathVariable UUID id,
+            @RequestBody DocumentationRequestDTO dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

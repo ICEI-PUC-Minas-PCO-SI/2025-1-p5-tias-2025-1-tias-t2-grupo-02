@@ -8,6 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, UUID> {
-    // Aqui você pode declarar métodos de busca customizados, por exemplo:
-    // Optional<Patient> findByEmail(String email);
+    boolean existsByCpf(String cpf);
 }

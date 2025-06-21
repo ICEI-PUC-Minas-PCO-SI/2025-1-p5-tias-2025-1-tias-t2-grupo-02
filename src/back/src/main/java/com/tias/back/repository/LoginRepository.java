@@ -8,6 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, UUID> {
-    // Aqui você pode declarar métodos de busca customizados, por exemplo:
-    // Optional<Login> findByEmail(String email);
+    boolean existsByUser_UserId(UUID userId);
 }

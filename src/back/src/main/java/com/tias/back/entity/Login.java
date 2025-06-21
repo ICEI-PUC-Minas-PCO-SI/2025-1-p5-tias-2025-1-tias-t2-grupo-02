@@ -17,18 +17,17 @@ public class Login {
 
     @Id
     @GeneratedValue
-    private UUID id;
-
-    @Column(nullable = false)
-    private UUID userId;
+    private UUID loginId;
 
     private String perfil;
 
     private String password;
 
+    private Boolean isActive;
+
     private LocalDateTime lastLogin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false, unique = true)
     private User user;
 }

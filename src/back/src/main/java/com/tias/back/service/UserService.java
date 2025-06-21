@@ -26,7 +26,26 @@ public class UserService {
         this.repository = repository;
     }
 
+    private void validateRequest(UserRequestDTO dto) {
+        if (!(dto.getName() != null && dto.getName().matches("^[A-Za-zÀ-ú ]+$"))) {
+            logger.warn("Validação falhou em UserRequestDTO: Nome inválido: deve conter apenas letras e espaços");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "Nome inválido: deve conter apenas letras e espaços");
+        }
+        if (!(dto.getCpf() != null && dto.getCpf().matches("\\d{11}"))) {
+            logger.warn("Validação falhou em UserRequestDTO: CPF inválido: deve conter exatamente 11 dígitos numéricos");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "CPF inválido: deve conter exatamente 11 dígitos numéricos");
+        }
+        if (!(dto.getEmail() != null && dto.getEmail().matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"))) {
+            logger.warn("Validação falhou em UserRequestDTO: Email inválido");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "Email inválido");
+        }
+    }
+
     public UserResponseDTO create(UserRequestDTO dto) {
+        validateRequest(dto);
         if (repository.existsByCpf(dto.getCpf())) {
             logger.warn("CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado: " + dto.getCpf());
@@ -61,6 +80,7 @@ public class UserService {
     }
 
     public UserResponseDTO update(UUID id, UserRequestDTO dto) {
+        validateRequest(dto);
         User entity = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
 

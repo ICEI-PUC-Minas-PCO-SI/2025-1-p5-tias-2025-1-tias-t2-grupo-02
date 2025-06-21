@@ -24,7 +24,7 @@ public class Medication {
 
     private String description;
 
-    private String posologia;
+    private String dosage;
 
     private LocalDateTime addedAt;
 

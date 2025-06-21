@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,17 +23,13 @@ public class Patient {
     private String name;
     
     @Column(unique = true)
-    private Integer cpf;
+    private String cpf;
     
-    private LocalDate birthday;
+    private LocalDate birthdate;
 
     private String address;
 
     private String condition;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime editedAt;
-
-    private LocalDateTime deactivatedAt;
+    private boolean isActive;
 }
