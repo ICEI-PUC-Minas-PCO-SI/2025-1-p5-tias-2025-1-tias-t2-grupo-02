@@ -29,54 +29,99 @@ public class PatientService {
 
     private void validateRequest(PatientRequestDTO dto) {
         if (!(dto.getName() != null && dto.getName().matches("^[A-Za-zÀ-ú ]+$"))) {
-            logger.warn("Validação falhou em PatientRequestDTO: Nome inválido");
+            logger.warn("Validação falhou: Nome inválido");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Nome inválido: deve conter apenas letras e espaços");
         }
         if (!(dto.getCpf() != null && dto.getCpf().matches("\\d{11}"))) {
-            logger.warn("Validação falhou em PatientRequestDTO: CPF inválido");
+            logger.warn("Validação falhou: CPF inválido");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "CPF inválido: deve conter exatamente 11 dígitos numéricos");
         }
+        if (!(dto.getRg() != null && dto.getRg().matches("\\d{7,14}"))) {
+            logger.warn("Validação falhou: RG inválido");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "RG inválido: deve conter apenas dígitos (7 a 14 caracteres)");
+        }
         if (dto.getBirthdate() == null) {
-            logger.warn("Validação falhou em PatientRequestDTO: Birthdate obrigatório");
+            logger.warn("Validação falhou: Birthdate obrigatório");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Birthdate é obrigatório");
         }
         if (dto.getBirthdate().isAfter(LocalDate.now())) {
-            logger.warn("Validação falhou em PatientRequestDTO: Birthdate no futuro: {}", dto.getBirthdate());
+            logger.warn("Validação falhou: Birthdate no futuro");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Birthdate não pode ser uma data futura");
         }
+        if (!(dto.getCep() != null && dto.getCep().matches("\\d{5}-?\\d{3}"))) {
+            logger.warn("Validação falhou: CEP inválido");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "CEP inválido: use XXXXX-XXX ou XXXXXXXX");
+        }
         if (!(dto.getAddress() != null && !dto.getAddress().isBlank())) {
-            logger.warn("Validação falhou em PatientRequestDTO: Endereço vazio");
+            logger.warn("Validação falhou: Endereço vazio");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Endereço não pode ser vazio");
         }
-        if (!(dto.getCondition() != null && !dto.getCondition().isBlank())) {
-            logger.warn("Validação falhou em PatientRequestDTO: Condição vazia");
+        if (!(dto.getBloodType() != null && dto.getBloodType().matches("^(A|B|AB|O)[+-]$"))) {
+            logger.warn("Validação falhou: bloodType inválido");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "Condição não pode ser vazia");
+                "bloodType inválido: use A+, A-, B+, B-, AB+, AB-, O+ ou O-");
+        }
+        if (!(dto.getPlano() != null && !dto.getPlano().isBlank())) {
+            logger.warn("Validação falhou: Plano vazio");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "Plano não pode ser vazio");
+        }
+        if (!(dto.getCarteirinha() != null && !dto.getCarteirinha().isBlank())) {
+            logger.warn("Validação falhou: Carteirinha vazia");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "Carteirinha não pode ser vazia");
+        }
+        if (!(dto.getConditions() != null && !dto.getConditions().isBlank())) {
+            logger.warn("Validação falhou: Conditions vazia");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "Conditions não pode ser vazia");
         }
     }
 
     public PatientResponseDTO create(PatientRequestDTO dto) {
         validateRequest(dto);
+
         if (repository.existsByCpf(dto.getCpf())) {
             logger.warn("Paciente com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "Paciente com CPF '" + dto.getCpf() + "' já existe.");
         }
+        if (repository.existsByRg(dto.getRg())) {
+            logger.warn("Paciente com RG duplicado: {}", dto.getRg());
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "Paciente com RG '" + dto.getRg() + "' já existe.");
+        }
+        if (repository.existsByCarteirinha(dto.getCarteirinha())) {
+            logger.warn("Paciente com carteirinha duplicada: {}", dto.getCarteirinha());
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "Paciente com carteirinha '" + dto.getCarteirinha() + "' já existe.");
+        }
+
         Patient p = Patient.builder()
             .name(dto.getName())
             .cpf(dto.getCpf())
+            .rg(dto.getRg())
             .birthdate(dto.getBirthdate())
+            .cep(dto.getCep())
             .address(dto.getAddress())
-            .condition(dto.getCondition())
+            .bloodType(dto.getBloodType())
+            .plano(dto.getPlano())
+            .carteirinha(dto.getCarteirinha())
+            .conditions(dto.getConditions())
             .isActive(true)
+            .addedAt(LocalDate.now())       // seta a data de cadastro
             .build();
+
         Patient saved = repository.save(p);
-        logger.info("Paciente criado: {}", saved.getPatientId());
+        logger.info("Paciente criado: {} (addedAt={})",
+                    saved.getPatientId(), saved.getAddedAt());
         return toDto(saved);
     }
 
@@ -95,19 +140,40 @@ public class PatientService {
 
     public PatientResponseDTO update(UUID id, PatientRequestDTO dto) {
         validateRequest(dto);
+
         Patient p = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
+
         if (!p.getCpf().equals(dto.getCpf()) && repository.existsByCpf(dto.getCpf())) {
             logger.warn("Atualização com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "CPF '" + dto.getCpf() + "' já está cadastrado.");
         }
+        if (!p.getRg().equals(dto.getRg()) && repository.existsByRg(dto.getRg())) {
+            logger.warn("Atualização com RG duplicado: {}", dto.getRg());
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "RG '" + dto.getRg() + "' já está cadastrado.");
+        }
+        if (!p.getCarteirinha().equals(dto.getCarteirinha())
+            && repository.existsByCarteirinha(dto.getCarteirinha())) {
+            logger.warn("Atualização com carteirinha duplicada: {}", dto.getCarteirinha());
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "Carteirinha '" + dto.getCarteirinha() + "' já está cadastrada.");
+        }
+
+        // NÃO altera addedAt
         p.setName(dto.getName());
         p.setCpf(dto.getCpf());
+        p.setRg(dto.getRg());
         p.setBirthdate(dto.getBirthdate());
+        p.setCep(dto.getCep());
         p.setAddress(dto.getAddress());
-        p.setCondition(dto.getCondition());
+        p.setBloodType(dto.getBloodType());
+        p.setPlano(dto.getPlano());
+        p.setCarteirinha(dto.getCarteirinha());
+        p.setConditions(dto.getConditions());
+
         Patient updated = repository.save(p);
         logger.info("Paciente atualizado: {}", id);
         return toDto(updated);
@@ -117,11 +183,13 @@ public class PatientService {
         Patient p = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
+
         if (!p.isActive()) {
             logger.warn("Paciente já inativo: {}", id);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                 "Paciente '" + id + "' já está inativo.");
         }
+
         p.setActive(false);
         Patient saved = repository.save(p);
         logger.info("Paciente desativado: {}", id);
@@ -133,10 +201,16 @@ public class PatientService {
             .patientId(p.getPatientId())
             .name(p.getName())
             .cpf(p.getCpf())
+            .rg(p.getRg())
             .birthdate(p.getBirthdate())
+            .cep(p.getCep())
             .address(p.getAddress())
-            .condition(p.getCondition())
+            .bloodType(p.getBloodType())
+            .plano(p.getPlano())
+            .carteirinha(p.getCarteirinha())
+            .conditions(p.getConditions())
             .isActive(p.isActive())
+            .addedAt(p.getAddedAt())      // devolve addedAt na resposta
             .build();
     }
 }

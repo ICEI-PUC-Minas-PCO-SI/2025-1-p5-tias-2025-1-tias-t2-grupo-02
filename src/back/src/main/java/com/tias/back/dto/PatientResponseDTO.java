@@ -1,7 +1,6 @@
 package com.tias.back.dto;
 
 import lombok.*;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -11,8 +10,14 @@ public class PatientResponseDTO {
     private UUID patientId;
     private String name;
     private String cpf;
+    private String rg;
     private LocalDate birthdate;
+    private String cep;
     private String address;
-    private String condition;
+    private String bloodType;
+    private String plano;
+    private String carteirinha;
+    private String conditions;
     private boolean isActive;
+    private LocalDate addedAt;
 }

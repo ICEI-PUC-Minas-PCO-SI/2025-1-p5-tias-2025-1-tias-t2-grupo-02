@@ -3,6 +3,7 @@ package com.tias.back.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,6 +25,10 @@ public class Medication {
 
     private String description;
 
+    private Long quantity;
+
+    private LocalDate experirationDate;
+
     private String dosage;
 
     private LocalDateTime addedAt;
@@ -31,4 +36,6 @@ public class Medication {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patientId", insertable = false, updatable = false)
     private Patient patient;
+
+    private MedicationStatus status;
 }

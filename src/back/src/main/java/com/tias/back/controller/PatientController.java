@@ -40,11 +40,13 @@ public class PatientController {
     public ResponseEntity<PatientResponseDTO> update(
             @PathVariable UUID id,
             @RequestBody PatientRequestDTO dto) {
-        return ResponseEntity.ok(service.update(id, dto));
+        PatientResponseDTO updated = service.update(id, dto);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<PatientResponseDTO> deactivate(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.deactivate(id));
+        PatientResponseDTO deactivated = service.deactivate(id);
+        return ResponseEntity.ok(deactivated);
     }
 }

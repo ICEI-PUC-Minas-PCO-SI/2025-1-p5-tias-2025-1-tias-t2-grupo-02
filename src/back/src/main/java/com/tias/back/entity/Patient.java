@@ -25,11 +25,24 @@ public class Patient {
     @Column(unique = true)
     private String cpf;
     
+    @Column(unique = true)
+    private String rg;
+
     private LocalDate birthdate;
+
+    private String cep;
 
     private String address;
 
-    private String condition;
+    private String bloodType;
+
+    private String plano;
+
+    private String carteirinha;
+    
+    private String conditions;
 
     private boolean isActive;
+
+    private LocalDate addedAt;
 }
