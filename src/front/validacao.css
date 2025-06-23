@@ -1,0 +1,380 @@
+/* Estilos para validações de formulário */
+
+/* Estados dos campos */
+.campo-erro {
+    border-color: #FF5252 !important;
+    background-color: rgba(255, 82, 82, 0.05) !important;
+    box-shadow: 0 0 0 2px rgba(255, 82, 82, 0.2) !important;
+}
+
+.campo-valido {
+    border-color: #4CAF50 !important;
+    background-color: rgba(76, 175, 80, 0.05) !important;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2) !important;
+}
+
+/* Mensagens de erro */
+.erro-validacao {
+    color: #FF5252;
+    font-size: 14px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    animation: slideDown 0.3s ease-out;
+}
+
+.erro-validacao::before {
+    content: "⚠️";
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+/* Animação para mensagens de erro */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para campos obrigatórios */
+.form-group label[required]::after,
+.form-group label.required::after {
+    content: " *";
+    color: #FF5252;
+    font-weight: bold;
+}
+
+/* Tooltip de ajuda para validações */
+.campo-ajuda {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: help;
+}
+
+.campo-ajuda::before {
+    content: "?";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #2196F3;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.campo-ajuda .tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.campo-ajuda .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.campo-ajuda:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Indicador de carregamento para validações assíncronas */
+.validando {
+    position: relative;
+}
+
+.validando::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #2196F3;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Estilos para formulário com validação */
+.form-validacao {
+    position: relative;
+}
+
+.form-validacao .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-validacao input,
+.form-validacao select,
+.form-validacao textarea {
+    transition: all 0.3s ease;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.form-validacao input:focus,
+.form-validacao select:focus,
+.form-validacao textarea:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* Resumo de erros */
+.resumo-erros {
+    background-color: rgba(255, 82, 82, 0.1);
+    border: 1px solid #FF5252;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.resumo-erros.ativo {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+.resumo-erros h4 {
+    color: #FF5252;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.resumo-erros ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resumo-erros li {
+    color: #FF5252;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.resumo-erros li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Botão de envio com validação */
+.btn-enviar {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-enviar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-enviar.carregando::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Contador de caracteres */
+.contador-caracteres {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.contador-caracteres.limite-proximo {
+    color: #FF9800;
+}
+
+.contador-caracteres.limite-excedido {
+    color: #FF5252;
+    font-weight: bold;
+}
+
+/* Validação de força de senha */
+.forca-senha {
+    margin-top: 5px;
+    height: 4px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.forca-senha .barra {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.forca-senha .fraca {
+    width: 25%;
+    background-color: #FF5252;
+}
+
+.forca-senha .media {
+    width: 50%;
+    background-color: #FF9800;
+}
+
+.forca-senha .forte {
+    width: 75%;
+    background-color: #2196F3;
+}
+
+.forca-senha .muito-forte {
+    width: 100%;
+    background-color: #4CAF50;
+}
+
+/* Responsividade para validações */
+@media (max-width: 768px) {
+    .campo-ajuda .tooltip {
+        width: 150px;
+        margin-left: -75px;
+        font-size: 11px;
+    }
+    
+    .erro-validacao {
+        font-size: 13px;
+    }
+    
+    .resumo-erros {
+        padding: 12px;
+    }
+    
+    .form-validacao input,
+    .form-validacao select,
+    .form-validacao textarea {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+}
+
+/* Estilos para campos de múltiplos contatos */
+.contatos-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.contato-item {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.contato-item:last-child {
+    margin-bottom: 0;
+}
+
+.contato-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contato-titulo {
+    font-weight: 500;
+    color: #333;
+}
+
+.btn-remover-contato {
+    background-color: #FF5252;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-remover-contato:hover {
+    background-color: #E53935;
+}
+
+.btn-adicionar-contato {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-adicionar-contato:hover {
+    background-color: #45a049;
+}
+
+.btn-adicionar-contato::before {
+    content: "+";
+    font-weight: bold;
+    font-size: 16px;
+}
+
