@@ -4,6 +4,8 @@ import com.tias.back.dto.ContactRequestDTO;
 import com.tias.back.dto.ContactResponseDTO;
 import com.tias.back.entity.Contact;
 import com.tias.back.repository.ContactRepository;
+import com.tias.back.repository.PatientRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,9 +23,11 @@ public class ContactService {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
     private final ContactRepository repository;
+    private final PatientRepository patientRepo;
 
-    public ContactService(ContactRepository repository) {
+    public ContactService(ContactRepository repository, PatientRepository patientRepo) {
         this.repository = repository;
+        this.patientRepo = patientRepo;
     }
 
     private void validateRequest(ContactRequestDTO dto) {
@@ -57,7 +61,7 @@ public class ContactService {
     public ContactResponseDTO create(ContactRequestDTO dto) {
         validateRequest(dto);
         Contact c = Contact.builder()
-            .patientId(dto.getPatientId())
+            .patient(patientRepo.getReferenceById(dto.getPatientId()))
             .name(dto.getName())
             .email(dto.getEmail())
             .phone(dto.getPhone())
@@ -86,7 +90,7 @@ public class ContactService {
         Contact c = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Contact não encontrado: " + id));
-        c.setPatientId(dto.getPatientId());
+        c.setPatient(patientRepo.getReferenceById(dto.getPatientId()));
         c.setName(dto.getName());
         c.setEmail(dto.getEmail());
         c.setPhone(dto.getPhone());
@@ -104,7 +108,7 @@ public class ContactService {
     private ContactResponseDTO toDto(Contact c) {
         return ContactResponseDTO.builder()
             .id(c.getId())
-            .patientId(c.getPatientId())
+            .patientId(c.getPatient().getPatientId())
             .name(c.getName())
             .email(c.getEmail())
             .phone(c.getPhone())

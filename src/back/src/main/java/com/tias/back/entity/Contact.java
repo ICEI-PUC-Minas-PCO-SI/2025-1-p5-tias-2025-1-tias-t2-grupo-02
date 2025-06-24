@@ -18,9 +18,6 @@ public class Contact {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false)
-    private UUID patientId;
-
     private String name;
 
     private String email;
@@ -30,6 +27,6 @@ public class Contact {
     private String relation;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patientId", insertable = false, updatable = false)
+    @JoinColumn(name = "patientId", referencedColumnName = "patientId", nullable = false)
     private Patient patient;
 }
