@@ -3,7 +3,6 @@ package com.tias.back.controller;
 import com.tias.back.dto.LoginRequestDTO;
 import com.tias.back.dto.LoginResponseDTO;
 import com.tias.back.service.LoginService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +19,9 @@ public class LoginController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<LoginResponseDTO> create(@RequestBody LoginRequestDTO dto) {
-        LoginResponseDTO created = service.create(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    @PostMapping("/authenticate")
+    public ResponseEntity<String> authenticate(@RequestBody LoginRequestDTO dto) {
+        return service.authenticate(dto);
     }
 
     @GetMapping("/{id}")

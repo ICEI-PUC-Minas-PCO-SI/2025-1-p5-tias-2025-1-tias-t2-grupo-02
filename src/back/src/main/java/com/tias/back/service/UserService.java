@@ -2,7 +2,9 @@ package com.tias.back.service;
 
 import com.tias.back.dto.UserRequestDTO;
 import com.tias.back.dto.UserResponseDTO;
+import com.tias.back.entity.Login;
 import com.tias.back.entity.User;
+import com.tias.back.repository.LoginRepository;
 import com.tias.back.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,9 +24,11 @@ public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserRepository repository;
+    private final LoginRepository loginRepo;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, LoginRepository loginRepo) {
         this.repository = repository;
+        this.loginRepo = loginRepo;
     }
 
     private void validateRequest(UserRequestDTO dto) {
@@ -63,6 +68,17 @@ public class UserService {
             .build();
 
         User saved = repository.save(entity);
+
+        Login login = Login.builder()
+                .email(saved.getEmail())
+                .password(dto.getPassword())
+                .lastLogin(LocalDateTime.now())
+                .user(saved)
+                .isActive(true)
+                .build();
+                
+        loginRepo.save(login);
+
         logger.info("Usuário criado: {}", saved.getUserId());
         return toResponse(saved);
     }

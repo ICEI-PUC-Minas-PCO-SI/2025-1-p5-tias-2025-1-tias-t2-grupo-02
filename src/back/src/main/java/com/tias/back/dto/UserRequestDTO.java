@@ -14,6 +14,9 @@ public class UserRequestDTO {
     @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Nome deve conter apenas letras e espaços")
     private String name;
 
+    @NotBlank(message = "senha é obrigatória")
+    private String password;
+
     @NotBlank(message = "CPF é obrigatório")
     @Pattern(regexp = "^[0-9]{11}$", message = "CPF deve conter exatamente 11 dígitos numéricos")
     private String cpf;
