@@ -31,85 +31,62 @@
     </h2>
     <p class="text-sm text-gray-600 mb-8">Preencha o formulário abaixo com os dados do novo paciente. Os campos marcados com * são obrigatórios.</p>
 
-    <form class="flex flex-col lg:flex-row gap-8">
-      
+    <form id="patientForm" class="flex flex-col lg:flex-row gap-8">
       <!-- Coluna esquerda -->
       <div class="w-full lg:w-1/2 space-y-6 bg-white p-6 shadow rounded-md">
         <h3 class="text-lg font-medium">Formulário de Cadastro</h3>
 
-        <!-- Foto -->
-        <div class="border-2 border-dashed border-gray-300 rounded flex items-center justify-center h-32 text-sm text-gray-400 text-center">
-          Clique para adicionar foto <br/>Tamanho máximo: 5MB. Formatos: JPG, PNG
-        </div>
+         <label for="photoInput" class="cursor-pointer border-2 border-dashed border-gray-300 rounded flex items-center justify-center h-32 text-sm text-gray-400 text-center">
+          <span id="photoLabel">Clique para adicionar foto<br/>Tamanho máximo: 5MB. Formatos: JPG, PNG</span>
+          <img id="photoPreview" src="#" alt="Pré-visualização" class="hidden absolute h-32 object-cover rounded" />
+        </label>
+        <input type="file" id="photoInput" accept="image/png, image/jpeg" class="hidden" />
 
-        <!-- Informações Pessoais -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="text-sm">Nome Completo *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
-          </div>
-          <div>
-            <label class="text-sm">Nome Social</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <input type="text" id="nome" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Data de Nascimento *</label>
-            <input type="date" class="w-full border rounded px-2 py-1" />
-          </div>
-          <div>
-            <label class="text-sm">Gênero *</label>
-            <select class="w-full border rounded px-2 py-1">
-              <option>Selecione</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-sm">Estado Civil *</label>
-            <select class="w-full border rounded px-2 py-1">
-              <option>Selecione</option>
-            </select>
+            <input type="date" id="dataNascimento" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">CPF *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="000.000.000-00" />
+            <input type="text" id="cpf" required class="w-full border rounded px-2 py-1" placeholder="000.000.000-00" />
           </div>
           <div>
             <label class="text-sm">RG</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="00.000.000-0" />
-          </div>
-          <div>
-            <label class="text-sm">Nacionalidade</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="Ex: Brasileira" />
+            <input type="text" id="rg" class="w-full border rounded px-2 py-1" placeholder="00.000.000-0" />
           </div>
         </div>
 
-        <!-- Contato -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="text-sm">Telefone *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
+            <input type="text" id="phone" required class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
           </div>
           <div>
             <label class="text-sm">E-mail</label>
-            <input type="email" class="w-full border rounded px-2 py-1" placeholder="exemplo@email.com" />
+            <input type="email" id="email" class="w-full border rounded px-2 py-1" placeholder="exemplo@email.com" />
           </div>
         </div>
 
-        <!-- Endereço -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label class="text-sm">CEP *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <input type="text" id="cep" required class="w-full border rounded px-2 py-1" />
           </div>
           <div class="md:col-span-2">
             <label class="text-sm">Logradouro</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="Rua, Avenida, etc." />
+            <input type="text" id="street" class="w-full border rounded px-2 py-1" placeholder="Rua, Avenida, etc." />
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label class="text-sm">Número *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <input type="text" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Complemento</label>
@@ -117,19 +94,22 @@
           </div>
           <div>
             <label class="text-sm">Bairro</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <input type="text" id="neighborhood" class="w-full border rounded px-2 py-1" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="text-sm">Cidade *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <input type="text" id="city" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Estado *</label>
-            <select class="w-full border rounded px-2 py-1">
+            <select id="state" required class="w-full border rounded px-2 py-1">
               <option>Selecione</option>
+              <option value="SP">SP</option>
+              <option value="MG">MG</option>
+              <option value="RJ">RJ</option>
             </select>
           </div>
         </div>
@@ -137,7 +117,6 @@
 
       <!-- Coluna direita -->
       <div class="w-full lg:w-1/2 space-y-6 bg-white p-6 shadow rounded-md">
-        
         <h3 class="text-lg font-medium">Informações Médicas</h3>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -145,6 +124,14 @@
             <label class="text-sm">Tipo Sanguíneo</label>
             <select class="w-full border rounded px-2 py-1">
               <option>Selecione</option>
+              <option>O+</option>
+              <option>O-</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>AB+</option>
+              <option>AB-</option>
             </select>
           </div>
           <div>
@@ -157,35 +144,35 @@
           </div>
         </div>
 
-        <!-- Alergias -->
         <div>
           <label class="text-sm">Alergias</label>
-          <div class="flex items-center gap-4 mt-1">
-            <label><input type="checkbox" class="mr-1" /> Medicamentos</label>
-            <label><input type="checkbox" class="mr-1" /> Alimentos</label>
-            <label><input type="checkbox" class="mr-1" /> Outras</label>
-          </div>
+          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Descreva alergias, se houver"></textarea>
         </div>
-        <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Descreva detalhes sobre as alergias, se houver"></textarea>
 
-        <!-- Condições -->
-        <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Doenças Crônicas, se houver"></textarea>
-        <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Medicamentos em Uso, se houver"></textarea>
+        <div>
+          <label class="text-sm">Doenças Crônicas</label>
+          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Doenças Crônicas, se houver"></textarea>
+        </div>
 
-        <!-- Contato de Emergência -->
-        <h3 class="text-lg font-medium mt-6">Contato de Emergência</h3>
+        <div>
+          <label class="text-sm">Medicamentos em Uso</label>
+          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Medicamentos em uso, se houver"></textarea>
+        </div>
+
+        <h3 class="text-lg font-medium">Contato de Emergência</h3>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="text-sm">Nome Completo *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <label class="text-sm">Nome *</label>
+            <input type="text" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Parentesco *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="Ex: Filho(a), Colega" />
+            <input type="text" required class="w-full border rounded px-2 py-1" placeholder="Filho(a), Amigo(a)..." />
           </div>
           <div>
             <label class="text-sm">Telefone *</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
+            <input type="text" required class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
           </div>
           <div>
             <label class="text-sm">E-mail</label>
@@ -193,66 +180,75 @@
           </div>
         </div>
 
-        <!-- Observações -->
-        <textarea class="w-full border rounded px-2 py-1 mt-4" rows="3" placeholder="Observações adicionais relevantes"></textarea>
+        <div>
+          <label class="text-sm">Observações adicionais</label>
+          <textarea class="w-full border rounded px-2 py-1" rows="3" placeholder="Observações relevantes sobre o paciente"></textarea>
+        </div>
       </div>
     </form>
 
     <!-- Botões -->
     <div class="mt-6 flex gap-4 justify-end">
-      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Cancelar</button>
-      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
-      <button onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
+      <button type="button" onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Cancelar</button>
+      <button type="button" onclick="alert('Rascunho salvo (simulado)')" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
+      <button type="submit" form="patientForm" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
     </div>
   </main>
 
-  <!-- Rodapé -->
-  <footer class="bg-[#1a1a1a] text-white text-sm px-6 py-4 mt-10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between">
-      <!-- Logo -->
-      <div class="flex items-center mb-4 md:mb-0">
-        <img src="logo.jpg" alt="Logo da Casa de Repouso" class="w-10 h-10 mr-2" />
-        <span class="text-xs">Casa de Repouso Do Jeitinho da Vovó</span>
-      </div>
+  <script>
+    document.getElementById('cpf').addEventListener('input', function () {
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
+      if (value.length > 9) {
+        this.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      } else if (value.length > 6) {
+        this.value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+      } else if (value.length > 3) {
+        this.value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+      } else {
+        this.value = value;
+      }
+    });
 
-      <!-- Links -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left w-full md:w-auto">
-        <div>
-          <h3 class="font-semibold mb-1">Sistema</h3>
-          <ul class="space-y-0.5">
-                    <li><a href="Dash.html">Início</a></li>
-                    <li><a href="pesquisa_paciente.html">Pacientes</a></li>
-                    <li><a href="gerenciamento.html">Medicamentos</a></li>
-                    <li><a href="help_page_final.html">Relatórios</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-1">Suporte</h3>
-          <ul class="space-y-0.5">
-                    <li><a href="help_page_final.html">Central de Ajuda</a></li>
-                    <li><a href="#">Tutoriais</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Reportar Problema</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-1">Legal</h3>
-          <ul class="space-y-0.5">
-                    <li><a href="#">Termos de Uso</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">LGPD</a></li>
+    document.getElementById('phone').addEventListener('input', function () {
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
+      if (value.length > 10) {
+        this.value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      } else if (value.length > 6) {
+        this.value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      } else if (value.length > 2) {
+        this.value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+      } else {
+        this.value = value;
+      }
+    });
 
+    document.getElementById('cep').addEventListener('input', function () {
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 8) value = value.slice(0, 8);
+      if (value.length > 5) {
+        this.value = value.replace(/(\d{5})(\d{1,3})/, '$1-$2');
+      } else {
+        this.value = value;
+      }
+    });
 
-          </ul>
-        </div>
-      </div>
-    </div>
+    document.getElementById('cep').addEventListener('blur', function () {
+      const cep = this.value.replace(/[^0-9]/g, '');
+      if (cep === '01001-000' || cep === '01001000') {
+        document.getElementById('street').value = 'Praça da Sé';
+        document.getElementById('neighborhood').value = 'Sé';
+        document.getElementById('city').value = 'São Paulo';
+        document.getElementById('state').value = 'SP';
+      }
+    });
 
-    <!-- Texto final -->
-    <div class="text-center text-xs text-gray-400 mt-4">
-      © 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.
-    </div>
-  </footer>
-
+    document.getElementById('patientForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Paciente cadastrado com sucesso! (simulado)');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
