@@ -3,7 +3,10 @@ package com.tias.back.service;
 import com.tias.back.dto.LoginRequestDTO;
 import com.tias.back.dto.LoginResponseDTO;
 import com.tias.back.entity.Login;
+import com.tias.back.entity.User;
 import com.tias.back.repository.LoginRepository;
+import com.tias.back.repository.UserRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,17 +25,14 @@ public class LoginService {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
     private final LoginRepository repository;
+    private final UserRepository userRepo;
 
-    public LoginService(LoginRepository repository) {
+    public LoginService(LoginRepository repository, UserRepository userRepo) {
         this.repository = repository;
+        this.userRepo = userRepo;
     }
 
     private void validateRequest(LoginRequestDTO dto) {
-        if (dto.getUserId() == null) {
-            logger.warn("Validação falhou em LoginRequestDTO: UserId obrigatório");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "UserId é obrigatório");
-        }
         if (dto.getEmail() == null || dto.getEmail().isBlank()) {
             logger.warn("Validação falhou em LoginRequestDTO: email vazio");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
@@ -63,26 +63,15 @@ public class LoginService {
         Login l = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Login não encontrado: " + id));
+        User u = userRepo.findByEmail(dto.getEmail())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+        "Email não encontrado: " + dto.getEmail()));;
+        u.setEmail(dto.getEmail());
         l.setEmail(dto.getEmail());
         l.setPassword(dto.getPassword());
         Login updated = repository.save(l);
         logger.info("Login atualizado: {}", id);
         return toDto(updated);
-    }
-
-    public LoginResponseDTO deactivate(UUID id) {
-        Login l = repository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "Login não encontrado: " + id));
-        if (!l.getIsActive()) {
-            logger.warn("Login já inativo: {}", id);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                "Login já está inativo: " + id);
-        }
-        l.setIsActive(false);
-        Login saved = repository.save(l);
-        logger.info("Login desativado: {}", id);
-        return toDto(saved);
     }
 
     public ResponseEntity<String> authenticate(LoginRequestDTO dto) {

@@ -40,6 +40,12 @@ public class UserController {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<UserResponseDTO> activate(
+            @PathVariable UUID id) {
+        return ResponseEntity.ok(service.activate(id));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<UserResponseDTO> deactivate(@PathVariable UUID id) {
         return ResponseEntity.ok(service.deactivate(id));

@@ -40,9 +40,4 @@ public class LoginController {
             @RequestBody LoginRequestDTO dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<LoginResponseDTO> deactivate(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.deactivate(id));
-    }
 }

@@ -121,15 +121,36 @@ public class UserService {
     public UserResponseDTO deactivate(UUID id) {
         User entity = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
+        Login login = loginRepo.findByUser(entity)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
 
         if (!entity.isActive()) {
             logger.warn("Usuário já inativo: {}", id);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já está inativo: " + id);
         }
 
+        login.setIsActive(false);
         entity.setActive(false);
         User saved = repository.save(entity);
         logger.info("Usuário desativado: {}", id);
+        return toResponse(saved);
+    }
+
+    public UserResponseDTO activate(UUID id) {
+        User entity = repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
+        Login login = loginRepo.findByUser(entity)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
+
+        if (entity.isActive()) {
+            logger.warn("Usuário já ativo: {}", id);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já está ativo: " + id);
+        }
+
+        login.setIsActive(true);
+        entity.setActive(true);
+        User saved = repository.save(entity);
+        logger.info("Usuário ativado: {}", id);
         return toResponse(saved);
     }
 

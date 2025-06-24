@@ -149,14 +149,14 @@
 
 ## Login Endpoints
 
-### POST LOGIN
-- **URL:** `http://localhost:8080/api/login`
+### AUTHENTICATE LOGIN
+- **URL:** `http://localhost:8080/api/login/authenticate`
 - **METHOD:** `POST`
 - **BODY:**
   ```json
   {
-    "username": "user",
-    "password": "password"
+	"email": "teste@example.com",
+	"password": "12345"
   }
   ```
 
