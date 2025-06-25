@@ -13,7 +13,6 @@ public class PatientResponseDTO {
     private String rg;
     private LocalDate birthdate;
     private String cep;
-    private String address;
     private String bloodType;
     private String plano;
     private String carteirinha;

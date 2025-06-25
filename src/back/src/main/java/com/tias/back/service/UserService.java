@@ -97,23 +97,27 @@ public class UserService {
 
     public UserResponseDTO update(UUID id, UserRequestDTO dto) {
         validateRequest(dto);
-        User entity = userRepo.findById(id)
+        User user = userRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
+        Login login = loginRepo.findByUser(user)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Login não encontrado: " + id));
 
-        if (!entity.getCpf().equals(dto.getCpf()) && userRepo.existsByCpf(dto.getCpf())) {
+        if (!user.getCpf().equals(dto.getCpf()) && userRepo.existsByCpf(dto.getCpf())) {
             logger.warn("Atualização com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado: " + dto.getCpf());
         }
-        if (!entity.getEmail().equals(dto.getEmail()) && userRepo.existsByEmail(dto.getEmail())) {
+        if (!user.getEmail().equals(dto.getEmail()) && userRepo.existsByEmail(dto.getEmail())) {
             logger.warn("Atualização com email duplicado: {}", dto.getEmail());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email já cadastrado: " + dto.getEmail());
         }
 
-        entity.setName(dto.getName());
-        entity.setCpf(dto.getCpf());
-        entity.setEmail(dto.getEmail());
-        User updated = userRepo.save(entity);
+        user.setName(dto.getName());
+        user.setCpf(dto.getCpf());
+        user.setEmail(dto.getEmail());
+        login.setEmail(dto.getEmail());
 
+        User updated = userRepo.save(user);
+        loginRepo.save(login);
         logger.info("Usuário atualizado: {}", id);
         return toResponse(updated);
     }

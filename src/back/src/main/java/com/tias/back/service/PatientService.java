@@ -73,11 +73,6 @@ public class PatientService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Carteirinha não pode ser vazia");
         }
-        if (!(dto.getConditions() != null && !dto.getConditions().isBlank())) {
-            logger.warn("Validação falhou: Conditions vazia");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "Conditions não pode ser vazia");
-        }
     }
 
     public PatientResponseDTO create(PatientRequestDTO dto) {
@@ -222,7 +217,6 @@ public class PatientService {
             .rg(p.getRg())
             .birthdate(p.getBirthdate())
             .cep(p.getCep())
-            .address(p.getAddress())
             .bloodType(p.getBloodType())
             .plano(p.getPlano())
             .carteirinha(p.getCarteirinha())

@@ -44,8 +44,20 @@ public class PatientController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/deactivate/{id}")
     public ResponseEntity<PatientResponseDTO> deactivate(@PathVariable UUID id) {
+        PatientResponseDTO deactivated = patientService.deactivate(id);
+        return ResponseEntity.ok(deactivated);
+    }
+
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<PatientResponseDTO> activate(@PathVariable UUID id) {
+        PatientResponseDTO deactivated = patientService.activate(id);
+        return ResponseEntity.ok(deactivated);
+    }
+
+    @DeleteMapping("/deactivate/{id}")
+    public ResponseEntity<PatientResponseDTO> delete(@PathVariable UUID id) {
         PatientResponseDTO deactivated = patientService.deactivate(id);
         return ResponseEntity.ok(deactivated);
     }

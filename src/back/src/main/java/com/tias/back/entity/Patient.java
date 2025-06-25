@@ -32,8 +32,6 @@ public class Patient {
 
     private String cep;
 
-    private String address;
-
     private String bloodType;
 
     private String plano;

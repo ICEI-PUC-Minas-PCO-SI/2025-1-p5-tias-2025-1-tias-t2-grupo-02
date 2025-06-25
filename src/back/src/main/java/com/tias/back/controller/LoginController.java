@@ -33,11 +33,4 @@ public class LoginController {
     public List<LoginResponseDTO> getAll() {
         return service.getAll();
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<LoginResponseDTO> update(
-            @PathVariable UUID id,
-            @RequestBody LoginRequestDTO dto) {
-        return ResponseEntity.ok(service.update(id, dto));
-    }
 }
