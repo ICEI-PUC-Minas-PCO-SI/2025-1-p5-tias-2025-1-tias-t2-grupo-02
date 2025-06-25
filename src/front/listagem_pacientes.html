@@ -250,12 +250,6 @@
             color: var(--cinza-medio);
         }
 
-        .results-actions {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
         .table-container {
             overflow-x: auto;
         }
@@ -288,11 +282,6 @@
         .patient-name {
             font-weight: 500;
             color: var(--preto-suave);
-        }
-
-        .patient-id {
-            color: var(--cinza-medio);
-            font-size: 14px;
         }
 
         .status-badge {
@@ -348,220 +337,125 @@
             color: #FF5252;
         }
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 5px;
-        }
-
-        .pagination-item {
-            width: 40px;
-            height: 40px;
-            display: flex;
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            z-index: 9999;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            background-color: var(--branco-suave);
-            color: var(--preto-suave);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
         }
-
-        .pagination-item:hover {
-            background-color: var(--bege-claro);
+        .modal {
+            background: #fff;
+            border-radius: 10px;
+            width: 95%;
+            max-width: 540px;
+            max-height: 95vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
         }
-
-        .pagination-item.active {
-            background-color: var(--bege-escuro);
-            color: var(--preto-suave);
-        }
-
-        footer {
-            background-color: var(--preto-suave);
-            color: var(--branco-suave);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--cinza-claro);
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-        }
-
-        .footer-logo {
-            display: flex;
             align-items: center;
-            margin-bottom: 20px;
         }
-
-        .footer-logo-img {
-            width: 50px;
-            height: 50px;
-            margin-right: 15px;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-logo-text {
+        .modal-title {
             font-size: 20px;
             font-weight: 500;
+            color: var(--preto-suave);
         }
-
-        .footer-links {
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--cinza-medio);
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid var(--cinza-claro);
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        .patient-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .patient-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .patient-photo-large {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--cinza-claro);
+        }
+        .patient-info {
+            flex: 1;
+        }
+        .patient-name-large {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--preto-suave);
+            margin-bottom: 5px;
+        }
+        .patient-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-top: 10px;
         }
-
-        .footer-column {
-            min-width: 200px;
-            text-align: left;
+        .patient-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--cinza-medio);
+            font-size: 14px;
         }
-
-        .footer-column-title {
+        .detail-section {
+            margin-bottom: 20px;
+        }
+        .detail-title {
             font-size: 18px;
+            font-weight: 500;
+            color: var(--preto-suave);
             margin-bottom: 15px;
-            color: var(--bege-claro);
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--cinza-claro);
         }
-
-        .footer-link {
-            display: block;
+        .detail-row {
+            display: flex;
+            flex-wrap: wrap;
             margin-bottom: 10px;
-            color: var(--branco-suave);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
         }
-
-        .footer-link:hover {
-            color: var(--bege-claro);
+        .detail-label {
+            width: 40%;
+            min-width: 150px;
+            font-weight: 500;
+            color: var(--preto-suave);
         }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            font-size: 14px;
-            color: var(--cinza-claro);
+        .detail-value {
+            flex: 1;
+            color: var(--cinza-medio);
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo-container {
-                margin-bottom: 15px;
-            }
-
-            .nav-container {
-                margin-left: 0;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .nav-link {
-                margin: 5px 10px;
-            }
-
-            .page-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .page-icon {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .search-form {
-                flex-direction: column;
-            }
-
-            .search-group {
-                min-width: 100%;
-            }
-
-            .search-actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .results-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .results-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .table-container {
-                overflow-x: auto;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-column {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-        }
-
-        .accessibility-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--preto-suave);
-            color: var(--branco-suave);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 44px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .accessibility-button:hover {
-            background-color: #3a3a3a;
-        }
-
-        .figma-frame {
-            position: relative;
-            max-width: 1440px;
-            margin: 0 auto;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .interactive-element {
-            transition: all 0.3s ease;
-        }
-
-        .interactive-element:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            .modal { max-width: 95vw; }
         }
     </style>
 </head>
@@ -640,160 +534,273 @@
                     <h2 class="results-title">Resultados da Pesquisa</h2>
                     <div class="results-count" id="resultsCount">0 pacientes encontrados</div>
                 </div>
-                <div class="table-container">
-                    <script>
-                        // URL do backend
-                        const API_URL = "http://localhost:8080/api/patients";
+                <div class="table-container"></div>
+            </div>
+        </div>
 
-                        // Elementos do DOM
-                        const tableContainer = document.querySelector('.results-container .table-container');
-                        const resultsCount = document.querySelector('.results-count');
-                        const form = document.getElementById('searchForm');
-                        const clearBtn = document.getElementById('clearButton');
+        <!-- Modal de Detalhes do Paciente -->
+        <div class="modal-overlay" id="patientModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title">Detalhes do Paciente</h3>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Conteúdo preenchido via JS -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="closeModalBtn">Fechar</button>
+                    <a href="#" id="editPatientBtn" class="btn btn-primary">
+                        <i class="icon edit-icon"></i>
+                        Editar Paciente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        // Função para calcular idade a partir da data de nascimento
-                        function calcularIdade(birthdate) {
-                            if (!birthdate) return '';
-                            const nascimento = new Date(birthdate);
-                            const hoje = new Date();
-                            let idade = hoje.getFullYear() - nascimento.getFullYear();
-                            const m = hoje.getMonth() - nascimento.getMonth();
-                            if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
-                                idade--;
-                            }
-                            return `${idade} anos`;
-                        }
+    <script>
+        // URL do backend
+        const API_URL = "http://localhost:8080/api/patients";
 
-                        // Função utilitária para formatar CPF (opcional)
-                        function formatarCPF(cpf) {
-                            if (!cpf) return '';
-                            return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
-                        }
+        // Elementos do DOM
+        const tableContainer = document.querySelector('.results-container .table-container');
+        const resultsCount = document.querySelector('.results-count');
+        const form = document.getElementById('searchForm');
+        const clearBtn = document.getElementById('clearButton');
 
-                        // Função utilitária para formatar data (yyyy-mm-dd para dd/mm/yyyy)
-                        function formatarData(data) {
-                            if (!data) return '';
-                            const [ano, mes, dia] = data.split("-");
-                            return `${dia}/${mes}/${ano}`;
-                        }
+        // Função para calcular idade a partir da data de nascimento
+        function calcularIdade(birthdate) {
+            if (!birthdate) return '';
+            const nascimento = new Date(birthdate);
+            const hoje = new Date();
+            let idade = hoje.getFullYear() - nascimento.getFullYear();
+            const m = hoje.getMonth() - nascimento.getMonth();
+            if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+                idade--;
+            }
+            return `${idade} anos`;
+        }
 
-                        // Monta uma linha da tabela
-                        function pacienteRow(p) {
-                            return `
-                            <tr>
-                                <td>
-                                    <div>
-                                        <div class="patient-name">${p.name || ''}</div>
-                                    </div>
-                                </td>
-                                <td>${calcularIdade(p.birthdate)}</td>
-                                <td>${formatarCPF(p.cpf)}</td>
-                                <td>${formatarData(p.addedAt)}</td>
-                                <td>
-                                    <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
-                                        ${p.active ? 'Ativo' : 'Inativo'}
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-edit" title="Editar">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>`;
-                        }
+        // Função utilitária para formatar CPF (opcional)
+        function formatarCPF(cpf) {
+            if (!cpf) return '';
+            return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+        }
 
-                        // Busca pacientes do backend (SEM filtros, pois backend não aceita parâmetros)
-                        async function buscarPacientes() {
-                            try {
-                                const resp = await fetch(API_URL);
-                                const lista = await resp.json();
-                                return Array.isArray(lista) ? lista : [];
-                            } catch (e) {
-                                alert("Erro ao buscar pacientes.");
-                                return [];
-                            }
-                        }
+        // Função utilitária para formatar data (yyyy-mm-dd para dd/mm/yyyy)
+        function formatarData(data) {
+            if (!data) return '';
+            const [ano, mes, dia] = data.split("-");
+            return `${dia}/${mes}/${ano}`;
+        }
 
-                        // Renderiza pacientes na tabela com filtro do lado do cliente
-                        function renderPacientes(lista, filtros) {
-                            let listaFiltrada = lista;
+        // Monta uma linha da tabela
+        function pacienteRow(p) {
+            return `
+                <tr>
+                    <td>
+                        <div>
+                            <div class="patient-name">${p.name || ''}</div>
+                        </div>
+                    </td>
+                    <td>${calcularIdade(p.birthdate)}</td>
+                    <td>${formatarCPF(p.cpf)}</td>
+                    <td>${formatarData(p.addedAt)}</td>
+                    <td>
+                        <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
+                            ${p.active ? 'Ativo' : 'Inativo'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
+                                <i class="icon eye-icon"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+        }
 
-                            // Filtros: nome, CPF, status
-                            if (filtros.nome) {
-                                listaFiltrada = listaFiltrada.filter(p =>
-                                    (p.name || '').toLowerCase().includes(filtros.nome.toLowerCase())
-                                );
-                            }
-                            if (filtros.cpf) {
-                                listaFiltrada = listaFiltrada.filter(p =>
-                                    (p.cpf || '').includes(filtros.cpf.replace(/\D/g, ''))
-                                );
-                            }
-                            if (filtros.status !== "" && filtros.status !== undefined) {
-                                if (filtros.status === "active") listaFiltrada = listaFiltrada.filter(p => !!p.active);
-                                if (filtros.status === "inactive") listaFiltrada = listaFiltrada.filter(p => !p.active);
-                            }
+        // Busca pacientes do backend (SEM filtros, pois backend não aceita parâmetros)
+        async function buscarPacientes() {
+            try {
+                const resp = await fetch(API_URL);
+                const lista = await resp.json();
+                return Array.isArray(lista) ? lista : [];
+            } catch (e) {
+                alert("Erro ao buscar pacientes.");
+                return [];
+            }
+        }
 
-                            let html = '';
-                            if (listaFiltrada.length === 0) {
-                                html = `<tr><td colspan="6" style="text-align:center;color:#999;">Nenhum paciente encontrado</td></tr>`;
-                            } else {
-                                html = listaFiltrada.map(pacienteRow).join('');
-                            }
-                            // Monta tabela se não existir
-                            if (!document.querySelector('.results-table')) {
-                                tableContainer.innerHTML = `
-                                <table class="results-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Paciente</th>
-                                            <th>Idade</th>
-                                            <th>CPF</th>
-                                            <th>Data de Entrada</th>
-                                            <th>Status</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>${html}</tbody>
-                                </table>
-                                `;
-                            } else {
-                                document.querySelector('.results-table tbody').innerHTML = html;
-                            }
-                            resultsCount.textContent = `${listaFiltrada.length} paciente${listaFiltrada.length !== 1 ? 's' : ''} encontrado${listaFiltrada.length !== 1 ? 's' : ''}`;
-                        }
+        // Renderiza pacientes na tabela com filtro do lado do cliente
+        function renderPacientes(lista, filtros) {
+            let listaFiltrada = lista;
 
-                        // Armazena todos pacientes carregados
-                        let todosPacientes = [];
+            // Filtros: nome, CPF, status
+            if (filtros.nome) {
+                listaFiltrada = listaFiltrada.filter(p =>
+                    (p.name || '').toLowerCase().includes(filtros.nome.toLowerCase())
+                );
+            }
+            if (filtros.cpf) {
+                listaFiltrada = listaFiltrada.filter(p =>
+                    (p.cpf || '').includes(filtros.cpf.replace(/\D/g, ''))
+                );
+            }
+            if (filtros.status !== "" && filtros.status !== undefined) {
+                if (filtros.status === "active") listaFiltrada = listaFiltrada.filter(p => !!p.active);
+                if (filtros.status === "inactive") listaFiltrada = listaFiltrada.filter(p => !p.active);
+            }
 
-                        // Carrega lista ao abrir a página
-                        async function atualizarLista() {
-                            // Só busca do backend se ainda não carregou
-                            if (todosPacientes.length === 0) {
-                                todosPacientes = await buscarPacientes();
-                            }
-                            const filtros = {
-                                nome: document.getElementById("searchName").value.trim(),
-                                cpf: document.getElementById("searchCPF").value.trim(),
-                                status: document.getElementById("searchStatus").value
-                            };
-                            renderPacientes(todosPacientes, filtros);
-                        }
-                        window.addEventListener('DOMContentLoaded', atualizarLista);
+            let html = '';
+            if (listaFiltrada.length === 0) {
+                html = `<tr><td colspan="6" style="text-align:center;color:#999;">Nenhum paciente encontrado</td></tr>`;
+            } else {
+                html = listaFiltrada.map(pacienteRow).join('');
+            }
+            // Monta tabela se não existir
+            if (!document.querySelector('.results-table')) {
+                tableContainer.innerHTML = `
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Idade</th>
+                            <th>CPF</th>
+                            <th>Data de Entrada</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>${html}</tbody>
+                </table>
+                `;
+            } else {
+                document.querySelector('.results-table tbody').innerHTML = html;
+            }
+            resultsCount.textContent = `${listaFiltrada.length} paciente${listaFiltrada.length !== 1 ? 's' : ''} encontrado${listaFiltrada.length !== 1 ? 's' : ''}`;
+            // Vincula evento de visualização
+            vincularEventosViewBtn();
+        }
 
-                        // Filtros no submit
-                        form.addEventListener('submit', function (e) {
-                            e.preventDefault();
-                            atualizarLista();
-                        });
+        // Armazena todos pacientes carregados
+        let todosPacientes = [];
 
-                        // Limpar filtros
-                        clearBtn.addEventListener('click', function () {
-                            form.reset();
-                            atualizarLista();
-                        });
-                    </script>
+        // Carrega lista ao abrir a página
+        async function atualizarLista() {
+            // Só busca do backend se ainda não carregou
+            if (todosPacientes.length === 0) {
+                todosPacientes = await buscarPacientes();
+            }
+            const filtros = {
+                nome: document.getElementById("searchName").value.trim(),
+                cpf: document.getElementById("searchCPF").value.trim(),
+                status: document.getElementById("searchStatus").value
+            };
+            renderPacientes(todosPacientes, filtros);
+        }
+        window.addEventListener('DOMContentLoaded', atualizarLista);
 
+        // Filtros no submit
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            atualizarLista();
+        });
+
+        // Limpar filtros
+        clearBtn.addEventListener('click', function () {
+            form.reset();
+            atualizarLista();
+        });
+
+        // ---------- MODAL LÓGICA ----------
+
+        // Função para abrir o modal e preencher os dados
+        function abrirModalPaciente(p) {
+            const modal = document.getElementById('patientModal');
+            const modalBody = document.getElementById('modalBody');
+            const editBtn = document.getElementById('editPatientBtn');
+            let idadeStr = calcularIdade(p.birthdate);
+            let dataNasc = p.birthdate ? new Date(p.birthdate).toLocaleDateString() : '';
+            let dataEntrada = formatarData(p.addedAt);
+
+            // Gera avatar via inicial
+            let imgSrc = p.name && p.name.trim().length > 0 ?
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=E6D2B6&color=2B2B2B&size=128` :
+                'https://ui-avatars.com/api/?background=E6D2B6&color=2B2B2B&size=128';
+
+            modalBody.innerHTML = `
+                <div class="patient-details">
+                    <div class="patient-header">
+                        <img src="${imgSrc}" alt="Foto de ${p.name || ''}" class="patient-photo-large">
+                        <div class="patient-info">
+                            <h2 class="patient-name-large">${p.name || ''}</h2>
+                            <div class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">${p.active ? 'Ativo' : 'Inativo'}</div>
+                            <div class="patient-meta">
+                                <div class="patient-meta-item">
+                                    <i class="icon calendar-icon"></i>
+                                    ${idadeStr}${dataNasc ? ' ('+dataNasc+')' : ''}
+                                </div>
+                                <div class="patient-meta-item">
+                                    <i class="icon clock-icon"></i>
+                                    Entrada: ${dataEntrada}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Informações Pessoais</h4>
+                        <div class="detail-row"><div class="detail-label">CPF</div><div class="detail-value">${formatarCPF(p.cpf)}</div></div>
+                        <div class="detail-row"><div class="detail-label">RG</div><div class="detail-value">${p.rg || '-'}</div></div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Plano e Saúde</h4>
+                        <div class="detail-row"><div class="detail-label">Tipo Sanguíneo</div><div class="detail-value">${p.bloodType || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Plano de Saúde</div><div class="detail-value">${p.plano || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Carteirinha</div><div class="detail-value">${p.carteirinha || '-'}</div></div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Contato de Emergência</h4>
+                        <div class="detail-row"><div class="detail-label">Nome</div><div class="detail-value">${p.contactName || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Telefone</div><div class="detail-value">${p.contactPhone || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Parentesco</div><div class="detail-value">${p.contactRelation || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">E-mail</div><div class="detail-value">${p.contactEmail || '-'}</div></div>
+                    </div>
+                </div>
+            `;
+
+            // Redireciona o botão editar para página de edição (caso deseje)
+            editBtn.href = "editar_paciente.html?id=" + encodeURIComponent(p.patientId);
+
+            modal.style.display = "flex";
+        }
+
+        // Evento para fechar modal
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('patientModal').style.display = 'none';
+        };
+        document.getElementById('closeModalBtn').onclick = function() {
+            document.getElementById('patientModal').style.display = 'none';
+        };
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('patientModal')) {
+                document.getElementById('patientModal').style.display = 'none';
+            }
+        });
+
+        // Ao renderizar a tabela, vincule evento aos botões "visualizar"
+        function vincularEventosViewBtn() {
+            document.querySelectorAll('.btn-view[data-id]').forEach(btn => {
+                btn.onclick = function() {
+                    const id = btn.getAttribute('data-id');
+                    const paciente = todosPacientes.find(p => p.patientId == id);
+                    if (paciente) abrirModalPaciente(paciente);
+                };
+            });
+        }
+
+    </script>
 </body>
+</html>
