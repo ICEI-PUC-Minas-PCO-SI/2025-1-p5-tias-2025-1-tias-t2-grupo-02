@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Pacientes - Casa de Repouso Do Jeitinho da Vovó</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="images/icons.css">
+    <style>
+        :root {
+            --bege-claro: #E6D2B6;
+            --cinza-claro: #BEBEBE;
+            --preto-suave: #2B2B2B;
+            --branco-suave: #F5F3EF;
+            --cinza-medio: #9C9C9C;
+            --bege-escuro: #D4BF9A;
+            --verde-suave: #8BC34A;
+            --vermelho-suave: #FF5252;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+        }
+
+        header {
+            background-color: var(--bege-claro);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--preto-suave);
+        }
+
+        .nav-container {
+            margin-left: auto;
+        }
+
+        .nav-link {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--preto-suave);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--cinza-medio);
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid var(--preto-suave);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .page-icon {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+            background-color: var(--bege-claro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-icon i {
+            font-size: 40px;
+            color: var(--preto-suave);
+        }
+
+        .page-title {
+            font-size: 32px;
+            color: var(--preto-suave);
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--cinza-medio);
+            max-width: 600px;
+        }
+
+        .search-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-title {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--preto-suave);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bege-claro);
+        }
+
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--preto-suave);
+        }
+
+        .search-input,
+        .search-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--cinza-claro);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus,
+        .search-select:focus {
+            outline: none;
+            border-color: var(--bege-escuro);
+        }
+
+        .search-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+            border: 1px solid var(--cinza-claro);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--cinza-claro);
+        }
+
+        .btn-primary {
+            background-color: var(--bege-escuro);
+            color: var(--preto-suave);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bege-claro);
+        }
+
+        .btn-success {
+            background-color: var(--verde-suave);
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #7CB342;
+        }
+
+        .btn .icon {
+            margin-right: 8px;
+        }
+
+        .results-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .results-title {
+            font-size: 20px;
+            color: var(--preto-suave);
+        }
+
+        .results-count {
+            font-size: 16px;
+            color: var(--cinza-medio);
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .results-table th {
+            background-color: var(--bege-claro);
+            color: var(--preto-suave);
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+        }
+
+        .results-table tr:hover {
+            background-color: rgba(230, 210, 182, 0.1);
+        }
+
+        .patient-name {
+            font-weight: 500;
+            color: var(--preto-suave);
+        }
+
+        .patient-id {
+            color: var(--cinza-medio);
+            font-size: 14px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: rgba(139, 195, 74, 0.2);
+            color: #689F38;
+        }
+
+        .status-inactive {
+            background-color: rgba(255, 82, 82, 0.2);
+            color: #D32F2F;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+            border: 1px solid var(--cinza-claro);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-icon:hover {
+            background-color: var(--bege-claro);
+        }
+
+        .btn-view {
+            color: #2196F3;
+        }
+
+        .btn-edit {
+            color: #FFC107;
+        }
+
+        .btn-delete {
+            color: #FF5252;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pagination-item:hover {
+            background-color: var(--bege-claro);
+        }
+
+        .pagination-item.active {
+            background-color: var(--bege-escuro);
+            color: var(--preto-suave);
+        }
+
+        footer {
+            background-color: var(--preto-suave);
+            color: var(--branco-suave);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .footer-column-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--bege-claro);
+        }
+
+        .footer-link {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--branco-suave);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--bege-claro);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            font-size: 14px;
+            color: var(--cinza-claro);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-container {
+                margin-bottom: 15px;
+            }
+
+            .nav-container {
+                margin-left: 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-link {
+                margin: 5px 10px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-group {
+                min-width: 100%;
+            }
+
+            .search-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .results-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-column {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        .accessibility-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--preto-suave);
+            color: var(--branco-suave);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 44px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .accessibility-button:hover {
+            background-color: #3a3a3a;
+        }
+
+        .figma-frame {
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .interactive-element {
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="figma-frame">
+        <header>
+            <div class="logo-container">
+                <img src="logo.jpg" alt="Logo Casa de Repouso" class="logo-img">
+                <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
+            </div>
+            <div class="nav-container">
+                <a href="Dash.html" class="nav-link">Início</a>
+                <a href="pesquisa_paciente.html" class="nav-link active">Pacientes</a>
+                <a href="gerenciamento.html" class="nav-link">Medicamentos</a>
+                <a href="relatorio.HTML" class="nav-link">Relatórios</a>
+                <a href="help_page_final.html" class="nav-link">Ajuda</a>
+            </div>
+        </header>
+        <div class="main-container">
+            <div class="page-header" style="justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center;">
+                    <div class="page-icon">
+                        <i class="icon users-icon"></i>
+                    </div>
+                    <div>
+                        <h1 class="page-title">Pesquisa de Pacientes</h1>
+                        <p class="page-subtitle">Utilize os filtros abaixo para encontrar pacientes cadastrados no
+                            sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary" onclick="location.href='gerenciamento.html'">
+                        <i class="icon search-icon"></i>
+                        GERENCIMENTO DE ESTOQUE POR PACIENTE
+                    </button>
+                </div>
+            </div>
+            <div class="search-container">
+                <h2 class="search-title">Filtros de Pesquisa</h2>
+                <form id="searchForm">
+                    <div class="search-form">
+                        <div class="search-group">
+                            <label for="searchName" class="search-label">Nome do Paciente</label>
+                            <input type="text" id="searchName" class="search-input interactive-element"
+                                placeholder="Digite o nome">
+                        </div>
+                        <div class="search-group">
+                            <label for="searchCPF" class="search-label">CPF</label>
+                            <input type="text" id="searchCPF" class="search-input interactive-element"
+                                placeholder="000.000.000-00">
+                        </div>
+                        <div class="search-group">
+                            <label for="searchStatus" class="search-label">Status</label>
+                            <select id="searchStatus" class="search-select interactive-element">
+                                <option value="">Todos</option>
+                                <option value="active">Ativo</option>
+                                <option value="inactive">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search-actions">
+                        <button type="button" id="clearButton" class="btn btn-secondary">
+                            <i class="icon x-icon"></i>
+                            Limpar Filtros
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="icon search-icon"></i>
+                            Pesquisar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="results-container">
+                <div class="results-header">
+                    <h2 class="results-title">Resultados da Pesquisa</h2>
+                    <div class="results-count" id="resultsCount">0 pacientes encontrados</div>
+                </div>
+                <div class="table-container">
+                    <script>
+                        // URL do backend
+                        const API_URL = "http://localhost:8080/api/patients";
+
+                        // Elementos do DOM
+                        const tableContainer = document.querySelector('.results-container .table-container');
+                        const resultsCount = document.querySelector('.results-count');
+                        const form = document.getElementById('searchForm');
+                        const clearBtn = document.getElementById('clearButton');
+
+                        // Função para calcular idade a partir da data de nascimento
+                        function calcularIdade(birthdate) {
+                            if (!birthdate) return '';
+                            const nascimento = new Date(birthdate);
+                            const hoje = new Date();
+                            let idade = hoje.getFullYear() - nascimento.getFullYear();
+                            const m = hoje.getMonth() - nascimento.getMonth();
+                            if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+                                idade--;
+                            }
+                            return `${idade} anos`;
+                        }
+
+                        // Função utilitária para formatar CPF (opcional)
+                        function formatarCPF(cpf) {
+                            if (!cpf) return '';
+                            return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+                        }
+
+                        // Função utilitária para formatar data (yyyy-mm-dd para dd/mm/yyyy)
+                        function formatarData(data) {
+                            if (!data) return '';
+                            const [ano, mes, dia] = data.split("-");
+                            return `${dia}/${mes}/${ano}`;
+                        }
+
+                        // Monta uma linha da tabela
+                        function pacienteRow(p) {
+                            return `
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div class="patient-name">${p.name || ''}</div>
+                                    </div>
+                                </td>
+                                <td>${calcularIdade(p.birthdate)}</td>
+                                <td>${formatarCPF(p.cpf)}</td>
+                                <td>${formatarData(p.addedAt)}</td>
+                                <td>
+                                    <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
+                                        ${p.active ? 'Ativo' : 'Inativo'}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit" title="Editar">
+                                            <i class="icon edit-icon"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }
+
+                        // Busca pacientes do backend (SEM filtros, pois backend não aceita parâmetros)
+                        async function buscarPacientes() {
+                            try {
+                                const resp = await fetch(API_URL);
+                                const lista = await resp.json();
+                                return Array.isArray(lista) ? lista : [];
+                            } catch (e) {
+                                alert("Erro ao buscar pacientes.");
+                                return [];
+                            }
+                        }
+
+                        // Renderiza pacientes na tabela com filtro do lado do cliente
+                        function renderPacientes(lista, filtros) {
+                            let listaFiltrada = lista;
+
+                            // Filtros: nome, CPF, status
+                            if (filtros.nome) {
+                                listaFiltrada = listaFiltrada.filter(p =>
+                                    (p.name || '').toLowerCase().includes(filtros.nome.toLowerCase())
+                                );
+                            }
+                            if (filtros.cpf) {
+                                listaFiltrada = listaFiltrada.filter(p =>
+                                    (p.cpf || '').includes(filtros.cpf.replace(/\D/g, ''))
+                                );
+                            }
+                            if (filtros.status !== "" && filtros.status !== undefined) {
+                                if (filtros.status === "active") listaFiltrada = listaFiltrada.filter(p => !!p.active);
+                                if (filtros.status === "inactive") listaFiltrada = listaFiltrada.filter(p => !p.active);
+                            }
+
+                            let html = '';
+                            if (listaFiltrada.length === 0) {
+                                html = `<tr><td colspan="6" style="text-align:center;color:#999;">Nenhum paciente encontrado</td></tr>`;
+                            } else {
+                                html = listaFiltrada.map(pacienteRow).join('');
+                            }
+                            // Monta tabela se não existir
+                            if (!document.querySelector('.results-table')) {
+                                tableContainer.innerHTML = `
+                                <table class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Paciente</th>
+                                            <th>Idade</th>
+                                            <th>CPF</th>
+                                            <th>Data de Entrada</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>${html}</tbody>
+                                </table>
+                                `;
+                            } else {
+                                document.querySelector('.results-table tbody').innerHTML = html;
+                            }
+                            resultsCount.textContent = `${listaFiltrada.length} paciente${listaFiltrada.length !== 1 ? 's' : ''} encontrado${listaFiltrada.length !== 1 ? 's' : ''}`;
+                        }
+
+                        // Armazena todos pacientes carregados
+                        let todosPacientes = [];
+
+                        // Carrega lista ao abrir a página
+                        async function atualizarLista() {
+                            // Só busca do backend se ainda não carregou
+                            if (todosPacientes.length === 0) {
+                                todosPacientes = await buscarPacientes();
+                            }
+                            const filtros = {
+                                nome: document.getElementById("searchName").value.trim(),
+                                cpf: document.getElementById("searchCPF").value.trim(),
+                                status: document.getElementById("searchStatus").value
+                            };
+                            renderPacientes(todosPacientes, filtros);
+                        }
+                        window.addEventListener('DOMContentLoaded', atualizarLista);
+
+                        // Filtros no submit
+                        form.addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            atualizarLista();
+                        });
+
+                        // Limpar filtros
+                        clearBtn.addEventListener('click', function () {
+                            form.reset();
+                            atualizarLista();
+                        });
+                    </script>
+
+</body>
