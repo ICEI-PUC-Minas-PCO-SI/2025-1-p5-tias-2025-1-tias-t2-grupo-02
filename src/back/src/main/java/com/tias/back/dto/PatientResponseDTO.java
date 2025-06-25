@@ -1,8 +1,13 @@
 package com.tias.back.dto;
 
-import lombok.*;
 import java.time.LocalDate;
 import java.util.UUID;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
@@ -12,8 +17,6 @@ public class PatientResponseDTO {
     private String cpf;
     private String rg;
     private LocalDate birthdate;
-    private String cep;
-    private String address;
     private String bloodType;
     private String plano;
     private String carteirinha;
