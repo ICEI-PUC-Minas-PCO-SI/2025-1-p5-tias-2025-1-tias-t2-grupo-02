@@ -1,10 +1,18 @@
 package com.tias.back.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "patient")
@@ -21,25 +29,21 @@ public class Patient {
     private UUID patientId;
 
     private String name;
-    
+
     @Column(unique = true)
     private String cpf;
-    
+
     @Column(unique = true)
     private String rg;
 
     private LocalDate birthdate;
-
-    private String cep;
-
-    private String address;
 
     private String bloodType;
 
     private String plano;
 
     private String carteirinha;
-    
+
     private String conditions;
 
     private boolean isActive;
