@@ -1,9 +1,16 @@
 package com.tias.back.dto;
 
-import jakarta.validation.constraints.*;
-import lombok.*;
-
 import java.time.LocalDate;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
@@ -28,14 +35,6 @@ public class PatientRequestDTO {
     @PastOrPresent(message = "Birthdate não pode ser uma data futura")
     private LocalDate birthdate;
 
-    @NotBlank(message = "CEP é obrigatório")
-    @Pattern(regexp = "^\\d{5}-?\\d{3}$",
-             message = "CEP inválido: use XXXXX-XXX ou XXXXXXXX")
-    private String cep;
-
-    @NotBlank(message = "Endereço é obrigatório")
-    private String address;
-
     @NotBlank(message = "Blood type é obrigatório")
     @Pattern(regexp = "^(A|B|AB|O)[+-]$",
              message = "bloodType inválido: use A+, A-, B+, B-, AB+, AB-, O+ ou O-")
@@ -49,4 +48,19 @@ public class PatientRequestDTO {
 
     @NotBlank(message = "Conditions é obrigatório")
     private String conditions;
+
+    @NotBlank(message = "Nome do contato de emergência é obrigatório")
+    private String contatoEmergenciaNome;
+
+    @NotBlank(message = "Parentesco é obrigatório")
+    private String contatoEmergenciaParentesco;
+
+    @NotBlank(message = "Telefone do contato de emergência é obrigatório")
+    private String contatoEmergenciaTelefone;
+
+    private String contatoEmergenciaEmail;
+
+    private String photoBase64;
+
 }
+
