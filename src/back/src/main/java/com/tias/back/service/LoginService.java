@@ -3,16 +3,18 @@ package com.tias.back.service;
 import com.tias.back.dto.LoginRequestDTO;
 import com.tias.back.dto.LoginResponseDTO;
 import com.tias.back.entity.Login;
+import com.tias.back.entity.User;
 import com.tias.back.repository.LoginRepository;
 import com.tias.back.repository.UserRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,13 +33,8 @@ public class LoginService {
     }
 
     private void validateRequest(LoginRequestDTO dto) {
-        if (dto.getUserId() == null) {
-            logger.warn("Validação falhou em LoginRequestDTO: UserId obrigatório");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "UserId é obrigatório");
-        }
-        if (dto.getPerfil() == null || dto.getPerfil().isBlank()) {
-            logger.warn("Validação falhou em LoginRequestDTO: Perfil vazio");
+        if (dto.getEmail() == null || dto.getEmail().isBlank()) {
+            logger.warn("Validação falhou em LoginRequestDTO: email vazio");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Perfil não pode ser vazio");
         }
@@ -46,30 +43,6 @@ public class LoginService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Password não pode ser vazio");
         }
-    }
-
-    public LoginResponseDTO create(LoginRequestDTO dto) {
-        validateRequest(dto);
-        if (!userRepo.existsById(dto.getUserId())) {
-            logger.warn("Tentativa de criar login para usuário inexistente: {}", dto.getUserId());
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "Usuário não encontrado: " + dto.getUserId());
-        }
-        if (repository.existsByUser_UserId(dto.getUserId())) {
-            logger.warn("Login duplicado para usuário: {}", dto.getUserId());
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
-                "Já existe login para o usuário: " + dto.getUserId());
-        }
-        Login l = Login.builder()
-            .user(userRepo.getReferenceById(dto.getUserId()))
-            .perfil(dto.getPerfil())
-            .password(dto.getPassword())
-            .isActive(true)
-            .lastLogin(LocalDateTime.now())
-            .build();
-        Login saved = repository.save(l);
-        logger.info("Login criado: {} (usuário {})", saved.getLoginId(), dto.getUserId());
-        return toDto(saved);
     }
 
     public LoginResponseDTO getById(UUID id) {
@@ -90,33 +63,48 @@ public class LoginService {
         Login l = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Login não encontrado: " + id));
-        l.setPerfil(dto.getPerfil());
+        User u = userRepo.findByEmail(dto.getEmail())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+        "Email não encontrado: " + dto.getEmail()));;
+        u.setEmail(dto.getEmail());
+        l.setEmail(dto.getEmail());
         l.setPassword(dto.getPassword());
         Login updated = repository.save(l);
         logger.info("Login atualizado: {}", id);
         return toDto(updated);
     }
 
-    public LoginResponseDTO deactivate(UUID id) {
-        Login l = repository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "Login não encontrado: " + id));
-        if (!l.getIsActive()) {
-            logger.warn("Login já inativo: {}", id);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                "Login já está inativo: " + id);
+    public ResponseEntity<String> authenticate(LoginRequestDTO dto) {
+        validateRequest(dto);
+
+        // Verificar se o email existe
+        Login login = repository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Email não encontrado"));
+
+        // Verificar se o login está ativo
+        if (!login.getIsActive()) {
+            logger.warn("Login inativo para o email: {}", dto.getEmail());
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,
+                    "Login inativo para o email: " + dto.getEmail());
         }
-        l.setIsActive(false);
-        Login saved = repository.save(l);
-        logger.info("Login desativado: {}", id);
-        return toDto(saved);
+
+        // Verificar se a senha está correta
+        if (!login.getPassword().equals(dto.getPassword())) {
+            logger.warn("Senha incorreta para o email: {}", dto.getEmail());
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    "Senha incorreta");
+        }
+
+        // Se tudo estiver correto, retorna uma resposta positiva
+        return ResponseEntity.ok("Login bem-sucedido");
     }
 
     private LoginResponseDTO toDto(Login l) {
         return LoginResponseDTO.builder()
             .loginId(l.getLoginId())
             .userId(l.getUser().getUserId())
-            .perfil(l.getPerfil())
+            .email(l.getEmail())
             .isActive(l.getIsActive())
             .build();
     }

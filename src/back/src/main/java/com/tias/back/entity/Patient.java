@@ -32,8 +32,6 @@ public class Patient {
 
     private String cep;
 
-    private String address;
-
     private String bloodType;
 
     private String plano;
@@ -41,6 +39,14 @@ public class Patient {
     private String carteirinha;
     
     private String conditions;
+
+    private String contactName;
+
+    private String contactEmail;
+
+    private String contactPhone;
+
+    private String contactRelation;
 
     private boolean isActive;
 

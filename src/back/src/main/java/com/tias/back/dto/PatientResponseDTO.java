@@ -13,11 +13,14 @@ public class PatientResponseDTO {
     private String rg;
     private LocalDate birthdate;
     private String cep;
-    private String address;
     private String bloodType;
     private String plano;
     private String carteirinha;
     private String conditions;
+    private String contactName;
+    private String contactEmail;
+    private String contactPhone;
+    private String contactRelation;
     private boolean isActive;
     private LocalDate addedAt;
 }

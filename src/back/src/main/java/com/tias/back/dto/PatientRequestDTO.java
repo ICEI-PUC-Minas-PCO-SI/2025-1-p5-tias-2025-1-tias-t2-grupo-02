@@ -33,9 +33,6 @@ public class PatientRequestDTO {
              message = "CEP inválido: use XXXXX-XXX ou XXXXXXXX")
     private String cep;
 
-    @NotBlank(message = "Endereço é obrigatório")
-    private String address;
-
     @NotBlank(message = "Blood type é obrigatório")
     @Pattern(regexp = "^(A|B|AB|O)[+-]$",
              message = "bloodType inválido: use A+, A-, B+, B-, AB+, AB-, O+ ou O-")
@@ -47,6 +44,21 @@ public class PatientRequestDTO {
     @NotBlank(message = "Carteirinha é obrigatória")
     private String carteirinha;
 
-    @NotBlank(message = "Conditions é obrigatório")
     private String conditions;
+
+    @NotBlank(message = "Nome é obrigatório")
+    @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Nome deve conter apenas letras e espaços")
+    private String contactName;
+
+    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email deve ser válido")
+    private String contactEmail;
+
+    @NotBlank(message = "Phone é obrigatório")
+    @Pattern(regexp = "^\\d{10,11}$", message = "Phone deve conter 10 ou 11 dígitos numéricos")
+    private String contactPhone;
+
+    @NotBlank(message = "Relation é obrigatório")
+    @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Relation deve conter apenas letras e espaços")
+    private String contactRelation;
 }
