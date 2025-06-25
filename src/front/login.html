@@ -25,12 +25,12 @@
       <p>Acesse o sistema para gerenciar as informações do asilo</p>
       <form id="loginForm">
         <div class="form-group">
-          <label for="usuario">Usuário</label>
-          <input type="text" id="usuario" placeholder="Digite seu nome de usuário">
+          <label for="usuario">Usuário (E-mail)</label>
+          <input type="text" id="usuario" placeholder="Digite seu e-mail" required>
         </div>
         <div class="form-group">
           <label for="senha">Senha</label>
-          <input type="password" id="senha" placeholder="Digite sua senha">
+          <input type="password" id="senha" placeholder="Digite sua senha" required>
         </div>
         <button type="submit">Entrar</button>
       </form>
@@ -79,25 +79,40 @@
   </div>
 </footer>
 
-<!-- Script funcional de login -->
+<!-- Script funcional de login via backend -->
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // evita envio real
+  document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-    const usuario = document.getElementById('usuario').value.trim();
-    const senha = document.getElementById('senha').value.trim();
+    const email = document.getElementById('usuario').value.trim();
+    const password = document.getElementById('senha').value.trim();
 
-    if (!usuario || !senha) {
+    if (!email || !password) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
 
-    // Simulação de validação de login
-    if (usuario === 'admin' && senha === '1234') {
-      alert('Login bem-sucedido!');
-      window.location.href = 'Dash.html'; // redireciona para o dashboard
-    } else {
-      alert('Usuário ou senha incorretos.');
+    try {
+      const resp = await fetch('http://localhost:8080/api/logins/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+
+      if (resp.ok) {
+        alert('Login bem-sucedido!');
+        window.location.href = 'pesquisa_paciente.html';
+      } else {
+        const errorText = await resp.text();
+        alert(errorText || 'Usuário, senha ou status inválido.');
+      }
+    } catch (error) {
+      alert('Erro de conexão com o servidor.');
     }
   });
 </script>
