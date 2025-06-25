@@ -33,6 +33,11 @@
           <input type="password" id="senha" placeholder="Digite sua senha">
         </div>
         <button type="submit">Entrar</button>
+
+<button type="button" onclick="window.location.href='cadastrarusuario.html'" style="margin-top: 10px;">
+  Cadastre-se
+</button>
+
       </form>
     </div>
   </div>
@@ -48,11 +53,10 @@
       <div>
         <h4>Sistema</h4>
         <ul>
-          <li><a href="Dash.html">Início</a></li>
-          <li><a href="pesquisa_paciente.html">Pacientes</a></li>
-          <li><a href="gerenciamento.html">Medicamentos</a></li>
-          <li><a href="#">Atividades</a></li>
-          <li><a href="relatorio.HTML">Relatórios</a></li>
+          <li><a href="">Início</a></li>
+          <li><a href="">Pacientes</a></li>
+          <li><a href="">Medicamentos</a></li>
+          <li><a href="">Relatórios</a></li>
         </ul>
       </div>
       <div>
@@ -95,7 +99,7 @@
     // Simulação de validação de login
     if (usuario === 'admin' && senha === '1234') {
       alert('Login bem-sucedido!');
-      window.location.href = 'Dash.html'; // redireciona para o dashboard
+      window.location.href = 'principalsistema.html'; // redireciona para o dashboard
     } else {
       alert('Usuário ou senha incorretos.');
     }
