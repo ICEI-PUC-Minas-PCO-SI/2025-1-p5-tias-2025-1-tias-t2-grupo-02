@@ -23,11 +23,11 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private final UserRepository repository;
+    private final UserRepository userRepo;
     private final LoginRepository loginRepo;
 
-    public UserService(UserRepository repository, LoginRepository loginRepo) {
-        this.repository = repository;
+    public UserService(UserRepository userRepo, LoginRepository loginRepo) {
+        this.userRepo = userRepo;
         this.loginRepo = loginRepo;
     }
 
@@ -51,11 +51,11 @@ public class UserService {
 
     public UserResponseDTO create(UserRequestDTO dto) {
         validateRequest(dto);
-        if (repository.existsByCpf(dto.getCpf())) {
+        if (userRepo.existsByCpf(dto.getCpf())) {
             logger.warn("CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado: " + dto.getCpf());
         }
-        if (repository.existsByEmail(dto.getEmail())) {
+        if (userRepo.existsByEmail(dto.getEmail())) {
             logger.warn("Email duplicado: {}", dto.getEmail());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email já cadastrado: " + dto.getEmail());
         }
@@ -67,7 +67,7 @@ public class UserService {
             .isActive(true)
             .build();
 
-        User saved = repository.save(entity);
+        User saved = userRepo.save(entity);
 
         Login login = Login.builder()
                 .email(saved.getEmail())
@@ -84,27 +84,27 @@ public class UserService {
     }
 
     public UserResponseDTO getById(UUID id) {
-        User u = repository.findById(id)
+        User u = userRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
         return toResponse(u);
     }
 
     public List<UserResponseDTO> getAll() {
-        return repository.findAll().stream()
+        return userRepo.findAll().stream()
             .map(this::toResponse)
             .collect(Collectors.toList());
     }
 
     public UserResponseDTO update(UUID id, UserRequestDTO dto) {
         validateRequest(dto);
-        User entity = repository.findById(id)
+        User entity = userRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
 
-        if (!entity.getCpf().equals(dto.getCpf()) && repository.existsByCpf(dto.getCpf())) {
+        if (!entity.getCpf().equals(dto.getCpf()) && userRepo.existsByCpf(dto.getCpf())) {
             logger.warn("Atualização com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado: " + dto.getCpf());
         }
-        if (!entity.getEmail().equals(dto.getEmail()) && repository.existsByEmail(dto.getEmail())) {
+        if (!entity.getEmail().equals(dto.getEmail()) && userRepo.existsByEmail(dto.getEmail())) {
             logger.warn("Atualização com email duplicado: {}", dto.getEmail());
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email já cadastrado: " + dto.getEmail());
         }
@@ -112,14 +112,14 @@ public class UserService {
         entity.setName(dto.getName());
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
-        User updated = repository.save(entity);
+        User updated = userRepo.save(entity);
 
         logger.info("Usuário atualizado: {}", id);
         return toResponse(updated);
     }
 
     public UserResponseDTO deactivate(UUID id) {
-        User entity = repository.findById(id)
+        User entity = userRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
         Login login = loginRepo.findByUser(entity)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
@@ -131,13 +131,13 @@ public class UserService {
 
         login.setIsActive(false);
         entity.setActive(false);
-        User saved = repository.save(entity);
+        User saved = userRepo.save(entity);
         logger.info("Usuário desativado: {}", id);
         return toResponse(saved);
     }
 
     public UserResponseDTO activate(UUID id) {
-        User entity = repository.findById(id)
+        User entity = userRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
         Login login = loginRepo.findByUser(entity)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado: " + id));
@@ -149,7 +149,7 @@ public class UserService {
 
         login.setIsActive(true);
         entity.setActive(true);
-        User saved = repository.save(entity);
+        User saved = userRepo.save(entity);
         logger.info("Usuário ativado: {}", id);
         return toResponse(saved);
     }

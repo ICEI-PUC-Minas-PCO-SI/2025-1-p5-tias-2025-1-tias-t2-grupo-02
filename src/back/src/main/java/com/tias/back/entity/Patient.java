@@ -42,6 +42,14 @@ public class Patient {
     
     private String conditions;
 
+    private String contactName;
+
+    private String contactEmail;
+
+    private String contactPhone;
+
+    private String contactRelation;
+
     private boolean isActive;
 
     private LocalDate addedAt;
