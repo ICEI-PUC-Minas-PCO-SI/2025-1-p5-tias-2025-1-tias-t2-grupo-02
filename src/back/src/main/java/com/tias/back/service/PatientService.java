@@ -53,11 +53,6 @@ public class PatientService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Birthdate não pode ser uma data futura");
         }
-        if (!(dto.getCep() != null && dto.getCep().matches("\\d{5}-?\\d{3}"))) {
-            logger.warn("Validação falhou: CEP inválido");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "CEP inválido: use XXXXX-XXX ou XXXXXXXX");
-        }
         if (!(dto.getBloodType() != null && dto.getBloodType().matches("^(A|B|AB|O)[+-]$"))) {
             logger.warn("Validação falhou: bloodType inválido");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
@@ -99,7 +94,6 @@ public class PatientService {
             .cpf(dto.getCpf())
             .rg(dto.getRg())
             .birthdate(dto.getBirthdate())
-            .cep(dto.getCep())
             .bloodType(dto.getBloodType())
             .plano(dto.getPlano())
             .carteirinha(dto.getCarteirinha())
@@ -160,7 +154,6 @@ public class PatientService {
         p.setCpf(dto.getCpf());
         p.setRg(dto.getRg());
         p.setBirthdate(dto.getBirthdate());
-        p.setCep(dto.getCep());
         p.setBloodType(dto.getBloodType());
         p.setPlano(dto.getPlano());
         p.setCarteirinha(dto.getCarteirinha());
@@ -216,7 +209,6 @@ public class PatientService {
             .cpf(p.getCpf())
             .rg(p.getRg())
             .birthdate(p.getBirthdate())
-            .cep(p.getCep())
             .bloodType(p.getBloodType())
             .plano(p.getPlano())
             .carteirinha(p.getCarteirinha())
