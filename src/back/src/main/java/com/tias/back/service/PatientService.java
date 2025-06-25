@@ -53,16 +53,6 @@ public class PatientService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Birthdate não pode ser uma data futura");
         }
-        if (!(dto.getCep() != null && dto.getCep().matches("\\d{5}-?\\d{3}"))) {
-            logger.warn("Validação falhou: CEP inválido");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "CEP inválido: use XXXXX-XXX ou XXXXXXXX");
-        }
-        if (!(dto.getAddress() != null && !dto.getAddress().isBlank())) {
-            logger.warn("Validação falhou: Endereço vazio");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "Endereço não pode ser vazio");
-        }
         if (!(dto.getBloodType() != null && dto.getBloodType().matches("^(A|B|AB|O)[+-]$"))) {
             logger.warn("Validação falhou: bloodType inválido");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
@@ -77,11 +67,6 @@ public class PatientService {
             logger.warn("Validação falhou: Carteirinha vazia");
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
                 "Carteirinha não pode ser vazia");
-        }
-        if (!(dto.getConditions() != null && !dto.getConditions().isBlank())) {
-            logger.warn("Validação falhou: Conditions vazia");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                "Conditions não pode ser vazia");
         }
     }
 
@@ -109,14 +94,16 @@ public class PatientService {
             .cpf(dto.getCpf())
             .rg(dto.getRg())
             .birthdate(dto.getBirthdate())
-            .cep(dto.getCep())
-            .address(dto.getAddress())
             .bloodType(dto.getBloodType())
             .plano(dto.getPlano())
             .carteirinha(dto.getCarteirinha())
             .conditions(dto.getConditions())
+            .contactName(dto.getContactName())
+            .contactEmail(dto.getContactEmail())
+            .contactPhone(dto.getContactPhone())
+            .contactRelation(dto.getContactRelation())
             .isActive(true)
-            .addedAt(LocalDate.now())       // seta a data de cadastro
+            .addedAt(LocalDate.now())
             .build();
 
         Patient saved = repository.save(p);
@@ -167,12 +154,14 @@ public class PatientService {
         p.setCpf(dto.getCpf());
         p.setRg(dto.getRg());
         p.setBirthdate(dto.getBirthdate());
-        p.setCep(dto.getCep());
-        p.setAddress(dto.getAddress());
         p.setBloodType(dto.getBloodType());
         p.setPlano(dto.getPlano());
         p.setCarteirinha(dto.getCarteirinha());
         p.setConditions(dto.getConditions());
+        p.setContactName(dto.getContactName());
+        p.setContactEmail(dto.getContactEmail());
+        p.setContactPhone(dto.getContactPhone());
+        p.setContactRelation(dto.getContactRelation());
 
         Patient updated = repository.save(p);
         logger.info("Paciente atualizado: {}", id);
@@ -196,6 +185,23 @@ public class PatientService {
         return toDto(saved);
     }
 
+    public PatientResponseDTO activate(UUID id) {
+        Patient p = repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Paciente não encontrado: " + id));
+
+        if (p.isActive()) {
+            logger.warn("Paciente já ativo: {}", id);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                "Paciente '" + id + "' já está ativo.");
+        }
+
+        p.setActive(true);
+        Patient saved = repository.save(p);
+        logger.info("Paciente ativado: {}", id);
+        return toDto(saved);
+    }
+
     private PatientResponseDTO toDto(Patient p) {
         return PatientResponseDTO.builder()
             .patientId(p.getPatientId())
@@ -203,14 +209,16 @@ public class PatientService {
             .cpf(p.getCpf())
             .rg(p.getRg())
             .birthdate(p.getBirthdate())
-            .cep(p.getCep())
-            .address(p.getAddress())
             .bloodType(p.getBloodType())
             .plano(p.getPlano())
             .carteirinha(p.getCarteirinha())
             .conditions(p.getConditions())
+            .contactName(p.getContactName())
+            .contactEmail(p.getContactEmail())
+            .contactPhone(p.getContactPhone())
+            .contactRelation(p.getContactRelation())
             .isActive(p.isActive())
-            .addedAt(p.getAddedAt())      // devolve addedAt na resposta
+            .addedAt(p.getAddedAt())
             .build();
     }
 }

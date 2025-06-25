@@ -35,6 +35,11 @@ public class PatientRequestDTO {
     @PastOrPresent(message = "Birthdate não pode ser uma data futura")
     private LocalDate birthdate;
 
+    @NotBlank(message = "CEP é obrigatório")
+    @Pattern(regexp = "^\\d{5}-?\\d{3}$",
+             message = "CEP inválido: use XXXXX-XXX ou XXXXXXXX")
+    private String cep;
+
     @NotBlank(message = "Blood type é obrigatório")
     @Pattern(regexp = "^(A|B|AB|O)[+-]$",
              message = "bloodType inválido: use A+, A-, B+, B-, AB+, AB-, O+ ou O-")
@@ -46,21 +51,21 @@ public class PatientRequestDTO {
     @NotBlank(message = "Carteirinha é obrigatória")
     private String carteirinha;
 
-    @NotBlank(message = "Conditions é obrigatório")
     private String conditions;
 
-    @NotBlank(message = "Nome do contato de emergência é obrigatório")
-    private String contatoEmergenciaNome;
+    @NotBlank(message = "Nome é obrigatório")
+    @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Nome deve conter apenas letras e espaços")
+    private String contactName;
 
-    @NotBlank(message = "Parentesco é obrigatório")
-    private String contatoEmergenciaParentesco;
+    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email deve ser válido")
+    private String contactEmail;
 
-    @NotBlank(message = "Telefone do contato de emergência é obrigatório")
-    private String contatoEmergenciaTelefone;
+    @NotBlank(message = "Phone é obrigatório")
+    @Pattern(regexp = "^\\d{10,11}$", message = "Phone deve conter 10 ou 11 dígitos numéricos")
+    private String contactPhone;
 
-    private String contatoEmergenciaEmail;
-
-    private String photoBase64;
-
+    @NotBlank(message = "Relation é obrigatório")
+    @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Relation deve conter apenas letras e espaços")
+    private String contactRelation;
 }
-

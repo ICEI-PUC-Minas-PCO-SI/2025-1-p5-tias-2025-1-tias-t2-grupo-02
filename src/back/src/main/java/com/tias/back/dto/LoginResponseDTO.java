@@ -8,6 +8,6 @@ import java.util.UUID;
 public class LoginResponseDTO {
     private UUID loginId;
     private UUID userId;
-    private String perfil;
+    private String email;
     private boolean isActive;
 }

@@ -20,9 +20,6 @@ public class Medication {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false)
-    private UUID patientId;
-
     private String description;
 
     private Long quantity;
@@ -34,7 +31,7 @@ public class Medication {
     private LocalDateTime addedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patientId", insertable = false, updatable = false)
+    @JoinColumn(name = "patientId", referencedColumnName = "patientId", nullable = false)
     private Patient patient;
 
     private MedicationStatus status;

@@ -22,39 +22,51 @@ import com.tias.back.service.PatientService;
 @RequestMapping("/api/patients")
 public class PatientController {
 
-    private final PatientService service;
+    private final PatientService patientService;
 
-    public PatientController(PatientService service) {
-        this.service = service;
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
     @PostMapping
     public ResponseEntity<PatientResponseDTO> create(@RequestBody PatientRequestDTO dto) {
-        PatientResponseDTO created = service.create(dto);
+        PatientResponseDTO created = patientService.create(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PatientResponseDTO> getById(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+        return ResponseEntity.ok(patientService.getById(id));
     }
 
     @GetMapping
     public List<PatientResponseDTO> getAll() {
-        return service.getAll();
+        return patientService.getAll();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PatientResponseDTO> update(
             @PathVariable UUID id,
             @RequestBody PatientRequestDTO dto) {
-        PatientResponseDTO updated = service.update(id, dto);
+        PatientResponseDTO updated = patientService.update(id, dto);
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/deactivate/{id}")
     public ResponseEntity<PatientResponseDTO> deactivate(@PathVariable UUID id) {
-        PatientResponseDTO deactivated = service.deactivate(id);
+        PatientResponseDTO deactivated = patientService.deactivate(id);
+        return ResponseEntity.ok(deactivated);
+    }
+
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<PatientResponseDTO> activate(@PathVariable UUID id) {
+        PatientResponseDTO deactivated = patientService.activate(id);
+        return ResponseEntity.ok(deactivated);
+    }
+
+    @DeleteMapping("/deactivate/{id}")
+    public ResponseEntity<PatientResponseDTO> delete(@PathVariable UUID id) {
+        PatientResponseDTO deactivated = patientService.deactivate(id);
         return ResponseEntity.ok(deactivated);
     }
 }

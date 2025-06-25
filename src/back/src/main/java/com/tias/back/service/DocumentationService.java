@@ -4,6 +4,8 @@ import com.tias.back.dto.DocumentationRequestDTO;
 import com.tias.back.dto.DocumentationResponseDTO;
 import com.tias.back.entity.Documentation;
 import com.tias.back.repository.DocumentationRepository;
+import com.tias.back.repository.PatientRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,11 @@ public class DocumentationService {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentationService.class);
     private final DocumentationRepository repository;
+    private final PatientRepository patientRepo;
 
-    public DocumentationService(DocumentationRepository repository) {
+    public DocumentationService(DocumentationRepository repository, PatientRepository patientRepo) {
         this.repository = repository;
+        this.patientRepo = patientRepo;
     }
 
     private void validateRequest(DocumentationRequestDTO dto) {
@@ -48,7 +52,7 @@ public class DocumentationService {
     public DocumentationResponseDTO create(DocumentationRequestDTO dto) {
         validateRequest(dto);
         Documentation d = Documentation.builder()
-            .patientId(dto.getPatientId())
+            .patient(patientRepo.getReferenceById(dto.getPatientId()))
             .description(dto.getDescription())
             .location(dto.getLocation())
             .addedAt(LocalDateTime.now())
@@ -91,7 +95,7 @@ public class DocumentationService {
     private DocumentationResponseDTO toDto(Documentation d) {
         return DocumentationResponseDTO.builder()
             .id(d.getId())
-            .patientId(d.getPatientId())
+            .patientId(d.getPatient().getPatientId())
             .description(d.getDescription())
             .location(d.getLocation())
             .addedAt(d.getAddedAt().toString())

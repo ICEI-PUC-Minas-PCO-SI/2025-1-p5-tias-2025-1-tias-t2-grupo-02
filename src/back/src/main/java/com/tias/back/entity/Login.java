@@ -19,7 +19,7 @@ public class Login {
     @GeneratedValue
     private UUID loginId;
 
-    private String perfil;
+    private String email;
 
     private String password;
 

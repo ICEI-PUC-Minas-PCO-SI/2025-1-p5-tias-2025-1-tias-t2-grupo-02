@@ -4,6 +4,8 @@ import com.tias.back.dto.MedicationRequestDTO;
 import com.tias.back.dto.MedicationResponseDTO;
 import com.tias.back.entity.Medication;
 import com.tias.back.repository.MedicationRepository;
+import com.tias.back.repository.PatientRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,11 @@ public class MedicationService {
 
     private static final Logger logger = LoggerFactory.getLogger(MedicationService.class);
     private final MedicationRepository repository;
+    private final PatientRepository patientRepo;
 
-    public MedicationService(MedicationRepository repository) {
+    public MedicationService(MedicationRepository repository, PatientRepository patientRepo) {
         this.repository = repository;
+        this.patientRepo = patientRepo;
     }
 
     private void validateRequest(MedicationRequestDTO dto) {
@@ -48,7 +52,7 @@ public class MedicationService {
     public MedicationResponseDTO create(MedicationRequestDTO dto) {
         validateRequest(dto);
         Medication m = Medication.builder()
-            .patientId(dto.getPatientId())
+            .patient(patientRepo.getReferenceById(dto.getPatientId()))
             .description(dto.getDescription())
             .dosage(dto.getDosage())
             .addedAt(LocalDateTime.now())
@@ -91,7 +95,7 @@ public class MedicationService {
     private MedicationResponseDTO toDto(Medication m) {
         return MedicationResponseDTO.builder()
             .id(m.getId())
-            .patientId(m.getPatientId())
+            .patientId(m.getPatient().getPatientId())
             .description(m.getDescription())
             .dosage(m.getDosage())
             .addedAt(m.getAddedAt().toString())
