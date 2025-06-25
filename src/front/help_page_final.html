@@ -503,22 +503,25 @@
 </head>
 <body>
     <div class="figma-frame">
+        <!-- Header -->
         <header>
             <div class="logo-container">
-                <img src="images/logo.png" alt="Logo Casa de Repouso" class="logo-img">
+                <img src="logo.jpg" alt="Logo Casa de Repouso" class="logo-img">
                 <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
             </div>
             <div class="nav-container">
-                <a href="Dash.html" class="nav-link">Início</a>
-                <a href="pesquisa_paciente.html" class="nav-link">Pacientes</a>
+                <a href="principalsistema.html" class="nav-link">Início</a>
+                <a href="Dash.html" class="nav-link">Dashboard</a>
                 <a href="gerenciamento.html" class="nav-link">Medicamentos</a>
-                <a href="#" class="nav-link">Atividades</a> 
+                <a href="pesquisa_paciente.html" class="nav-link">Pacientes</a>
                 <a href="relatorio.HTML" class="nav-link">Relatórios</a>
                 <a href="help_page_final.html" class="nav-link active">Ajuda</a>
             </div>
         </header>
 
+        <!-- Main Content -->
         <div class="main-container">
+            <!-- Help Header -->
             <div class="help-header">
                 <div class="help-icon">
                     <span class="icon help-icon-svg"></span>
@@ -529,6 +532,65 @@
                 </div>
             </div>
 
+            <!-- Search Bar (REMOVIDO) -->
+            <!-- <div class="search-container">
+                <h2 class="search-title">Como podemos ajudar?</h2>
+                <form class="search-form">
+                    <input type="text" placeholder="Digite sua dúvida ou palavra-chave..." class="search-input">
+                    <button type="submit" class="search-button">
+                        <span class="icon search-icon-svg"></span>
+                        Buscar
+                    </button>
+                </form>
+            </div> -->
+
+            <!-- Help Categories (REMOVIDO) -->
+            <!-- <div class="categories-container">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon patient-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Gerenciamento de Pacientes</h3>
+                    <p class="category-description">Aprenda a cadastrar, editar e consultar informações dos pacientes no sistema.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon medicine-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Administração de Medicamentos</h3>
+                    <p class="category-description">Saiba como registrar e monitorar a administração de medicamentos.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon activity-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Agendamento de Atividades</h3>
+                    <p class="category-description">Instruções para agendar e gerenciar atividades para os pacientes.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon report-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Emissão de Relatórios</h3>
+                    <p class="category-description">Como gerar e interpretar os diferentes tipos de relatórios disponíveis.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon security-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Segurança e Acesso</h3>
+                    <p class="category-description">Informações sobre login, senhas e níveis de acesso ao sistema.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <span class="icon backup-icon-svg"></span>
+                    </div>
+                    <h3 class="category-title">Backup e Recuperação</h3>
+                    <p class="category-description">Entenda como funciona o sistema automático de backup de dados.</p>
+                </div>
+            </div> -->
+
+            <!-- FAQ Section -->
             <div class="faq-container">
                 <h2 class="faq-title">Perguntas Frequentes</h2>
                 <div class="faq-item">
@@ -563,6 +625,7 @@
                 </div>
             </div>
 
+            <!-- Contact Section -->
             <div class="contact-container">
                 <h2 class="contact-title">Precisa de mais ajuda?</h2>
                 <div class="contact-options">
@@ -584,45 +647,65 @@
                             <div class="contact-value">@jeitinhodavovo.com.br</div>
                         </div>
                     </div>
+                    <!-- <div class="contact-option">
+                        <div class="contact-icon">
+                            <span class="icon chat-icon-svg"></span>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Chat ao Vivo</div>
+                            <div class="contact-value">Disponível em dias úteis (8h às 18h)</div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="contact-option">
+                        <div class="contact-icon">
+                            <span class="icon video-icon-svg"></span>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Treinamento por Vídeo</div>
+                            <div class="contact-value">Acesse nossa biblioteca de tutoriais</div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
 
-        <footer>
+        <!-- Footer -->
+        <!-- <footer>
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo.png" alt="Logo Casa de Repouso" class="footer-logo-img">
+                   <img src="logo.jpg" alt="Logo Vovó">
                     <div class="footer-logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
                         <h3 class="footer-column-title">Sistema</h3>
-                        <a href="Dash.html" class="footer-link">Início</a>
-                        <a href="pesquisa_paciente.html" class="footer-link">Pacientes</a>
-                        <a href="gerenciamento.html" class="footer-link">Medicamentos</a>
+                        <a href="#" class="footer-link">Início</a>
+                        <a href="#" class="footer-link">Pacientes</a>
+                        <a href="#" class="footer-link">Medicamentos</a>
                         <a href="#" class="footer-link">Atividades</a>
-                        <a href="relatorio.HTML" class="footer-link">Relatórios</a>
+                        <a href="#" class="footer-link">Relatórios</a>
                     </div>
                     <div class="footer-column">
                         <h3 class="footer-column-title">Suporte</h3>
-                        <a href="help_page_final.html" class="footer-link">Central de Ajuda</a>
-                        <a href="help_page_final.html" class="footer-link">Tutoriais</a>
-                        <a href="help_page_final.html" class="footer-link">Contato</a>
-                        <a href="help_page_final.html" class="footer-link">Reportar Problema</a>
-                    </div>
-                    <div class="footer-column">
+                        <a href="#" class="footer-link">Central de Ajuda</a>
+                        <a href="#" class="footer-link">Tutoriais</a>
+                        <a href="#" class="footer-link">Contato</a>
+                        <a href="#" class="footer-link">Reportar Problema</a>
+                    </div> -->
+                    <!-- <div class="footer-column">
                         <h3 class="footer-column-title">Legal</h3>
                         <a href="#" class="footer-link">Termos de Uso</a>
                         <a href="#" class="footer-link">Política de Privacidade</a>
                         <a href="#" class="footer-link">LGPD</a>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div>
                 <div class="footer-bottom">
                     © 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.
                 </div>
             </div>
-        </footer>
+        </footer> --> 
 
+        <!-- Accessibility Button -->
         <button class="accessibility-button" aria-label="Opções de Acessibilidade">A</button>
     </div>
     <script>
