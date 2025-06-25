@@ -723,7 +723,7 @@
         <!-- Header -->
         <header>
             <div class="logo-container">
-                <img src="images/logo.png" alt="Logo Casa de Repouso" class="logo-img">
+                <img src="logo.jpg" alt="Logo Casa de Repouso" class="logo-img">
                 <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
             </div>
             <div class="nav-container">
@@ -749,7 +749,7 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" onclick="location.href='estoque.HTML'">
+        <button class="btn btn-primary" onclick="location.href='gerenciamento.html'">
             <i class="icon search-icon"></i>
             GERENCIMENTO DE ESTOQUE POR PACIENTE
         </button>
@@ -982,7 +982,7 @@
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                        <img src="images/logo.png" alt="Logo Casa de Repouso" class="footer-logo-img">
+                        <img src="logo.jpg" alt="Logo Casa de Repouso" class="footer-logo-img">
                         <div class="footer-logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
                     </div>
                 </div>
@@ -996,14 +996,14 @@
                         <a href="#" class="footer-link">Atividades</a>
                         <a href="relatorio.HTML" class="footer-link">Relatórios</a>
                     </div>
-                    
+<!--                     
                     <div class="footer-column">
                         <h3 class="footer-column-title">Suporte</h3>
                         <a href="help_page_final.html" class="footer-link">Central de Ajuda</a>
                         <a href="help_page_final.html" class="footer-link">Contato</a>
                         <a href="help_page_final.html" class="footer-link">Política de Privacidade</a>
                         <a href="help_page_final.html" class="footer-link">Termos de Uso</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             
@@ -1148,15 +1148,274 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="closeModalBtn">Fechar</button>
-                <button class="btn btn-primary">
+                <a href="editar_paciente.html" id="editPatientBtn" class="btn btn-primary">
                     <i class="icon edit-icon"></i>
                     Editar Paciente
-                </button>
+                </a>
             </div>
+            
         </div>
     </div>
-
     <script>
+        const tableBody = document.querySelector(".results-table tbody");
+        const modal = document.getElementById('patientModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalPatientName = modal.querySelector(".patient-name-large");
+        const modalPatientImage = modal.querySelector(".patient-photo-large");
+    
+        const allPatients = [
+            {
+                id: "10001",
+                nome: "Maria Silva",
+                idade: "78 anos",
+                cpf: "123.456.789-00",
+                data: "15/03/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/79.jpg"
+            },
+            {
+                id: "10002",
+                nome: "João Santos",
+                idade: "82 anos",
+                cpf: "987.654.321-00",
+                data: "22/05/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+            {
+                id: "10003",
+                nome: "Ana Oliveira",
+                idade: "75 anos",
+                cpf: "456.789.123-00",
+                data: "10/01/2024",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/68.jpg"
+            },
+            {
+                id: "10004",
+                nome: "Carlos Pereira",
+                idade: "85 anos",
+                cpf: "789.123.456-00",
+                data: "05/11/2023",
+                status: "inactive",
+                imagem: "https://randomuser.me/api/portraits/men/45.jpg"
+            },
+            {
+                id: "10005",
+                nome: "Lúcia Ferreira",
+                idade: "79 anos",
+                cpf: "321.654.987-00",
+                data: "18/07/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/42.jpg"
+            },
+        ];
+    
+        function renderPatients(filteredList) {
+            tableBody.innerHTML = "";
+            filteredList.forEach(p => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="${p.imagem}" alt="Foto de ${p.nome}" class="patient-photo">
+                                <div>
+                                    <div class="patient-name">${p.nome}</div>
+                                    <div class="patient-id">ID: ${p.id}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${p.idade}</td>
+                        <td>${p.cpf}</td>
+                        <td>${p.data}</td>
+                        <td>
+                            <span class="status-badge ${p.status === 'active' ? 'status-active' : 'status-inactive'}">
+                                ${p.status === 'active' ? 'Ativo' : 'Inativo'}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon btn-edit" onclick="openEditModal('${p.id}')">
+                                    <i class="icon edit-icon"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+    
+        function openEditModal(patientId) {
+            const patient = allPatients.find(p => p.id === patientId);
+            if (patient) {
+                modalPatientName.textContent = patient.nome;
+                modalPatientImage.src = patient.imagem;
+                modal.style.display = 'flex';
+            }
+        }
+    
+        // Inicializa com todos os pacientes
+        renderPatients(allPatients);
+    
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById("searchName").value.toLowerCase();
+            const cpf = document.getElementById("searchCPF").value.replace(/\D/g, "");
+            const status = document.getElementById("searchStatus").value;
+    
+            const filtered = allPatients.filter(p => {
+                const matchNome = nome === "" || p.nome.toLowerCase().includes(nome);
+                const matchCPF = cpf === "" || p.cpf.replace(/\D/g, "").includes(cpf);
+                const matchStatus = status === "" || p.status === status;
+                return matchNome && matchCPF && matchStatus;
+            });
+    
+            renderPatients(filtered);
+        });
+    
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('searchForm').reset();
+            renderPatients(allPatients);
+        });
+    
+        // Remoção da paginação
+        const paginationDiv = document.querySelector('.pagination');
+        if (paginationDiv) paginationDiv.remove();
+    
+        // Fechar modal
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+    
+        closeModalBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+    
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+    
+    <!-- <script>
+        const tableBody = document.querySelector(".results-table tbody");
+    
+        const allPatients = [
+            {
+                id: "10001",
+                nome: "Maria Silva",
+                idade: "78 anos",
+                cpf: "123.456.789-00",
+                data: "15/03/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/79.jpg"
+            },
+            {
+                id: "10002",
+                nome: "João Santos",
+                idade: "82 anos",
+                cpf: "987.654.321-00",
+                data: "22/05/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+            {
+                id: "10003",
+                nome: "Ana Oliveira",
+                idade: "75 anos",
+                cpf: "456.789.123-00",
+                data: "10/01/2024",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/68.jpg"
+            },
+            {
+                id: "10004",
+                nome: "Carlos Pereira",
+                idade: "85 anos",
+                cpf: "789.123.456-00",
+                data: "05/11/2023",
+                status: "inactive",
+                imagem: "https://randomuser.me/api/portraits/men/45.jpg"
+            },
+            {
+                id: "10005",
+                nome: "Lúcia Ferreira",
+                idade: "79 anos",
+                cpf: "321.654.987-00",
+                data: "18/07/2023",
+                status: "active",
+                imagem: "https://randomuser.me/api/portraits/women/42.jpg"
+            },
+        ];
+    
+        function renderPatients(filteredList) {
+            tableBody.innerHTML = "";
+            filteredList.forEach(p => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="${p.imagem}" alt="Foto de ${p.nome}" class="patient-photo">
+                                <div>
+                                    <div class="patient-name">${p.nome}</div>
+                                    <div class="patient-id">ID: ${p.id}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${p.idade}</td>
+                        <td>${p.cpf}</td>
+                        <td>${p.data}</td>
+                        <td>
+                            <span class="status-badge ${p.status === 'active' ? 'status-active' : 'status-inactive'}">
+                                ${p.status === 'active' ? 'Ativo' : 'Inativo'}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon btn-edit">
+                                    <i class="icon edit-icon"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+    
+        // Inicializa com todos os pacientes
+        renderPatients(allPatients);
+    
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById("searchName").value.toLowerCase();
+            const cpf = document.getElementById("searchCPF").value.replace(/\D/g, "");
+            const status = document.getElementById("searchStatus").value;
+    
+            const filtered = allPatients.filter(p => {
+                const matchNome = nome === "" || p.nome.toLowerCase().includes(nome);
+                const matchCPF = cpf === "" || p.cpf.replace(/\D/g, "").includes(cpf);
+                const matchStatus = status === "" || p.status === status;
+                return matchNome && matchCPF && matchStatus;
+            });
+    
+            renderPatients(filtered);
+        });
+    
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('searchForm').reset();
+            renderPatients(allPatients);
+        });
+    
+        // Remoção da paginação
+        const paginationDiv = document.querySelector('.pagination');
+        if (paginationDiv) paginationDiv.remove();
+    
+        // Remoção dos botões de visualização e exclusão (feita na renderização acima)
+    </script>
+     -->
+    <!-- <script>
         // Máscaras para campos específicos
         document.getElementById('searchCPF').addEventListener('input', function() {
             let value = this.value.replace(/\D/g, '');
@@ -1238,7 +1497,7 @@
                 }
             });
         });
-    </script>
+    </script> -->
 </body>
 </html>
 
