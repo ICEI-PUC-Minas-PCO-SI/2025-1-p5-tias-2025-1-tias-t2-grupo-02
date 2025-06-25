@@ -156,10 +156,10 @@
         plano: document.getElementById('plano').value.trim(),
         carteirinha: document.getElementById('carteirinha').value.trim(),
         conditions: document.getElementById('conditions').value.trim(),
-        contatoEmergenciaNome: document.getElementById('contatoEmergenciaNome').value.trim(),
-        contatoEmergenciaParentesco: document.getElementById('contatoEmergenciaParentesco').value.trim(),
-        contatoEmergenciaTelefone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
-        contatoEmergenciaEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
+        contactName: document.getElementById('contatoEmergenciaNome').value.trim(),
+        contactRelation: document.getElementById('contatoEmergenciaParentesco').value.trim(),
+        contactPhone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
+        contactEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
       };
       localStorage.setItem('pacienteRascunho', JSON.stringify(paciente));
 
@@ -191,10 +191,10 @@
         document.getElementById('plano').value = paciente.plano || '';
         document.getElementById('carteirinha').value = paciente.carteirinha || '';
         document.getElementById('conditions').value = paciente.conditions || '';
-        document.getElementById('contatoEmergenciaNome').value = paciente.contatoEmergenciaNome || '';
-        document.getElementById('contatoEmergenciaParentesco').value = paciente.contatoEmergenciaParentesco || '';
-        document.getElementById('contatoEmergenciaTelefone').value = paciente.contatoEmergenciaTelefone || '';
-        document.getElementById('contatoEmergenciaEmail').value = paciente.contatoEmergenciaEmail || '';
+        document.getElementById('contatoEmergenciaNome').value = paciente.contactName || '';
+        document.getElementById('contatoEmergenciaParentesco').value = paciente.contactRelation || '';
+        document.getElementById('contatoEmergenciaTelefone').value = paciente.contactPhone || '';
+        document.getElementById('contatoEmergenciaEmail').value = paciente.contactEmail || '';
       }
     }
 
@@ -236,10 +236,10 @@
         plano: document.getElementById('plano').value.trim(),
         carteirinha: document.getElementById('carteirinha').value.trim(),
         conditions: document.getElementById('conditions').value.trim(),
-        contatoEmergenciaNome: document.getElementById('contatoEmergenciaNome').value.trim(),
-        contatoEmergenciaParentesco: document.getElementById('contatoEmergenciaParentesco').value.trim(),
-        contatoEmergenciaTelefone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
-        contatoEmergenciaEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
+        contactName: document.getElementById('contatoEmergenciaNome').value.trim(),
+        contactRelation: document.getElementById('contatoEmergenciaParentesco').value.trim(),
+        contactPhone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
+        contactEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
       };
 
       try {
