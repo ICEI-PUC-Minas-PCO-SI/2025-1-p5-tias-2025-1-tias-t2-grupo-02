@@ -7,11 +7,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#fefbf7] text-black flex flex-col min-h-screen">
-
   <!-- Cabeçalho -->
   <header class="bg-[#EBD7B5] flex items-center justify-between px-8 py-4 shadow-md">
     <div class="flex items-center space-x-4">
-      <img src="logo.jpeg" alt="Logo da Casa de Repouso" class="w-12 h-12" />
+      <img src="logo.jpg" alt="Logo da Casa de Repouso" class="w-12 h-12" />
       <h1 class="text-xl font-semibold text-[#1d1d1d]">Casa de Repouso Do Jeitinho da Vovó</h1>
     </div>
     <nav class="space-x-6 text-sm">
@@ -23,7 +22,7 @@
     </nav>
   </header>
 
-  <!-- Conteúdo -->
+  <!-- Conteúdo principal -->
   <main class="flex-grow px-8 py-10">
     <h2 class="text-2xl font-semibold mb-2 flex items-center gap-2">
       <span class="w-4 h-4 bg-[#d8c5a7] rounded-full"></span>
@@ -36,7 +35,7 @@
       <div class="w-full lg:w-1/2 space-y-6 bg-white p-6 shadow rounded-md">
         <h3 class="text-lg font-medium">Formulário de Cadastro</h3>
 
-         <label for="photoInput" class="cursor-pointer border-2 border-dashed border-gray-300 rounded flex items-center justify-center h-32 text-sm text-gray-400 text-center">
+        <label for="photoInput" class="cursor-pointer border-2 border-dashed border-gray-300 rounded flex items-center justify-center h-32 text-sm text-gray-400 text-center relative">
           <span id="photoLabel">Clique para adicionar foto<br/>Tamanho máximo: 5MB. Formatos: JPG, PNG</span>
           <img id="photoPreview" src="#" alt="Pré-visualização" class="hidden absolute h-32 object-cover rounded" />
         </label>
@@ -45,72 +44,19 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="text-sm">Nome Completo *</label>
-            <input type="text" id="nome" required class="w-full border rounded px-2 py-1" />
+            <input type="text" id="name" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Data de Nascimento *</label>
-            <input type="date" id="dataNascimento" required class="w-full border rounded px-2 py-1" />
+            <input type="date" id="birthdate" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">CPF *</label>
-            <input type="text" id="cpf" required class="w-full border rounded px-2 py-1" placeholder="000.000.000-00" />
+            <input type="text" id="cpf" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
-            <label class="text-sm">RG</label>
-            <input type="text" id="rg" class="w-full border rounded px-2 py-1" placeholder="00.000.000-0" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="text-sm">Telefone *</label>
-            <input type="text" id="phone" required class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
-          </div>
-          <div>
-            <label class="text-sm">E-mail</label>
-            <input type="email" id="email" class="w-full border rounded px-2 py-1" placeholder="exemplo@email.com" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label class="text-sm">CEP *</label>
-            <input type="text" id="cep" required class="w-full border rounded px-2 py-1" />
-          </div>
-          <div class="md:col-span-2">
-            <label class="text-sm">Logradouro</label>
-            <input type="text" id="street" class="w-full border rounded px-2 py-1" placeholder="Rua, Avenida, etc." />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label class="text-sm">Número *</label>
-            <input type="text" required class="w-full border rounded px-2 py-1" />
-          </div>
-          <div>
-            <label class="text-sm">Complemento</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="Apto, Bloco, etc." />
-          </div>
-          <div>
-            <label class="text-sm">Bairro</label>
-            <input type="text" id="neighborhood" class="w-full border rounded px-2 py-1" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="text-sm">Cidade *</label>
-            <input type="text" id="city" required class="w-full border rounded px-2 py-1" />
-          </div>
-          <div>
-            <label class="text-sm">Estado *</label>
-            <select id="state" required class="w-full border rounded px-2 py-1">
-              <option>Selecione</option>
-              <option value="SP">SP</option>
-              <option value="MG">MG</option>
-              <option value="RJ">RJ</option>
-            </select>
+            <label class="text-sm">RG *</label>
+            <input type="text" id="rg" required class="w-full border rounded px-2 py-1" />
           </div>
         </div>
       </div>
@@ -121,9 +67,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label class="text-sm">Tipo Sanguíneo</label>
-            <select class="w-full border rounded px-2 py-1">
-              <option>Selecione</option>
+            <label class="text-sm">Tipo Sanguíneo *</label>
+            <select id="bloodType" required class="w-full border rounded px-2 py-1">
+              <option value="">Selecione</option>
               <option>O+</option>
               <option>O-</option>
               <option>A+</option>
@@ -135,28 +81,18 @@
             </select>
           </div>
           <div>
-            <label class="text-sm">Plano de Saúde</label>
-            <input type="text" class="w-full border rounded px-2 py-1" placeholder="Nome do plano" />
+            <label class="text-sm">Plano de Saúde *</label>
+            <input type="text" id="plano" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
-            <label class="text-sm">Número da Carteirinha</label>
-            <input type="text" class="w-full border rounded px-2 py-1" />
+            <label class="text-sm">Carteirinha *</label>
+            <input type="text" id="carteirinha" required class="w-full border rounded px-2 py-1" />
           </div>
         </div>
 
         <div>
-          <label class="text-sm">Alergias</label>
-          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Descreva alergias, se houver"></textarea>
-        </div>
-
-        <div>
-          <label class="text-sm">Doenças Crônicas</label>
-          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Doenças Crônicas, se houver"></textarea>
-        </div>
-
-        <div>
-          <label class="text-sm">Medicamentos em Uso</label>
-          <textarea class="w-full border rounded px-2 py-1" rows="2" placeholder="Medicamentos em uso, se houver"></textarea>
+          <label class="text-sm">Doenças Crônicas *</label>
+          <textarea id="conditions" required class="w-full border rounded px-2 py-1" rows="2"></textarea>
         </div>
 
         <h3 class="text-lg font-medium">Contato de Emergência</h3>
@@ -164,91 +100,215 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="text-sm">Nome *</label>
-            <input type="text" required class="w-full border rounded px-2 py-1" />
+            <input type="text" id="contatoEmergenciaNome" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Parentesco *</label>
-            <input type="text" required class="w-full border rounded px-2 py-1" placeholder="Filho(a), Amigo(a)..." />
+            <input type="text" id="contatoEmergenciaParentesco" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">Telefone *</label>
-            <input type="text" required class="w-full border rounded px-2 py-1" placeholder="(00) 00000-0000" />
+            <input type="text" id="contatoEmergenciaTelefone" required class="w-full border rounded px-2 py-1" />
           </div>
           <div>
             <label class="text-sm">E-mail</label>
-            <input type="email" class="w-full border rounded px-2 py-1" placeholder="exemplo@email.com" />
+            <input type="email" id="contatoEmergenciaEmail" class="w-full border rounded px-2 py-1" />
           </div>
-        </div>
-
-        <div>
-          <label class="text-sm">Observações adicionais</label>
-          <textarea class="w-full border rounded px-2 py-1" rows="3" placeholder="Observações relevantes sobre o paciente"></textarea>
         </div>
       </div>
     </form>
 
-    <!-- Botões -->
     <div class="mt-6 flex gap-4 justify-end">
-      <button type="button" onclick="window.location.href='pesquisa_paciente.html'" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Cancelar</button>
-      <button type="button" onclick="alert('Rascunho salvo (simulado)')" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
+      <button type="button" id="limparFormBtn" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Limpar</button>
+      <button type="button" id="salvarRascunhoBtn" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
       <button type="submit" form="patientForm" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
     </div>
+
+    <!-- Caixa mensagem rascunho -->
+    <div id="mensagemRascunho" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+      px-6 py-4 rounded-xl border border-yellow-500 bg-yellow-100 text-yellow-800 text-base shadow-xl z-50
+      text-center w-[90%] max-w-md">
+      <strong class="text-lg">✨ Rascunho salvo com sucesso!</strong><br>
+      Seus dados foram temporariamente armazenados para que você possa continuar o cadastro com tranquilidade e segurança.
+    </div>
+
+    <!-- Caixa mensagem erro -->
+    <div id="mensagemErro" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+      px-6 py-4 rounded-xl border border-red-500 bg-red-100 text-red-800 text-base shadow-xl z-50
+      text-center w-[90%] max-w-md whitespace-pre-wrap"></div>
+
   </main>
 
+  <!-- Scripts -->
   <script>
-    document.getElementById('cpf').addEventListener('input', function () {
-      let value = this.value.replace(/\D/g, '');
-      if (value.length > 11) value = value.slice(0, 11);
-      if (value.length > 9) {
-        this.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-      } else if (value.length > 6) {
-        this.value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
-      } else if (value.length > 3) {
-        this.value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
-      } else {
-        this.value = value;
-      }
-    });
+    // Variável global para guardar a imagem base64
+    let fotoBase64 = null;
 
-    document.getElementById('phone').addEventListener('input', function () {
-      let value = this.value.replace(/\D/g, '');
-      if (value.length > 11) value = value.slice(0, 11);
-      if (value.length > 10) {
-        this.value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-      } else if (value.length > 6) {
-        this.value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-      } else if (value.length > 2) {
-        this.value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
-      } else {
-        this.value = value;
-      }
-    });
+    // Função para salvar o rascunho no localStorage
+    function salvarRascunho() {
+      const paciente = {
+        photoBase64: fotoBase64,
+        name: document.getElementById('name').value.trim(),
+        cpf: document.getElementById('cpf').value.trim(),
+        rg: document.getElementById('rg').value.trim(),
+        birthdate: document.getElementById('birthdate').value
+          ? document.getElementById('birthdate').value : null,
+        bloodType: document.getElementById('bloodType').value,
+        plano: document.getElementById('plano').value.trim(),
+        carteirinha: document.getElementById('carteirinha').value.trim(),
+        conditions: document.getElementById('conditions').value.trim(),
+        contatoEmergenciaNome: document.getElementById('contatoEmergenciaNome').value.trim(),
+        contatoEmergenciaParentesco: document.getElementById('contatoEmergenciaParentesco').value.trim(),
+        contatoEmergenciaTelefone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
+        contatoEmergenciaEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
+      };
+      localStorage.setItem('pacienteRascunho', JSON.stringify(paciente));
 
-    document.getElementById('cep').addEventListener('input', function () {
-      let value = this.value.replace(/\D/g, '');
-      if (value.length > 8) value = value.slice(0, 8);
-      if (value.length > 5) {
-        this.value = value.replace(/(\d{5})(\d{1,3})/, '$1-$2');
-      } else {
-        this.value = value;
-      }
-    });
+      const div = document.getElementById("mensagemRascunho");
+      div.classList.remove("hidden");
+      setTimeout(() => div.classList.add("hidden"), 5000);
+    }
 
-    document.getElementById('cep').addEventListener('blur', function () {
-      const cep = this.value.replace(/[^0-9]/g, '');
-      if (cep === '01001-000' || cep === '01001000') {
-        document.getElementById('street').value = 'Praça da Sé';
-        document.getElementById('neighborhood').value = 'Sé';
-        document.getElementById('city').value = 'São Paulo';
-        document.getElementById('state').value = 'SP';
-      }
-    });
+    // Função para carregar o rascunho do localStorage
+    function carregarRascunho() {
+      const rascunho = localStorage.getItem('pacienteRascunho');
+      if (rascunho) {
+        const paciente = JSON.parse(rascunho);
+        fotoBase64 = paciente.photoBase64 || null;
 
-    document.getElementById('patientForm').addEventListener('submit', function (e) {
+        if (fotoBase64) {
+          const preview = document.getElementById('photoPreview');
+          const label = document.getElementById('photoLabel');
+          preview.src = fotoBase64;
+          preview.classList.remove('hidden');
+          label.classList.add('hidden');
+        }
+
+        document.getElementById('name').value = paciente.name || '';
+        document.getElementById('cpf').value = paciente.cpf || '';
+        document.getElementById('rg').value = paciente.rg || '';
+        document.getElementById('birthdate').value = paciente.birthdate || '';
+        document.getElementById('bloodType').value = paciente.bloodType || '';
+        document.getElementById('plano').value = paciente.plano || '';
+        document.getElementById('carteirinha').value = paciente.carteirinha || '';
+        document.getElementById('conditions').value = paciente.conditions || '';
+        document.getElementById('contatoEmergenciaNome').value = paciente.contatoEmergenciaNome || '';
+        document.getElementById('contatoEmergenciaParentesco').value = paciente.contatoEmergenciaParentesco || '';
+        document.getElementById('contatoEmergenciaTelefone').value = paciente.contatoEmergenciaTelefone || '';
+        document.getElementById('contatoEmergenciaEmail').value = paciente.contatoEmergenciaEmail || '';
+      }
+    }
+
+    // Função para limpar o formulário e o rascunho
+    function limparFormulario() {
+      document.getElementById('patientForm').reset();
+      localStorage.removeItem('pacienteRascunho');
+      fotoBase64 = null;
+
+      // Reset preview da foto
+      const preview = document.getElementById('photoPreview');
+      const label = document.getElementById('photoLabel');
+      preview.src = '#';
+      preview.classList.add('hidden');
+      label.classList.remove('hidden');
+      document.getElementById('photoInput').value = ""; // limpa input file
+    }
+
+    // Evento para salvar rascunho no clique do botão
+    document.getElementById('salvarRascunhoBtn').addEventListener('click', salvarRascunho);
+
+    // Evento para limpar formulário no clique do botão
+    document.getElementById('limparFormBtn').addEventListener('click', limparFormulario);
+
+    // Evento para carregar o rascunho ao carregar a página
+    window.addEventListener('load', carregarRascunho);
+
+    // Envio do formulário para o backend
+    document.getElementById('patientForm').addEventListener('submit', async function (e) {
       e.preventDefault();
-      alert('Paciente cadastrado com sucesso! (simulado)');
-      this.reset();
+
+      const paciente = {
+        photoBase64: fotoBase64,
+        name: document.getElementById('name').value.trim(),
+        cpf: document.getElementById('cpf').value.trim(),
+        rg: document.getElementById('rg').value.trim(),
+        birthdate: document.getElementById('birthdate').value,
+        bloodType: document.getElementById('bloodType').value,
+        plano: document.getElementById('plano').value.trim(),
+        carteirinha: document.getElementById('carteirinha').value.trim(),
+        conditions: document.getElementById('conditions').value.trim(),
+        contatoEmergenciaNome: document.getElementById('contatoEmergenciaNome').value.trim(),
+        contatoEmergenciaParentesco: document.getElementById('contatoEmergenciaParentesco').value.trim(),
+        contatoEmergenciaTelefone: document.getElementById('contatoEmergenciaTelefone').value.trim(),
+        contatoEmergenciaEmail: document.getElementById('contatoEmergenciaEmail').value.trim()
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/api/patients", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(paciente)
+        });
+
+        if (response.ok) {
+          alert("Paciente cadastrado com sucesso!");
+          this.reset();
+          localStorage.removeItem('pacienteRascunho');
+          fotoBase64 = null;
+
+          // Reset preview da foto
+          const preview = document.getElementById('photoPreview');
+          const label = document.getElementById('photoLabel');
+          preview.src = '#';
+          preview.classList.add('hidden');
+          label.classList.remove('hidden');
+          document.getElementById('photoInput').value = "";
+        } else {
+          const erro = await response.json();
+          let mensagens = "";
+          if (typeof erro === "object" && erro !== null) {
+            mensagens = Object.values(erro).join("\n");
+          } else {
+            mensagens = erro.message || "Verifique os dados.";
+          }
+          alert("Erro ao cadastrar: " + mensagens);
+          mostrarMensagemErro(mensagens);
+        }
+      } catch (error) {
+        mostrarMensagemErro("Erro de conexão com o servidor.");
+      }
     });
+
+    // Preview da imagem e salvar base64 na variável global
+    document.getElementById('photoInput').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById('photoPreview');
+      const label = document.getElementById('photoLabel');
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          fotoBase64 = event.target.result; // salva base64 na variável global
+          preview.src = fotoBase64;
+          preview.classList.remove('hidden');
+          label.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      } else {
+        fotoBase64 = null;
+        preview.src = '#';
+        preview.classList.add('hidden');
+        label.classList.remove('hidden');
+      }
+    });
+
+    // Mostrar mensagem de erro
+    function mostrarMensagemErro(msg) {
+      const div = document.getElementById("mensagemErro");
+      div.textContent = msg;
+      div.classList.remove("hidden");
+      setTimeout(() => div.classList.add("hidden"), 7000);
+    }
   </script>
 </body>
 </html>
