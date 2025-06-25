@@ -36,11 +36,6 @@ public class PatientRequestDTO {
     @PastOrPresent(message = "Birthdate não pode ser uma data futura")
     private LocalDate birthdate;
 
-    @NotBlank(message = "CEP é obrigatório")
-    @Pattern(regexp = "^\\d{5}-?\\d{3}$",
-             message = "CEP inválido: use XXXXX-XXX ou XXXXXXXX")
-    private String cep;
-
     @NotBlank(message = "Blood type é obrigatório")
     @Pattern(regexp = "^(A|B|AB|O)[+-]$",
              message = "bloodType inválido: use A+, A-, B+, B-, AB+, AB-, O+ ou O-")

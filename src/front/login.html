@@ -49,7 +49,7 @@
         <h4>Sistema</h4>
         <ul>
           <li><a href="Dash.html">Início</a></li>
-          <li><a href="pesquisa_paciente.html">Pacientes</a></li>
+          <li><a href="listagem_pacientes.html">Pacientes</a></li>
           <li><a href="gerenciamento.html">Medicamentos</a></li>
           <li><a href="#">Atividades</a></li>
           <li><a href="relatorio.HTML">Relatórios</a></li>
@@ -106,7 +106,7 @@
 
       if (resp.ok) {
         alert('Login bem-sucedido!');
-        window.location.href = 'pesquisa_paciente.html';
+        window.location.href = 'listagem_pacientes.html';
       } else {
         const errorText = await resp.text();
         alert(errorText || 'Usuário, senha ou status inválido.');
