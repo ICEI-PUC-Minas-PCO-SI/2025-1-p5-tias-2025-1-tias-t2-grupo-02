@@ -1,184 +1,646 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa de Repouso</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Casa de Repouso Do Jeitinho da Vovó</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bege-claro: #E6D2B6;
+            --cinza-claro: #BEBEBE;
+            --preto-suave: #2B2B2B;
+            --branco-suave: #F5F3EF;
+            --cinza-medio: #9C9C9C;
+            --bege-escuro: #D4BF9A;
+            --verde-suave: #8BC34A;
+            --vermelho-suave: #FF5252;
+            --amarelo-suave: #FFC107;
+            --azul-suave: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--branco-suave);
+            color: var(--preto-suave);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bege-claro);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--preto-suave);
+            margin-right: auto;
+        }
+
+        header nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: var(--preto-suave);
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        header nav a:hover {
+            background-color: var(--bege-escuro);
+        }
+
+        header nav a.active {
+            background-color: var(--preto-suave);
+            color: var(--branco-suave);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-header h2 {
+            font-size: 32px;
+            color: var(--preto-suave);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--cinza-medio);
+        }
+
+        .report-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .report-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .report-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .report-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .report-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--preto-suave);
+            margin-bottom: 10px;
+        }
+
+        .report-description {
+            color: var(--cinza-medio);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--verde-suave);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #7CB342;
+        }
+
+        .report-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+
+        .report-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--preto-suave);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--bege-claro);
+            padding-bottom: 8px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--branco-suave);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--preto-suave);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--cinza-medio);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        .report-table th,
+        .report-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .report-table th {
+            background-color: var(--bege-claro);
+            font-weight: 600;
+            color: var(--preto-suave);
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-ok {
+            background-color: var(--verde-suave);
+            color: white;
+        }
+
+        .status-baixo {
+            background-color: var(--amarelo-suave);
+            color: white;
+        }
+
+        .status-critico {
+            background-color: var(--vermelho-suave);
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--cinza-medio);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            header nav {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .report-types {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
-<body class="bg-[#fefbf7] text-black flex flex-col min-h-screen">
+<body>
 
-  <!-- Cabeçalho -->
-  <header class="bg-[#EBD7B5] flex items-center justify-between px-8 py-4 shadow-md">
-    <div class="flex items-center space-x-4">
-      <img src="logo.jpeg" alt="Logo da Casa de Repouso" class="w-12 h-12" />
-      <h1 class="text-xl font-semibold text-[#1d1d1d]">Casa de Repouso Do Jeitinho da Vovó</h1>
-    </div>
-    <nav class="space-x-6 text-sm">
-      <a href="Dash.html" class="hover:underline">Início</a>
-      <a href="pesquisa_paciente.html" class="hover:underline">Pacientes</a>
-      <a href="gerenciamento.html" class="hover:underline">Medicamentos</a>
-      <a href="relatorio.HTML" class="hover:underline font-semibold underline">Relatórios</a>
-      <a href="help_page_final.html" class="hover:underline">Ajuda</a>
+<header>
+    <img src="logo.jpg" alt="Logo Vovó">
+    <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
+    <nav>
+        <a href="principalsistema.html">Início</a>
+        <a href="Dash.html">Dashboard</a>
+        <a href="gerenciamento.html">Medicamentos</a>
+        <a href="pesquisa_paciente.html">Pacientes</a>
+        <a href="relatorio.HTML" class="active">Relatórios</a>
+        <a href="help_page_final.html">Ajuda</a>
     </nav>
-  </header>
+</header>
 
-  <!-- Conteúdo Principal -->
-  <main class="flex-grow p-10">
-    <div class="flex flex-col lg:flex-row gap-8">
-      
-      <!-- Filtros -->
-      <aside class="bg-white p-6 shadow rounded-md w-full lg:w-1/4">
-        <h2 class="text-lg font-semibold mb-4">Filtros de Relatório</h2>
+<div class="main-content">
+    <div class="page-header">
+        <h2>Relatórios</h2>
+        <p>Gere relatórios detalhados sobre pacientes, medicamentos e operações</p>
+    </div>
+
+    <div class="report-types" id="report-types">
+        <div class="report-card">
+            <div class="report-icon">📊</div>
+            <div class="report-title">Relatório Geral</div>
+            <div class="report-description">
+                Visão geral completa com estatísticas de pacientes, medicamentos e status do estoque.
+            </div>
+            <button class="btn btn-primary" onclick="generateGeneralReport()">
+                📄 Gerar Relatório
+            </button>
+        </div>
+
+        <div class="report-card">
+            <div class="report-icon">💊</div>
+            <div class="report-title">Relatório de Medicamentos</div>
+            <div class="report-description">
+                Detalhes sobre estoque de medicamentos, status críticos e medicamentos por paciente.
+            </div>
+            <button class="btn btn-primary" onclick="generateMedicationReport()">
+                📄 Gerar Relatório
+            </button>
+        </div>
+
+        <div class="report-card">
+            <div class="report-icon">👥</div>
+            <div class="report-title">Relatório de Pacientes</div>
+            <div class="report-description">
+                Informações detalhadas sobre pacientes, condições médicas e dados demográficos.
+            </div>
+            <button class="btn btn-primary" onclick="generatePatientReport()">
+                📄 Gerar Relatório
+            </button>
+        </div>
+    </div>
+
+    <div id="report-content" class="hidden">
+        <div class="report-content">
+            <div id="report-data">
+                <div class="loading">Gerando relatório...</div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-primary" onclick="printReport()">🖨️ Imprimir</button>
+                <button class="btn btn-primary" onclick="backToReports()" style="margin-left: 10px;">← Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const API_BASE_URL = 'http://localhost:8080/api';
+let allPatients = [];
+let allMedications = [];
+
+// Função para buscar dados
+async function fetchData() {
+    try {
+        const [patientsResponse, medicationsResponse] = await Promise.all([
+            fetch(`${API_BASE_URL}/patients`),
+            fetch(`${API_BASE_URL}/medications`)
+        ]);
         
-        <div class="mb-4">
-          <label class="block text-sm mb-1">Período</label>
-          <div class="flex gap-2">
-            <input type="date" class="border px-2 py-1 rounded w-full" />
-            <input type="date" class="border px-2 py-1 rounded w-full" />
-          </div>
-        </div>
+        allPatients = await patientsResponse.json();
+        allMedications = await medicationsResponse.json();
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+    }
+}
+
+// Função para calcular idade
+function calculateAge(birthdate) {
+    const birth = new Date(birthdate);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
+
+// Função para determinar status do medicamento
+function getMedicationStatus(quantity) {
+    if (quantity <= 2) return 'CRITICO';
+    if (quantity <= 10) return 'BAIXO';
+    return 'OK';
+}
+
+// Função para formatar data
+function formatDate(dateString) {
+    if (!dateString) return 'Não informado';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR');
+}
+
+// Função para gerar relatório geral
+async function generateGeneralReport() {
+    await fetchData();
+    
+    // Estatísticas gerais
+    const totalPatients = allPatients.length;
+    const totalMedications = allMedications.length;
+    
+    let criticalMeds = 0;
+    let lowStockMeds = 0;
+    let okMeds = 0;
+    
+    allMedications.forEach(med => {
+        const status = getMedicationStatus(med.quantity);
+        if (status === 'CRITICO') criticalMeds++;
+        else if (status === 'BAIXO') lowStockMeds++;
+        else okMeds++;
+    });
+    
+    // Distribuição por idade
+    const ageGroups = { '60-70': 0, '70-80': 0, '80-90': 0, '90+': 0 };
+    allPatients.forEach(patient => {
+        const age = calculateAge(patient.birthdate);
+        if (age >= 90) ageGroups['90+']++;
+        else if (age >= 80) ageGroups['80-90']++;
+        else if (age >= 70) ageGroups['70-80']++;
+        else ageGroups['60-70']++;
+    });
+
+    const reportHTML = `
+        <h3>Relatório Geral - ${formatDate(new Date())}</h3>
         
-        <div class="mb-4">
-          <label class="block text-sm mb-1">Paciente</label>
-          <select class="border px-2 py-1 rounded w-full">
-            <option>Selecionar paciente</option>
-            <option>Antônio Lima</option>
-            <option>Marcos Souza</option>
-            <option>Ana Pereira</option>
-          </select>
+        <div class="report-section">
+            <div class="section-title">Estatísticas Gerais</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">${totalPatients}</div>
+                    <div class="stat-label">Total de Pacientes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${totalMedications}</div>
+                    <div class="stat-label">Medicamentos Cadastrados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${criticalMeds}</div>
+                    <div class="stat-label">Medicamentos Críticos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${lowStockMeds}</div>
+                    <div class="stat-label">Estoque Baixo</div>
+                </div>
+            </div>
         </div>
 
-        <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded">➕ Gerar Relatório</button>
-      </aside>
-
-      <!-- Relatórios -->
-      <section class="flex-1 bg-white p-6 shadow rounded-md">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold">Relatórios e Análises</h2>
-          <button class="flex items-center gap-2 border px-3 py-1 rounded hover:bg-gray-100 text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Exportar PDF
-          </button>
+        <div class="report-section">
+            <div class="section-title">Distribuição por Faixa Etária</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">${ageGroups['60-70']}</div>
+                    <div class="stat-label">60-70 anos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${ageGroups['70-80']}</div>
+                    <div class="stat-label">70-80 anos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${ageGroups['80-90']}</div>
+                    <div class="stat-label">80-90 anos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${ageGroups['90+']}</div>
+                    <div class="stat-label">90+ anos</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Tabela 1 -->
-        <div class="overflow-x-auto mb-6">
-          <table class="min-w-full border text-sm">
-            <thead class="bg-gray-100">
-              <tr>
-                <th class="border px-3 py-2 text-left">Classe de Remédio</th>
-                <th class="border px-3 py-2 text-left">Para Uso</th>
-                <th class="border px-3 py-2 text-left">Quantidade Disponível</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border px-3 py-2">Analgésico</td>
-                <td class="border px-3 py-2">Dor</td>
-                <td class="border px-3 py-2">120</td>
-              </tr>
-              <tr>
-                <td class="border px-3 py-2">Antibiótico</td>
-                <td class="border px-3 py-2">Infecção</td>
-                <td class="border px-3 py-2">90</td>
-              </tr>
-              <tr>
-                <td class="border px-3 py-2">Antidepressivo</td>
-                <td class="border px-3 py-2">Depressão</td>
-                <td class="border px-3 py-2">75</td>
-              </tr>
-              <tr>
-                <td class="border px-3 py-2">Anti-hipertensivo</td>
-                <td class="border px-3 py-2">Hipertensão</td>
-                <td class="border px-3 py-2">60</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="report-section">
+            <div class="section-title">Medicamentos com Status Crítico</div>
+            <div class="table-container">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Quantidade</th>
+                            <th>Status</th>
+                            <th>Paciente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${allMedications
+                            .filter(med => getMedicationStatus(med.quantity) === 'CRITICO')
+                            .map(med => {
+                                const patient = allPatients.find(p => p.patientId === med.patientId);
+                                return `
+                                    <tr>
+                                        <td>${med.description}</td>
+                                        <td>${med.quantity}</td>
+                                        <td><span class="status-badge status-critico">CRÍTICO</span></td>
+                                        <td>${patient ? patient.name : 'Não encontrado'}</td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                    </tbody>
+                </table>
+            </div>
         </div>
+    `;
 
-        <!-- Tabela 2 -->
-        <div class="overflow-x-auto">
-          <table class="min-w-full border text-sm">
-            <thead class="bg-gray-100">
-              <tr>
-                <th class="border px-3 py-2 text-left">Data</th>
-                <th class="border px-3 py-2 text-left">Paciente</th>
-                <th class="border px-3 py-2 text-left">Quantidade</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border px-3 py-2">14/04/2024</td>
-                <td class="border px-3 py-2">Antônio Lima</td>
-                <td class="border px-3 py-2">1 CAIXA</td>
-              </tr>
-              <tr>
-                <td class="border px-3 py-2">13/04/2024</td>
-                <td class="border px-3 py-2">Marcos Souza</td>
-                <td class="border px-3 py-2">6 CP</td>
-              </tr>
-              <tr>
-                <td class="border px-3 py-2">12/04/2024</td>
-                <td class="border px-3 py-2">Ana Pereira</td>
-                <td class="border px-3 py-2">1 CP</td>
-              </tr>
-            </tbody>
-          </table>
+    showReport(reportHTML);
+}
+
+// Função para gerar relatório de medicamentos
+async function generateMedicationReport() {
+    await fetchData();
+    
+    const reportHTML = `
+        <h3>Relatório de Medicamentos - ${formatDate(new Date())}</h3>
+        
+        <div class="report-section">
+            <div class="section-title">Todos os Medicamentos</div>
+            <div class="table-container">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Quantidade</th>
+                            <th>Status</th>
+                            <th>Dosagem</th>
+                            <th>Validade</th>
+                            <th>Paciente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${allMedications.map(med => {
+                            const status = getMedicationStatus(med.quantity);
+                            const statusClass = status.toLowerCase();
+                            const patient = allPatients.find(p => p.patientId === med.patientId);
+                            
+                            return `
+                                <tr>
+                                    <td>${med.description}</td>
+                                    <td>${med.quantity}</td>
+                                    <td><span class="status-badge status-${statusClass}">${status}</span></td>
+                                    <td>${med.dosage || 'Não informado'}</td>
+                                    <td>${formatDate(med.experirationDate)}</td>
+                                    <td>${patient ? patient.name : 'Não encontrado'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </section>
-    </div>
-  </main>
+    `;
 
-  <!-- Rodapé -->
-  <footer class="bg-[#1a1a1a] text-white text-sm px-6 py-4">
-    <div class="max-w-6xl mx-auto flex items-start justify-between">
-      <!-- Logo à esquerda -->
-      <div class="flex items-center">
-        <img src="logo.jpeg" alt="Logo da Casa de Repouso" class="w-10 h-10 mr-2" />
-        <span class="text-xs">Casa de Repouso Do Jeitinho da Vovó</span>
-      </div>
+    showReport(reportHTML);
+}
 
-      <!-- Conteúdo centralizado -->
-      <div class="flex-1 flex justify-center">
-        <div class="flex gap-12 text-left">
-          <div>
-            <h3 class="font-semibold mb-1">Sistema</h3>
-            <ul class="space-y-0.5">
-              <li><a href="Dash.html">Início</a></li>
-              <li><a href="pesquisa_paciente.html">Pacientes</a></li>
-              <li><a href="gerenciamento.html">Medicamentos</a></li>
-              <li><a href="relatorio.HTML">Relatórios</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold mb-1">Suporte</h3>
-            <ul class="space-y-0.5">
-              <li><a href="help_page_final.html">Central de Ajuda</a></li>
-              <li><a href="help_page_final.html">Tutoriais</a></li>
-              <li><a href="help_page_final.html">Contato</a></li>
-              <li><a href="help_page_final.html">Reportar Problema</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold mb-1">Legal</h3>
-            <ul class="space-y-0.5">
-              <li><a href="#">Termos de Uso</a></li>
-              <li><a href="#">Política de Privacidade</a></li>
-              <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">LGPD</a></li>
-            </ul>
-          </div>
+// Função para gerar relatório de pacientes
+async function generatePatientReport() {
+    await fetchData();
+    
+    const reportHTML = `
+        <h3>Relatório de Pacientes - ${formatDate(new Date())}</h3>
+        
+        <div class="report-section">
+            <div class="section-title">Todos os Pacientes</div>
+            <div class="table-container">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Tipo Sanguíneo</th>
+                            <th>Plano de Saúde</th>
+                            <th>Condições</th>
+                            <th>Data de Admissão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${allPatients.map(patient => {
+                            const age = calculateAge(patient.birthdate);
+                            
+                            return `
+                                <tr>
+                                    <td>${patient.name}</td>
+                                    <td>${age} anos</td>
+                                    <td>${patient.bloodType}</td>
+                                    <td>${patient.plano}</td>
+                                    <td>${patient.conditions || 'Nenhuma'}</td>
+                                    <td>${formatDate(patient.addedAt)}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
+    `;
 
-    <!-- Texto de direitos -->
-    <div class="text-center text-xs text-gray-400 mt-3">
-      © 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.
-    </div>
-  </footer>
+    showReport(reportHTML);
+}
+
+// Função para mostrar o relatório
+function showReport(html) {
+    document.getElementById('report-types').classList.add('hidden');
+    document.getElementById('report-content').classList.remove('hidden');
+    document.getElementById('report-data').innerHTML = html;
+}
+
+// Função para voltar aos tipos de relatório
+function backToReports() {
+    document.getElementById('report-content').classList.add('hidden');
+    document.getElementById('report-types').classList.remove('hidden');
+}
+
+// Função para imprimir relatório
+function printReport() {
+    window.print();
+}
+
+// Inicializar página
+document.addEventListener('DOMContentLoaded', function() {
+    // Página já está pronta para uso
+});
+</script>
 
 </body>
 </html>
+
+
+
