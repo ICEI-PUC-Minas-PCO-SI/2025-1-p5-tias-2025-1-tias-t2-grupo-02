@@ -249,7 +249,7 @@ class RouteGuard {
         this.protectedPages = [
             'base.html',
             'regdocs.html',
-            'pesquisa_paciente.html',
+            'listagem_pacientes.html',
             'help_page_final.html'
         ];
         this.publicPages = [

@@ -310,7 +310,7 @@
         <a href="principalsistema.html">Início</a>
         <a href="Dash.html">Dashboard</a>
         <a href="gerenciamento.html">Medicamentos</a>
-        <a href="pesquisa_paciente.html" class="active">Pacientes</a>
+        <a href="listagem_pacientes.html" class="active">Pacientes</a>
         <a href="relatorio.HTML">Relatórios</a>
         <a href="help_page_final.html">Ajuda</a>
     </nav>
@@ -428,7 +428,7 @@
                     <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
                         🗑️ Desativar Paciente
                     </button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='pesquisa_paciente.html'">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='listagem_pacientes.html'">
                         ← Cancelar
                     </button>
                     <button type="submit" class="btn btn-primary" id="save-btn">
@@ -670,7 +670,7 @@ async function updatePatient(patientId, patientData) {
             
             // Redirecionar para a lista de pacientes após 2 segundos
             setTimeout(() => {
-                window.location.href = 'pesquisa_paciente.html';
+                window.location.href = 'listagem_pacientes.html';
             }, 2000);
             
         } else {
@@ -709,7 +709,7 @@ async function deactivatePatient() {
             
             // Redirecionar para a lista de pacientes após 2 segundos
             setTimeout(() => {
-                window.location.href = 'pesquisa_paciente.html';
+                window.location.href = 'listagem_pacientes.html';
             }, 2000);
             
         } else {
