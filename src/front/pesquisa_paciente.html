@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="images/icons.css">
     <style>
-        /* Variáveis de cores */
         :root {
             --bege-claro: #E6D2B6;
             --cinza-claro: #BEBEBE;
@@ -29,11 +29,10 @@
         }
 
         body {
-            background-color: var(--branco-suave );
+            background-color: var(--branco-suave);
             color: var(--preto-suave);
         }
 
-        /* Header */
         header {
             background-color: var(--bege-claro);
             padding: 15px 40px;
@@ -80,7 +79,6 @@
             border-bottom: 2px solid var(--preto-suave);
         }
 
-        /* Main Content */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -121,7 +119,6 @@
             max-width: 600px;
         }
 
-        /* Search Container */
         .search-container {
             background-color: #fff;
             padding: 30px;
@@ -228,7 +225,6 @@
             margin-right: 8px;
         }
 
-        /* Results Container */
         .results-container {
             background-color: #fff;
             padding: 30px;
@@ -254,13 +250,6 @@
             color: var(--cinza-medio);
         }
 
-        .results-actions {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Table Styles */
         .table-container {
             overflow-x: auto;
         }
@@ -290,21 +279,9 @@
             background-color: rgba(230, 210, 182, 0.1);
         }
 
-        .patient-photo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
         .patient-name {
             font-weight: 500;
             color: var(--preto-suave);
-        }
-
-        .patient-id {
-            color: var(--cinza-medio);
-            font-size: 14px;
         }
 
         .status-badge {
@@ -360,252 +337,28 @@
             color: #FF5252;
         }
 
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 5px;
-        }
-
-        .pagination-item {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background-color: var(--branco-suave);
-            color: var(--preto-suave);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pagination-item:hover {
-            background-color: var(--bege-claro);
-        }
-
-        .pagination-item.active {
-            background-color: var(--bege-escuro);
-            color: var(--preto-suave);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--preto-suave);
-            color: var(--branco-suave);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo-img {
-            width: 50px;
-            height: 50px;
-            margin-right: 15px;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-logo-text {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-column {
-            min-width: 200px;
-            text-align: left;
-        }
-
-        .footer-column-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: var(--bege-claro);
-        }
-
-        .footer-link {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--branco-suave);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-link:hover {
-            color: var(--bege-claro);
-        }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            font-size: 14px;
-            color: var(--cinza-claro);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo-container {
-                margin-bottom: 15px;
-            }
-
-            .nav-container {
-                margin-left: 0;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .nav-link {
-                margin: 5px 10px;
-            }
-
-            .page-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .page-icon {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .search-form {
-                flex-direction: column;
-            }
-
-            .search-group {
-                min-width: 100%;
-            }
-
-            .search-actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .results-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .results-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .table-container {
-                overflow-x: auto;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-column {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Accessibility Features */
-        .accessibility-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--preto-suave);
-            color: var(--branco-suave);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 44px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .accessibility-button:hover {
-            background-color: #3a3a3a;
-        }
-
-        /* Simulated Figma Frame */
-        .figma-frame {
-            position: relative;
-            max-width: 1440px;
-            margin: 0 auto;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Interactive Elements */
-        .interactive-element {
-            transition: all 0.3s ease;
-        }
-
-        .interactive-element:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Modal */
+        /* Modal Styles */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            z-index: 9999;
             align-items: center;
+            justify-content: center;
         }
-
         .modal {
-            background-color: white;
+            background: #fff;
             border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
+            width: 95%;
+            max-width: 540px;
+            max-height: 95vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
         }
-
         .modal-header {
             padding: 20px;
             border-bottom: 1px solid var(--cinza-claro);
@@ -613,13 +366,11 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .modal-title {
             font-size: 20px;
             font-weight: 500;
             color: var(--preto-suave);
         }
-
         .modal-close {
             background: none;
             border: none;
@@ -627,11 +378,9 @@
             cursor: pointer;
             color: var(--cinza-medio);
         }
-
         .modal-body {
             padding: 20px;
         }
-
         .modal-footer {
             padding: 20px;
             border-top: 1px solid var(--cinza-claro);
@@ -639,45 +388,38 @@
             justify-content: flex-end;
             gap: 15px;
         }
-
-        /* Patient Details */
         .patient-details {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .patient-header {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-
         .patient-photo-large {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
+            background: var(--cinza-claro);
         }
-
         .patient-info {
             flex: 1;
         }
-
         .patient-name-large {
             font-size: 24px;
             font-weight: 500;
             color: var(--preto-suave);
             margin-bottom: 5px;
         }
-
         .patient-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             margin-top: 10px;
         }
-
         .patient-meta-item {
             display: flex;
             align-items: center;
@@ -685,11 +427,9 @@
             color: var(--cinza-medio);
             font-size: 14px;
         }
-
         .detail-section {
             margin-bottom: 20px;
         }
-
         .detail-title {
             font-size: 18px;
             font-weight: 500;
@@ -698,82 +438,95 @@
             padding-bottom: 5px;
             border-bottom: 1px solid var(--cinza-claro);
         }
-
         .detail-row {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 10px;
         }
-
         .detail-label {
             width: 40%;
             min-width: 150px;
             font-weight: 500;
             color: var(--preto-suave);
         }
-
         .detail-value {
             flex: 1;
             color: var(--cinza-medio);
         }
+
+        @media (max-width: 768px) {
+            .modal { max-width: 95vw; }
+        }
+            /* New styles for activate/deactivate buttons */
+            .btn-deactivate {
+            color: var(--vermelho-suave);
+            border-color: var(--vermelho-suave);
+        }
+        .btn-deactivate:hover {
+            background-color: var(--vermelho-suave);
+            color: white;
+        }
+        .btn-activate {
+            color: var(--verde-suave);
+            border-color: var(--verde-suave);
+        }
+        .btn-activate:hover {
+            background-color: var(--verde-suave);
+            color: white;
+        }
     </style>
 </head>
+
 <body>
     <div class="figma-frame">
-        <!-- Header -->
         <header>
             <div class="logo-container">
                 <img src="logo.jpg" alt="Logo Casa de Repouso" class="logo-img">
                 <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
             </div>
             <div class="nav-container">
-                <a href="Dash.html" class="nav-link">Início</a>
-                <a href="pesquisa_paciente.html" class="nav-link active">Pacientes</a>
+                <a href="listagem_pacientes.html" class="nav-link active">Pacientes</a>
                 <a href="gerenciamento.html" class="nav-link">Medicamentos</a>
-                <a href="relatorio.HTML" class="nav-link">Relatórios</a>
                 <a href="help_page_final.html" class="nav-link">Ajuda</a>
             </div>
         </header>
-
-        <!-- Main Content -->
         <div class="main-container">
-            <!-- Page Header -->
-<div class="page-header" style="justify-content: space-between; width: 100%;">
-    <div style="display: flex; align-items: center;">
-        <div class="page-icon">
-            <i class="icon users-icon"></i>
-        </div>
-        <div>
-            <h1 class="page-title">Pesquisa de Pacientes</h1>
-            <p class="page-subtitle">Utilize os filtros abaixo para encontrar pacientes cadastrados no sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
-        </div>
-    </div>
-    <div>
-        <button class="btn btn-primary" onclick="location.href='gerenciamento.html'">
-            <i class="icon search-icon"></i>
-            GERENCIMENTO DE ESTOQUE POR PACIENTE
-        </button>
-    </div>
-</div>
-
-
-
-            <!-- Search Container -->
+            <div class="page-header" style="justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center;">
+                    <div class="page-icon">
+                        <i class="icon users-icon"></i>
+                    </div>
+                    <div>
+                        <h1 class="page-title">Pesquisa de Pacientes</h1>
+                        <p class="page-subtitle">Utilize os filtros abaixo para encontrar pacientes cadastrados no
+                            sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn btn-success" onclick="location.href='cadastrar_paciente.html'">
+                        <i class="icon plus-icon"></i>
+                        CADASTRAR NOVO PACIENTE
+                    </button>
+                    <button class="btn btn-primary" onclick="location.href='gerenciamento.html'">
+                        <i class="icon search-icon"></i>
+                        GERENCIMENTO DE ESTOQUE POR PACIENTE
+                    </button>
+                </div>
+            </div>
             <div class="search-container">
                 <h2 class="search-title">Filtros de Pesquisa</h2>
-                
                 <form id="searchForm">
                     <div class="search-form">
                         <div class="search-group">
                             <label for="searchName" class="search-label">Nome do Paciente</label>
-                            <input type="text" id="searchName" class="search-input interactive-element" placeholder="Digite o nome">
+                            <input type="text" id="searchName" class="search-input interactive-element"
+                                placeholder="Digite o nome">
                         </div>
-                        
                         <div class="search-group">
                             <label for="searchCPF" class="search-label">CPF</label>
-                            <input type="text" id="searchCPF" class="search-input interactive-element" placeholder="000.000.000-00">
+                            <input type="text" id="searchCPF" class="search-input interactive-element"
+                                placeholder="000.000.000-00">
                         </div>
-                        
                         <div class="search-group">
                             <label for="searchStatus" class="search-label">Status</label>
                             <select id="searchStatus" class="search-select interactive-element">
@@ -783,8 +536,6 @@
                             </select>
                         </div>
                     </div>
-                    
-                    
                     <div class="search-actions">
                         <button type="button" id="clearButton" class="btn btn-secondary">
                             <i class="icon x-icon"></i>
@@ -797,707 +548,379 @@
                     </div>
                 </form>
             </div>
-
-            <!-- Results Container -->
             <div class="results-container">
                 <div class="results-header">
                     <h2 class="results-title">Resultados da Pesquisa</h2>
-                    <div class="results-count">15 pacientes encontrados</div>
+                    <div class="results-count" id="resultsCount">0 pacientes encontrados</div>
                 </div>
-                
-                
-                <div class="table-container">
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Paciente</th>
-                                <th>Idade</th>
-                                <th>CPF</th>
-                                <th>Data de Entrada</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Foto de Maria Silva" class="patient-photo">
-                                        <div>
-                                            <div class="patient-name">Maria Silva</div>
-                                            <div class="patient-id">ID: 10001</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>78 anos</td>
-                                <td>123.456.789-00</td>
-                                <td>15/03/2023</td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-view view-patient" data-id="10001">
-                                            <i class="icon eye-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-edit">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-delete">
-                                            <i class="icon trash-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de João Santos" class="patient-photo">
-                                        <div>
-                                            <div class="patient-name">João Santos</div>
-                                            <div class="patient-id">ID: 10002</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>82 anos</td>
-                                <td>987.654.321-00</td>
-                                <td>22/05/2023</td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-view view-patient" data-id="10002">
-                                            <i class="icon eye-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-edit">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-delete">
-                                            <i class="icon trash-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto de Ana Oliveira" class="patient-photo">
-                                        <div>
-                                            <div class="patient-name">Ana Oliveira</div>
-                                            <div class="patient-id">ID: 10003</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>75 anos</td>
-                                <td>456.789.123-00</td>
-                                <td>10/01/2024</td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-view view-patient" data-id="10003">
-                                            <i class="icon eye-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-edit">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-delete">
-                                            <i class="icon trash-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Foto de Carlos Pereira" class="patient-photo">
-                                        <div>
-                                            <div class="patient-name">Carlos Pereira</div>
-                                            <div class="patient-id">ID: 10004</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>85 anos</td>
-                                <td>789.123.456-00</td>
-                                <td>05/11/2023</td>
-                                <td><span class="status-badge status-inactive">Inativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-view view-patient" data-id="10004">
-                                            <i class="icon eye-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-edit">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-delete">
-                                            <i class="icon trash-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Foto de Lúcia Ferreira" class="patient-photo">
-                                        <div>
-                                            <div class="patient-name">Lúcia Ferreira</div>
-                                            <div class="patient-id">ID: 10005</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>79 anos</td>
-                                 <td>321.654.987-00</td>
-                                <td>18/07/2023</td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-icon btn-view view-patient" data-id="10005">
-                                            <i class="icon eye-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-edit">
-                                            <i class="icon edit-icon"></i>
-                                        </button>
-                                        <button class="btn-icon btn-delete">
-                                            <i class="icon trash-icon"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="pagination">
-                    <div class="pagination-item">
-                        <i class="icon chevron-left-icon"></i>
-                    </div>
-                    <div class="pagination-item active">1</div>
-                    <div class="pagination-item">2</div>
-                    <div class="pagination-item">3</div>
-                    <div class="pagination-item">
-                        <i class="icon chevron-right-icon"></i>
-                    </div>
-                </div>
+                <div class="table-container"></div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <img src="logo.jpg" alt="Logo Casa de Repouso" class="footer-logo-img">
-                        <div class="footer-logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
-                    </div>
+        <!-- Modal de Detalhes do Paciente -->
+        <div class="modal-overlay" id="patientModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title">Detalhes do Paciente</h3>
+                    <button class="modal-close" id="closeModal">&times;</button>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h3 class="footer-column-title">Navegação</h3>
-                        <a href="Dash.html" class="footer-link">Início</a>
-                        <a href="pesquisa_paciente.html" class="footer-link">Pacientes</a>
-                        <a href="gerenciamento.html" class="footer-link">Medicamentos</a>
-                        <a href="#" class="footer-link">Atividades</a>
-                        <a href="relatorio.HTML" class="footer-link">Relatórios</a>
-                    </div>
-<!--                     
-                    <div class="footer-column">
-                        <h3 class="footer-column-title">Suporte</h3>
-                        <a href="help_page_final.html" class="footer-link">Central de Ajuda</a>
-                        <a href="help_page_final.html" class="footer-link">Contato</a>
-                        <a href="help_page_final.html" class="footer-link">Política de Privacidade</a>
-                        <a href="help_page_final.html" class="footer-link">Termos de Uso</a>
-                    </div> -->
+                <div class="modal-body" id="modalBody">
+                    <!-- Conteúdo preenchido via JS -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="closeModalBtn">Fechar</button>
+                    <a href="#" id="editPatientBtn" class="btn btn-primary">
+                        <i class="icon edit-icon"></i>
+                        Editar Paciente
+                    </a>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                &copy; 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.
-            </div>
-        </footer>
-
-        <!-- Accessibility Button -->
-        <button class="accessibility-button">
-            <i class="icon accessibility-icon"></i>
-        </button>
-    </div>
-
-    <!-- Patient Details Modal -->
-    <div class="modal-overlay" id="patientModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Detalhes do Paciente</h3>
-                <button class="modal-close" id="closeModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="patient-details">
-                    <div class="patient-header">
-                        <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Foto de Maria Silva" class="patient-photo-large">
-                        <div class="patient-info">
-                            <h2 class="patient-name-large">Maria Silva</h2>
-                            <div class="status-badge status-active">Ativo</div>
-                            <div class="patient-meta">
-                                <div class="patient-meta-item">
-                                    <i class="icon calendar-icon"></i>
-                                    78 anos (12/05/1947)
-                                </div>
-                                <div class="patient-meta-item">
-                                    <i class="icon user-icon"></i>
-                                    ID: 10001
-                                </div>
-                                <div class="patient-meta-item">
-                                    <i class="icon clock-icon"></i>
-                                    Entrada: 15/03/2023
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h4 class="detail-title">Informações Pessoais</h4>
-                        <div class="detail-row">
-                            <div class="detail-label">CPF</div>
-                            <div class="detail-value">123.456.789-00</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">RG</div>
-                            <div class="detail-value">12.345.678-9</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Gênero</div>
-                            <div class="detail-value">Feminino</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Estado Civil</div>
-                            <div class="detail-value">Viúva</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Nacionalidade</div>
-                            <div class="detail-value">Brasileira</div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h4 class="detail-title">Contato</h4>
-                        <div class="detail-row">
-                            <div class="detail-label">Telefone</div>
-                            <div class="detail-value">(11) 98765-4321</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">E-mail</div>
-                            <div class="detail-value">maria.silva@email.com</div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h4 class="detail-title">Endereço</h4>
-                        <div class="detail-row">
-                            <div class="detail-label">Logradouro</div>
-                            <div class="detail-value">Rua das Flores, 123</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Bairro</div>
-                            <div class="detail-value">Jardim Primavera</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Cidade/UF</div>
-                            <div class="detail-value">São Paulo/SP</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">CEP</div>
-                            <div class="detail-value">01234-567</div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h4 class="detail-title">Informações Médicas</h4>
-                        <div class="detail-row">
-                            <div class="detail-label">Tipo Sanguíneo</div>
-                            <div class="detail-value">A+</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Plano de Saúde</div>
-                            <div class="detail-value">Saúde Total</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Alergias</div>
-                            <div class="detail-value">Penicilina, Frutos do Mar</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Doenças Crônicas</div>
-                            <div class="detail-value">Hipertensão, Diabetes Tipo 2</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Medicamentos</div>
-                            <div class="detail-value">Losartana 50mg (1x ao dia), Metformina 500mg (2x ao dia)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h4 class="detail-title">Contato de Emergência</h4>
-                        <div class="detail-row">
-                            <div class="detail-label">Nome</div>
-                            <div class="detail-value">Roberto Silva</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Parentesco</div>
-                            <div class="detail-value">Filho</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Telefone</div>
-                            <div class="detail-value">(11) 99876-5432</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="closeModalBtn">Fechar</button>
-                <a href="editar_paciente.html" id="editPatientBtn" class="btn btn-primary">
-                    <i class="icon edit-icon"></i>
-                    Editar Paciente
-                </a>
-            </div>
-            
         </div>
     </div>
+
     <script>
-        const tableBody = document.querySelector(".results-table tbody");
-        const modal = document.getElementById('patientModal');
-        const closeModal = document.getElementById('closeModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalPatientName = modal.querySelector(".patient-name-large");
-        const modalPatientImage = modal.querySelector(".patient-photo-large");
-    
-        const allPatients = [
-            {
-                id: "10001",
-                nome: "Maria Silva",
-                idade: "78 anos",
-                cpf: "123.456.789-00",
-                data: "15/03/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/79.jpg"
-            },
-            {
-                id: "10002",
-                nome: "João Santos",
-                idade: "82 anos",
-                cpf: "987.654.321-00",
-                data: "22/05/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/men/32.jpg"
-            },
-            {
-                id: "10003",
-                nome: "Ana Oliveira",
-                idade: "75 anos",
-                cpf: "456.789.123-00",
-                data: "10/01/2024",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/68.jpg"
-            },
-            {
-                id: "10004",
-                nome: "Carlos Pereira",
-                idade: "85 anos",
-                cpf: "789.123.456-00",
-                data: "05/11/2023",
-                status: "inactive",
-                imagem: "https://randomuser.me/api/portraits/men/45.jpg"
-            },
-            {
-                id: "10005",
-                nome: "Lúcia Ferreira",
-                idade: "79 anos",
-                cpf: "321.654.987-00",
-                data: "18/07/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/42.jpg"
-            },
-        ];
-    
-        function renderPatients(filteredList) {
-            tableBody.innerHTML = "";
-            filteredList.forEach(p => {
-                tableBody.innerHTML += `
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <img src="${p.imagem}" alt="Foto de ${p.nome}" class="patient-photo">
-                                <div>
-                                    <div class="patient-name">${p.nome}</div>
-                                    <div class="patient-id">ID: ${p.id}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>${p.idade}</td>
-                        <td>${p.cpf}</td>
-                        <td>${p.data}</td>
-                        <td>
-                            <span class="status-badge ${p.status === 'active' ? 'status-active' : 'status-inactive'}">
-                                ${p.status === 'active' ? 'Ativo' : 'Inativo'}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-edit" onclick="openEditModal('${p.id}')">
-                                    <i class="icon edit-icon"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            });
+        // URL do backend
+        const API_URL = "http://localhost:8080/api/patients";
+
+        // Elementos do DOM
+        const tableContainer = document.querySelector('.results-container .table-container');
+        const resultsCount = document.querySelector('.results-count');
+        const form = document.getElementById('searchForm');
+        const clearBtn = document.getElementById('clearButton');
+
+        // Função para calcular idade a partir da data de nascimento
+        function calcularIdade(birthdate) {
+            if (!birthdate) return '';
+            const nascimento = new Date(birthdate);
+            const hoje = new Date();
+            let idade = hoje.getFullYear() - nascimento.getFullYear();
+            const m = hoje.getMonth() - nascimento.getMonth();
+            if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+                idade--;
+            }
+            return `${idade} anos`;
         }
-    
-        function openEditModal(patientId) {
-            const patient = allPatients.find(p => p.id === patientId);
-            if (patient) {
-                modalPatientName.textContent = patient.nome;
-                modalPatientImage.src = patient.imagem;
-                modal.style.display = 'flex';
+
+        // Função utilitária para formatar CPF (opcional)
+        function formatarCPF(cpf) {
+            if (!cpf) return '';
+            return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+        }
+
+        // Função utilitária para formatar data (yyyy-mm-dd para dd/mm/yyyy)
+        function formatarData(data) {
+            if (!data) return '';
+            const [ano, mes, dia] = data.split("-");
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        // // Monta uma linha da tabela
+        // function pacienteRow(p) {
+        //     return `
+        //         <tr>
+        //             <td>
+        //                 <div>
+        //                     <div class="patient-name">${p.name || ''}</div>
+        //                 </div>
+        //             </td>
+        //             <td>${calcularIdade(p.birthdate)}</td>
+        //             <td>${formatarCPF(p.cpf)}</td>
+        //             <td>${formatarData(p.addedAt)}</td>
+        //             <td>
+        //                 <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
+        //                     ${p.active ? 'Ativo' : 'Inativo'}
+        //                 </span>
+        //             </td>
+        //             <td>
+        //                 <div class="action-buttons">
+        //                     <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
+        //                         <i class="icon eye-icon"></i>
+        //                     </button>
+        //                 </div>
+        //             </td>
+        //         </tr>`;
+        // }
+
+           // Monta uma linha da tabela
+           function pacienteRow(p) {
+            const statusClass = p.active ? 'status-active' : 'status-inactive';
+            const statusText = p.active ? 'Ativo' : 'Inativo';
+            const toggleBtnClass = p.active ? 'btn-deactivate' : 'btn-activate';
+            const toggleBtnIcon = p.active ? 'power-off-icon' : 'power-on-icon'; // Assumindo que você tem esses ícones
+            const toggleBtnTitle = p.active ? 'Desativar Paciente' : 'Ativar Paciente';
+
+            return `
+                <tr>
+                    <td>
+                        <div>
+                            <div class="patient-name">${p.name || ''}</div>
+                        </div>
+                    </td>
+                    <td>${calcularIdade(p.birthdate)}</td>
+                    <td>${formatarCPF(p.cpf)}</td>
+                    <td>${formatarData(p.addedAt)}</td>
+                    <td>
+                        <span class="status-badge ${statusClass}">
+                            ${statusText}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
+                                <i class="icon eye-icon"></i>
+                            </button>
+                            <button class="btn-icon ${toggleBtnClass}" title="${toggleBtnTitle}" data-id="${p.patientId}" data-active="${p.active}">
+                                <i class="icon ${toggleBtnIcon}"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+        }
+
+
+        // Busca pacientes do backend (SEM filtros, pois backend não aceita parâmetros)
+        async function buscarPacientes() {
+            try {
+                const resp = await fetch(API_URL);
+                const lista = await resp.json();
+                return Array.isArray(lista) ? lista : [];
+            } catch (e) {
+                alert("Erro ao buscar pacientes.");
+                return [];
             }
         }
-    
-        // Inicializa com todos os pacientes
-        renderPatients(allPatients);
-    
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nome = document.getElementById("searchName").value.toLowerCase();
-            const cpf = document.getElementById("searchCPF").value.replace(/\D/g, "");
-            const status = document.getElementById("searchStatus").value;
-    
-            const filtered = allPatients.filter(p => {
-                const matchNome = nome === "" || p.nome.toLowerCase().includes(nome);
-                const matchCPF = cpf === "" || p.cpf.replace(/\D/g, "").includes(cpf);
-                const matchStatus = status === "" || p.status === status;
-                return matchNome && matchCPF && matchStatus;
-            });
-    
-            renderPatients(filtered);
-        });
-    
-        document.getElementById('clearButton').addEventListener('click', function() {
-            document.getElementById('searchForm').reset();
-            renderPatients(allPatients);
-        });
-    
-        // Remoção da paginação
-        const paginationDiv = document.querySelector('.pagination');
-        if (paginationDiv) paginationDiv.remove();
-    
-        // Fechar modal
-        closeModal.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-    
-        closeModalBtn.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-    
-        window.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+
+        // Renderiza pacientes na tabela com filtro do lado do cliente
+        function renderPacientes(lista, filtros) {
+            let listaFiltrada = lista;
+
+            // Filtros: nome, CPF, status
+            if (filtros.nome) {
+                listaFiltrada = listaFiltrada.filter(p =>
+                    (p.name || '').toLowerCase().includes(filtros.nome.toLowerCase())
+                );
             }
-        });
-    </script>
-    
-    <!-- <script>
-        const tableBody = document.querySelector(".results-table tbody");
-    
-        const allPatients = [
-            {
-                id: "10001",
-                nome: "Maria Silva",
-                idade: "78 anos",
-                cpf: "123.456.789-00",
-                data: "15/03/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/79.jpg"
-            },
-            {
-                id: "10002",
-                nome: "João Santos",
-                idade: "82 anos",
-                cpf: "987.654.321-00",
-                data: "22/05/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/men/32.jpg"
-            },
-            {
-                id: "10003",
-                nome: "Ana Oliveira",
-                idade: "75 anos",
-                cpf: "456.789.123-00",
-                data: "10/01/2024",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/68.jpg"
-            },
-            {
-                id: "10004",
-                nome: "Carlos Pereira",
-                idade: "85 anos",
-                cpf: "789.123.456-00",
-                data: "05/11/2023",
-                status: "inactive",
-                imagem: "https://randomuser.me/api/portraits/men/45.jpg"
-            },
-            {
-                id: "10005",
-                nome: "Lúcia Ferreira",
-                idade: "79 anos",
-                cpf: "321.654.987-00",
-                data: "18/07/2023",
-                status: "active",
-                imagem: "https://randomuser.me/api/portraits/women/42.jpg"
-            },
-        ];
-    
-        function renderPatients(filteredList) {
-            tableBody.innerHTML = "";
-            filteredList.forEach(p => {
-                tableBody.innerHTML += `
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <img src="${p.imagem}" alt="Foto de ${p.nome}" class="patient-photo">
-                                <div>
-                                    <div class="patient-name">${p.nome}</div>
-                                    <div class="patient-id">ID: ${p.id}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>${p.idade}</td>
-                        <td>${p.cpf}</td>
-                        <td>${p.data}</td>
-                        <td>
-                            <span class="status-badge ${p.status === 'active' ? 'status-active' : 'status-inactive'}">
-                                ${p.status === 'active' ? 'Ativo' : 'Inativo'}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-edit">
-                                    <i class="icon edit-icon"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-    
-        // Inicializa com todos os pacientes
-        renderPatients(allPatients);
-    
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nome = document.getElementById("searchName").value.toLowerCase();
-            const cpf = document.getElementById("searchCPF").value.replace(/\D/g, "");
-            const status = document.getElementById("searchStatus").value;
-    
-            const filtered = allPatients.filter(p => {
-                const matchNome = nome === "" || p.nome.toLowerCase().includes(nome);
-                const matchCPF = cpf === "" || p.cpf.replace(/\D/g, "").includes(cpf);
-                const matchStatus = status === "" || p.status === status;
-                return matchNome && matchCPF && matchStatus;
-            });
-    
-            renderPatients(filtered);
-        });
-    
-        document.getElementById('clearButton').addEventListener('click', function() {
-            document.getElementById('searchForm').reset();
-            renderPatients(allPatients);
-        });
-    
-        // Remoção da paginação
-        const paginationDiv = document.querySelector('.pagination');
-        if (paginationDiv) paginationDiv.remove();
-    
-        // Remoção dos botões de visualização e exclusão (feita na renderização acima)
-    </script>
-     -->
-    <!-- <script>
-        // Máscaras para campos específicos
-        document.getElementById('searchCPF').addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.slice(0, 11);
-            
-            if (value.length > 9) {
-                this.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-            } else if (value.length > 6) {
-                this.value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
-            } else if (value.length > 3) {
-                this.value = value.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+            if (filtros.cpf) {
+                listaFiltrada = listaFiltrada.filter(p =>
+                    (p.cpf || '').includes(filtros.cpf.replace(/\D/g, ''))
+                );
+            }
+            if (filtros.status !== "" && filtros.status !== undefined) {
+                if (filtros.status === "active") listaFiltrada = listaFiltrada.filter(p => !!p.active);
+                if (filtros.status === "inactive") listaFiltrada = listaFiltrada.filter(p => !p.active);
+            }
+
+            let html = '';
+            if (listaFiltrada.length === 0) {
+                html = `<tr><td colspan="6" style="text-align:center;color:#999;">Nenhum paciente encontrado</td></tr>`;
             } else {
-                this.value = value;
+                html = listaFiltrada.map(pacienteRow).join('');
             }
+            // Monta tabela se não existir
+            if (!document.querySelector('.results-table')) {
+                tableContainer.innerHTML = `
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Idade</th>
+                            <th>CPF</th>
+                            <th>Data de Entrada</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>${html}</tbody>
+                </table>
+                `;
+            } else {
+                document.querySelector('.results-table tbody').innerHTML = html;
+            }
+            resultsCount.textContent = `${listaFiltrada.length} paciente${listaFiltrada.length !== 1 ? 's' : ''} encontrado${listaFiltrada.length !== 1 ? 's' : ''}`;
+            // Vincula evento de visualização
+            vincularEventosViewBtn();
+            vincularEventosToggleStatusBtn();
+        }
+
+        // Armazena todos pacientes carregados
+        let todosPacientes = [];
+
+        // // Carrega lista ao abrir a página
+        // async function atualizarLista() {
+        //     // Só busca do backend se ainda não carregou
+        //     if (todosPacientes.length === 0) {
+        //         todosPacientes = await buscarPacientes();
+        //     }
+        //     const filtros = {
+        //         nome: document.getElementById("searchName").value.trim(),
+        //         cpf: document.getElementById("searchCPF").value.trim(),
+        //         status: document.getElementById("searchStatus").value
+        //     };
+        //     renderPacientes(todosPacientes, filtros);
+        // }
+
+          // Carrega lista ao abrir a página
+          async function atualizarLista() {
+            // Sempre busca do backend para ter os dados mais recentes, especialmente após um toggle
+            todosPacientes = await buscarPacientes();
+            const filtros = {
+                nome: document.getElementById("searchName").value.trim(),
+                cpf: document.getElementById("searchCPF").value.trim(),
+                status: document.getElementById("searchStatus").value
+            };
+            renderPacientes(todosPacientes, filtros);
+        }
+        window.addEventListener('DOMContentLoaded', atualizarLista);
+
+        // Filtros no submit
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            atualizarLista();
         });
 
         // Limpar filtros
-        document.getElementById('clearButton').addEventListener('click', function() {
-            document.getElementById('searchForm').reset();
+        clearBtn.addEventListener('click', function () {
+            form.reset();
+            atualizarLista();
         });
+        // Função para alternar o status do paciente (ativar/desativar)
+        async function togglePatientStatus(patientId, currentStatus) {
+            const newStatus = !currentStatus;
+            const actionText = newStatus ? 'ativar' : 'desativar';
+            const confirmMessage = `Tem certeza que deseja ${actionText} este paciente?`;
 
-        // Formulário de pesquisa
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Simulação de pesquisa - em um sistema real, isso enviaria uma requisição ao servidor
-            alert('Pesquisa realizada com sucesso!');
-        });
+            if (!confirm(confirmMessage)) {
+                return; // Usuário cancelou
+            }
 
-        // Modal de detalhes do paciente
-        const modal = document.getElementById('patientModal');
-        const viewButtons = document.querySelectorAll('.view-patient');
-        const closeModal = document.getElementById('closeModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
+            try {
+                // Encontra o paciente na lista local para obter todos os dados
+                const pacienteToUpdate = todosPacientes.find(p => p.patientId == patientId);
+                if (!pacienteToUpdate) {
+                    alert("Paciente não encontrado para atualização.");
+                    return;
+                }
 
-        viewButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const patientId = this.getAttribute('data-id');
-                // Em um sistema real, aqui buscaria os dados do paciente pelo ID
-                modal.style.display = 'flex';
+                // Cria uma cópia do paciente e atualiza o status na cópia
+                const updatedPatient = { ...pacienteToUpdate, active: newStatus };
+
+                const response = await fetch(`${API_URL}/${patientId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedPatient), // Envia o objeto completo atualizado
+                });
+
+                if (response.ok) {
+                    alert(`Paciente ${newStatus ? 'ativado' : 'desativado'} com sucesso!`);
+                    atualizarLista(); // Recarrega a lista para refletir a mudança
+                } else {
+                    const errorData = await response.json();
+                    alert(`Erro ao ${actionText} paciente: ${errorData.message || response.statusText}`);
+                    // Se der erro, não faz nada, pois a lista será recarregada de qualquer forma
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                alert(`Erro de conexão ao tentar ${actionText} o paciente.`);
+            }
+        }
+   // Ao renderizar a tabela, vincule evento aos botões de ativar/desativar
+   function vincularEventosToggleStatusBtn() {
+            document.querySelectorAll('.btn-icon[data-active]').forEach(btn => {
+                btn.onclick = function() {
+                    const id = btn.getAttribute('data-id');
+                    const activeStatus = btn.getAttribute('data-active') === 'true'; // Converte string para booleano
+                    togglePatientStatus(id, activeStatus);
+                };
             });
-        });
+        }
+        // ---------- MODAL LÓGICA ----------
 
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+        // Função para abrir o modal e preencher os dados
+        function abrirModalPaciente(p) {
+            const modal = document.getElementById('patientModal');
+            const modalBody = document.getElementById('modalBody');
+            const editBtn = document.getElementById('editPatientBtn');
+            let idadeStr = calcularIdade(p.birthdate);
+            let dataNasc = p.birthdate ? new Date(p.birthdate).toLocaleDateString() : '';
+            let dataEntrada = formatarData(p.addedAt);
 
-        closeModalBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+            // Gera avatar via inicial
+            let imgSrc = p.name && p.name.trim().length > 0 ?
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=E6D2B6&color=2B2B2B&size=128` :
+                'https://ui-avatars.com/api/?background=E6D2B6&color=2B2B2B&size=128';
 
-        // Fechar modal ao clicar fora dele
+            modalBody.innerHTML = `
+                <div class="patient-details">
+                    <div class="patient-header">
+                        <img src="${imgSrc}" alt="Foto de ${p.name || ''}" class="patient-photo-large">
+                        <div class="patient-info">
+                            <h2 class="patient-name-large">${p.name || ''}</h2>
+                            <div class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">${p.active ? 'Ativo' : 'Inativo'}</div>
+                            <div class="patient-meta">
+                                <div class="patient-meta-item">
+                                    <i class="icon calendar-icon"></i>
+                                    ${idadeStr}${dataNasc ? ' ('+dataNasc+')' : ''}
+                                </div>
+                                <div class="patient-meta-item">
+                                    <i class="icon clock-icon"></i>
+                                    Entrada: ${dataEntrada}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Informações Pessoais</h4>
+                        <div class="detail-row"><div class="detail-label">CPF</div><div class="detail-value">${formatarCPF(p.cpf)}</div></div>
+                        <div class="detail-row"><div class="detail-label">RG</div><div class="detail-value">${p.rg || '-'}</div></div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Plano e Saúde</h4>
+                        <div class="detail-row"><div class="detail-label">Tipo Sanguíneo</div><div class="detail-value">${p.bloodType || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Plano de Saúde</div><div class="detail-value">${p.plano || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Carteirinha</div><div class="detail-value">${p.carteirinha || '-'}</div></div>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="detail-title">Contato de Emergência</h4>
+                        <div class="detail-row"><div class="detail-label">Nome</div><div class="detail-value">${p.contactName || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Telefone</div><div class="detail-value">${p.contactPhone || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">Parentesco</div><div class="detail-value">${p.contactRelation || '-'}</div></div>
+                        <div class="detail-row"><div class="detail-label">E-mail</div><div class="detail-value">${p.contactEmail || '-'}</div></div>
+                    </div>
+                </div>
+            `;
+
+            // Redireciona o botão editar para página de edição (caso deseje)
+            editBtn.href = "editar_paciente.html?id=" + encodeURIComponent(p.patientId);
+
+            modal.style.display = "flex";
+        }
+
+        // Evento para fechar modal
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('patientModal').style.display = 'none';
+        };
+        document.getElementById('closeModalBtn').onclick = function() {
+            document.getElementById('patientModal').style.display = 'none';
+        };
         window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (event.target === document.getElementById('patientModal')) {
+                document.getElementById('patientModal').style.display = 'none';
             }
         });
 
-        // Efeitos interativos
-        const interactiveElements = document.querySelectorAll('.interactive-element');
-        interactiveElements.forEach(element => {
-            element.addEventListener('focus', function() {
-                this.classList.add('focused');
+        // Ao renderizar a tabela, vincule evento aos botões "visualizar"
+        function vincularEventosViewBtn() {
+            document.querySelectorAll('.btn-view[data-id]').forEach(btn => {
+                btn.onclick = function() {
+                    const id = btn.getAttribute('data-id');
+                    const paciente = todosPacientes.find(p => p.patientId == id);
+                    if (paciente) abrirModalPaciente(paciente);
+                };
             });
-            
-            element.addEventListener('blur', function() {
-                this.classList.remove('focused');
-            });
-        });
+        }
 
-        // Simulação de paginação
-        const paginationItems = document.querySelectorAll('.pagination-item');
-        paginationItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Remover classe ativa de todos os itens
-                paginationItems.forEach(i => i.classList.remove('active'));
-                // Adicionar classe ativa ao item clicado, se não for botão de navegação
-                if (!this.querySelector('.icon')) {
-                    this.classList.add('active');
-                }
-            });
-        });
-    </script> -->
+    </script>
 </body>
 </html>
-
