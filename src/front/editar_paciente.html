@@ -456,9 +456,9 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
+                    <!-- <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
                         🗑️ Desativar Paciente
-                    </button>
+                    </button> -->
                     <button type="button" class="btn btn-secondary" onclick="window.location.href='listagem_pacientes.html'">
                         ← Cancelar
                     </button>
@@ -479,7 +479,7 @@ let currentPatient = null;
 // Elementos do DOM
 const patientForm = document.getElementById('patient-form' );
 const saveBtn = document.getElementById('save-btn');
-const deactivateBtn = document.getElementById('deactivate-btn');
+// const deactivateBtn = document.getElementById('deactivate-btn');
 const errorMessage = document.getElementById('error-message');
 const successMessage = document.getElementById('success-message');
 const loadingDiv = document.getElementById('loading');
@@ -766,33 +766,33 @@ async function updatePatient(patientId, patientData) {
     }
 }
 
-// Função para desativar paciente
-async function deactivatePatient() {
-    if (!confirm('Tem certeza que deseja desativar este paciente? Esta ação não pode ser desfeita.')) {
-        return;
-    }
+// // Função para desativar paciente
+// async function deactivatePatient() {
+//     if (!confirm('Tem certeza que deseja desativar este paciente? Esta ação não pode ser desfeita.')) {
+//         return;
+//     }
 
-    try {
-        const response = await fetch(`${API_BASE_URL}/patients/${currentPatientId}`, {
-            method: 'DELETE'
-        });
+//     try {
+//         const response = await fetch(`${API_BASE_URL}/patients/${currentPatientId}`, {
+//             method: 'DELETE'
+//         });
 
-        if (response.ok) {
-            showSuccess('Paciente desativado com sucesso! Redirecionando...');
+//         if (response.ok) {
+//             showSuccess('Paciente desativado com sucesso! Redirecionando...');
             
-            // Redirecionar para a lista de pacientes após 2 segundos
-            setTimeout(() => {
-                window.location.href = 'listagem_pacientes.html';
-            }, 2000);
+//             // Redirecionar para a lista de pacientes após 2 segundos
+//             setTimeout(() => {
+//                 window.location.href = 'listagem_pacientes.html';
+//             }, 2000);
             
-        } else {
-            showError('Erro ao desativar paciente. Tente novamente.');
-        }
-    } catch (error) {
-        console.error('Erro ao desativar:', error);
-        showError('Erro de conexão. Verifique se o sistema está funcionando.');
-    }
-}
+//         } else {
+//             showError('Erro ao desativar paciente. Tente novamente.');
+//         }
+//     } catch (error) {
+//         console.error('Erro ao desativar:', error);
+//         showError('Erro de conexão. Verifique se o sistema está funcionando.');
+//     }
+// }
 
 // Event listener para o formulário
 patientForm.addEventListener('submit', async (e) => {
