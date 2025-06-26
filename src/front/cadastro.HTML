@@ -51,6 +51,7 @@
           <div>
             <label class="text-sm">CPF *</label>
             <input type="text" id="cpf" required class="w-full border rounded px-2 py-1" />
+            <p id="cpf-erro" class="text-red-600 text-sm mt-1 hidden">CPF inválido.</p>
           </div>
           <div>
             <label class="text-sm">RG *</label>
@@ -134,11 +135,27 @@
     <div id="mensagemErro" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
       px-6 py-4 rounded-xl border border-red-500 bg-red-100 text-red-800 text-base shadow-xl z-50
       text-center w-[90%] max-w-md whitespace-pre-wrap"></div>
-
   </main>
 
   <!-- Scripts -->
   <script>
+    // Validação de CPF
+    function validarCPF(cpf) {
+      cpf = cpf.replace(/[^\d]+/g, '');
+      if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+      let soma = 0, resto;
+      for (let i = 1; i <= 9; i++) soma += parseInt(cpf[i - 1]) * (11 - i);
+      resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf[9])) return false;
+      soma = 0;
+      for (let i = 1; i <= 10; i++) soma += parseInt(cpf[i - 1]) * (12 - i);
+      resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf[10])) return false;
+      return true;
+    }
+
     // Variável global para guardar a imagem base64
     let fotoBase64 = null;
 
@@ -210,6 +227,8 @@
       preview.classList.add('hidden');
       label.classList.remove('hidden');
       document.getElementById('photoInput').value = ""; // limpa input file
+      document.getElementById('cpf-erro').classList.add("hidden");
+      document.getElementById('cpf').classList.remove("border-red-500");
     }
 
     // Evento para salvar rascunho no clique do botão
@@ -221,9 +240,34 @@
     // Evento para carregar o rascunho ao carregar a página
     window.addEventListener('load', carregarRascunho);
 
+    // Evento de validação ao sair do campo CPF
+    document.getElementById("cpf").addEventListener("blur", function () {
+      const campo = this;
+      const erro = document.getElementById("cpf-erro");
+      if (!validarCPF(campo.value)) {
+        erro.classList.remove("hidden");
+        campo.classList.add("border-red-500");
+      } else {
+        erro.classList.add("hidden");
+        campo.classList.remove("border-red-500");
+      }
+    });
+
     // Envio do formulário para o backend
     document.getElementById('patientForm').addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      const campoCPF = document.getElementById("cpf");
+      const erroCPF = document.getElementById("cpf-erro");
+      if (!validarCPF(campoCPF.value)) {
+        erroCPF.classList.remove("hidden");
+        campoCPF.classList.add("border-red-500");
+        campoCPF.focus();
+        return;
+      } else {
+        erroCPF.classList.add("hidden");
+        campoCPF.classList.remove("border-red-500");
+      }
 
       const paciente = {
         photoBase64: fotoBase64,
@@ -261,6 +305,8 @@
           preview.classList.add('hidden');
           label.classList.remove('hidden');
           document.getElementById('photoInput').value = "";
+          document.getElementById('cpf-erro').classList.add("hidden");
+          document.getElementById('cpf').classList.remove("border-red-500");
         } else {
           const erro = await response.json();
           let mensagens = "";
