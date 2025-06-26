@@ -246,7 +246,7 @@
 
                 <div class="form-actions">
                     <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
-                        🗑️ Desativar Paciente
+                        🗑️ Deletar Paciente
                     </button>
                     <button type="button" class="btn btn-secondary" onclick="window.location.href='listagem_pacientes.html'">
                         ← Cancelar
@@ -519,21 +519,21 @@ async function updatePatient(patientId, patientData) {
     }
 }
 
-// Função para desativar paciente
+// Função para deletar paciente
 async function deactivatePatient() {
-    if (!confirm('Tem certeza que deseja desativar este paciente? Esta ação não pode ser desfeita.')) return;
+    if (!confirm('Tem certeza que deseja deletar este paciente? Esta ação não pode ser desfeita.')) return;
     try {
         const response = await fetch(`${API_BASE_URL}/patients/${currentPatientId}`, { method: 'DELETE' });
         if (response.ok) {
-            showSuccess('Paciente desativado com sucesso! Redirecionando...');
+            showSuccess('Paciente deletado com sucesso! Redirecionando...');
             setTimeout(() => {
                 window.location.href = 'listagem_pacientes.html';
             }, 2000);
         } else {
-            showError('Erro ao desativar paciente. Tente novamente.');
+            showError('Erro ao deletar paciente. Tente novamente.');
         }
     } catch (error) {
-        console.error('Erro ao desativar:', error);
+        console.error('Erro ao deletar:', error);
         showError('Erro de conexão. Verifique se o sistema está funcionando.');
     }
 }

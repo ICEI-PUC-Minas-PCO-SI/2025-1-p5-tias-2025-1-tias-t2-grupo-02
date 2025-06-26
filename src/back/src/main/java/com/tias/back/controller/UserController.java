@@ -52,7 +52,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> delete(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.deactivate(id));
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        ResponseEntity<String> deleted = service.delete(id);
+        return deleted;
     }
 }

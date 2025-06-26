@@ -9,6 +9,7 @@ import com.tias.back.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -156,6 +157,15 @@ public class UserService {
         User saved = userRepo.save(entity);
         logger.info("Usuário ativado: {}", id);
         return toResponse(saved);
+    }
+
+    public ResponseEntity<String> delete(UUID id) {
+        userRepo.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Usuario não encontrado: " + id));
+        userRepo.deleteById(id);
+        logger.info("Usuario desativado: {}", id);
+        return ResponseEntity.ok("Usuario deletado com sucesso");
     }
 
     private UserResponseDTO toResponse(User u) {

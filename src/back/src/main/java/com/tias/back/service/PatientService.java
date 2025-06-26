@@ -7,6 +7,7 @@ import com.tias.back.repository.PatientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -200,6 +201,15 @@ public class PatientService {
         Patient saved = repository.save(p);
         logger.info("Paciente ativado: {}", id);
         return toDto(saved);
+    }
+
+    public ResponseEntity<String> delete(UUID id) {
+        repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Paciente não encontrado: " + id));
+        repository.deleteById(id);
+        logger.info("Paciente desativado: {}", id);
+        return ResponseEntity.ok("Paciente deletado com sucesso");
     }
 
     private PatientResponseDTO toDto(Patient p) {
