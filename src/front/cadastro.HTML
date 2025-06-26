@@ -120,7 +120,7 @@
     <div class="mt-6 flex gap-4 justify-end">
       <button type="button" id="limparFormBtn" class="px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100">Limpar</button>
       <button type="button" id="salvarRascunhoBtn" class="px-4 py-2 border border-yellow-600 text-yellow-700 rounded hover:bg-yellow-50">Salvar Rascunho</button>
-      <button type="submit" form="patientForm" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Cadastrar Paciente</button>
+      <button type="submit" form="patientForm" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700" >Cadastrar Paciente</button>
     </div>
 
     <!-- Caixa mensagem rascunho -->
@@ -294,19 +294,10 @@
 
         if (response.ok) {
           alert("Paciente cadastrado com sucesso!");
-          this.reset();
           localStorage.removeItem('pacienteRascunho');
-          fotoBase64 = null;
-
-          // Reset preview da foto
-          const preview = document.getElementById('photoPreview');
-          const label = document.getElementById('photoLabel');
-          preview.src = '#';
-          preview.classList.add('hidden');
-          label.classList.remove('hidden');
-          document.getElementById('photoInput').value = "";
-          document.getElementById('cpf-erro').classList.add("hidden");
-          document.getElementById('cpf').classList.remove("border-red-500");
+          setTimeout(() => {
+                window.location.href = 'listagem_pacientes.html';
+            }, 2000);
         } else {
           const erro = await response.json();
           let mensagens = "";
