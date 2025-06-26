@@ -1,5 +1,7 @@
 package com.tias.back.dto;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -9,9 +11,17 @@ public class MedicationRequestDTO {
     @NotNull(message = "PatientId é obrigatório")
     private java.util.UUID patientId;
 
-    @NotBlank(message = "Description é obrigatório")
+    @NotBlank(message = "Descrição é obrigatório")
     private String description;
 
-    @NotBlank(message = "Dosage é obrigatório")
+    @NotBlank(message = "Posologia é obrigatório")
     private String dosage;
+
+    @NotBlank(message = "Quantidade é obrigatório")
+    private Long quantity;
+
+    @NotBlank(message = "Validade é obrigatório")
+    private LocalDate expirationDate;
+
+    
 }
