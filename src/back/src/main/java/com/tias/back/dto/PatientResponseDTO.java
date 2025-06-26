@@ -17,7 +17,6 @@ public class PatientResponseDTO {
     private String cpf;
     private String rg;
     private LocalDate birthdate;
-    private String cep;
     private String bloodType;
     private String plano;
     private String carteirinha;

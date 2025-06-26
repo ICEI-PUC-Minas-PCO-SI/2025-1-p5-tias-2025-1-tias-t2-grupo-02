@@ -123,7 +123,6 @@ class PacienteDTO {
  */
 class EnderecoDTO {
     constructor() {
-        this.cep = '';
         this.logradouro = '';
         this.numero = '';
         this.complemento = '';

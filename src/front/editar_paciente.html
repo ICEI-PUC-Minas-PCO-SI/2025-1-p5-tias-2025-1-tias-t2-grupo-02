@@ -388,20 +388,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="cep">CEP *</label>
-                        <input type="text" id="cep" name="cep" required placeholder="00000-000" maxlength="9">
-                        <div class="help-text">CEP do endereço</div>
-                        <div class="error-text" id="cep-error"></div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="address">Endereço Completo *</label>
-                        <input type="text" id="address" name="address" required placeholder="Rua, número, bairro, cidade">
-                        <div class="help-text">Endereço completo do paciente</div>
-                        <div class="error-text" id="address-error"></div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="plano">Plano de Saúde *</label>
                         <select id="plano" name="plano" required>
                             <option value="">Selecione o plano</option>
@@ -530,7 +516,7 @@ function clearFieldError(fieldId) {
 // Função para limpar todos os erros de campo
 function clearAllFieldErrors() {
     const fields = [
-        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano', 'carteirinha', 'conditions',
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano', 'carteirinha', 'conditions',
         'emergencyContactName', 'emergencyContactRelationship', 'emergencyContactPhone'
     ];
     fields.forEach(fieldId => {
@@ -587,10 +573,6 @@ document.getElementById('rg').addEventListener('input', (e) => {
     e.target.value = formatRG(e.target.value);
 });
 
-document.getElementById('cep').addEventListener('input', (e) => {
-    e.target.value = formatCEP(e.target.value);
-});
-
 document.getElementById('emergencyContactPhone').addEventListener('input', (e) => {
     e.target.value = formatPhone(e.target.value);
 });
@@ -633,8 +615,6 @@ function fillForm(patient) {
     document.getElementById('rg').value = patient.rg || '';
     document.getElementById('birthdate').value = patient.birthdate || '';
     document.getElementById('bloodType').value = patient.bloodType || '';
-    document.getElementById('cep').value = patient.cep || '';
-    document.getElementById('address').value = patient.address || '';
     document.getElementById('plano').value = patient.plano || '';
     document.getElementById('carteirinha').value = patient.carteirinha || '';
     document.getElementById('conditions').value = patient.conditions || '';
@@ -664,7 +644,7 @@ function validateForm() {
 
     // Validar campos obrigatórios
     const requiredFields = [
-        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano',
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano',
         'emergencyContactName', 'emergencyContactRelationship', 'emergencyContactPhone'
     ];
     
@@ -703,12 +683,6 @@ function validateForm() {
             showFieldError('birthdate', 'Data de nascimento inválida');
             isValid = false;
         }
-    }
-
-    // Validar CEP
-    if (data.cep && data.cep.replace(/\D/g, '').length !== 8) {
-        showFieldError('cep', 'CEP deve ter 8 dígitos');
-        isValid = false;
     }
 
     // Validar nome do contato de emergência
@@ -811,8 +785,6 @@ patientForm.addEventListener('submit', async (e) => {
         rg: formData.get('rg').trim(),
         birthdate: formData.get('birthdate'),
         bloodType: formData.get('bloodType'),
-        cep: formData.get('cep').trim(),
-        address: formData.get('address').trim(),
         plano: formData.get('plano'),
         carteirinha: formData.get('carteirinha').trim() || null,
         conditions: formData.get('conditions').trim() || null,
