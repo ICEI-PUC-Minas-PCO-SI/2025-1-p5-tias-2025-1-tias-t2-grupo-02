@@ -171,7 +171,7 @@
                     </div>
                     <div class="form-group">
                         <label for="rg">RG *</label>
-                        <input type="text" id="rg" name="rg" required placeholder="00.000.000-0" maxlength="12">
+                        <input type="text" id="rg" name="rg" required placeholder="00.000.000-0" maxlength="14">
                         <div class="help-text">RG do paciente (com pontos e traço)</div>
                         <div class="error-text" id="rg-error"></div>
                     </div>
@@ -203,8 +203,8 @@
                         <div class="error-text" id="plano-error"></div>
                     </div>
                     <div class="form-group">
-                        <label for="carteirinha">Número da Carteirinha</label>
-                        <input type="text" id="carteirinha" name="carteirinha" placeholder="Número da carteirinha do plano">
+                        <label for="carteirinha">Número da Carteirinha *</label>
+                        <input type="text" id="carteirinha" name="carteirinha" required placeholder="Número da carteirinha do plano">
                         <div class="help-text">Número da carteirinha do plano de saúde</div>
                         <div class="error-text" id="carteirinha-error"></div>
                     </div>
@@ -235,6 +235,12 @@
                         <input type="text" id="contactPhone" name="contactPhone" required placeholder="(XX) XXXXX-XXXX" maxlength="15">
                         <div class="help-text">Telefone para contato em caso de emergência</div>
                         <div class="error-text" id="contactPhone-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail do Contato de Emergência *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required placeholder="exemplo@email.com">
+                        <div class="help-text">E-mail válido para contato</div>
+                        <div class="error-text" id="contactEmail-error"></div>
                     </div>
                 </div>
 
@@ -312,7 +318,7 @@ function clearFieldError(fieldId) {
 function clearAllFieldErrors() {
     const fields = [
         'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano', 'carteirinha', 'conditions',
-        'contactName', 'contactRelation', 'contactPhone'
+        'contactName', 'contactRelation', 'contactPhone', 'contactEmail'
     ];
     fields.forEach(fieldId => {
         clearFieldError(fieldId);
@@ -400,12 +406,13 @@ function fillForm(patient) {
     document.getElementById('contactName').value = patient.contactName || '';
     document.getElementById('contactRelation').value = patient.contactRelation || '';
     document.getElementById('contactPhone').value = patient.contactPhone || '';
+    document.getElementById('contactEmail').value = patient.contactEmail || '';
     const age = calculateAge(patient.birthdate);
     currentInfo.innerHTML = `
         <strong>${patient.name}</strong> - ${age} anos<br>
         CPF: ${patient.cpf} | RG: ${patient.rg}<br>
         Tipo Sanguíneo: ${patient.bloodType} | Plano: ${patient.plano}<br>
-        Contato de Emergência: ${patient.contactName} (${patient.contactRelation}) - ${patient.contactPhone}
+        Contato de Emergência: ${patient.contactName} (${patient.contactRelation}) - ${patient.contactPhone} - ${patient.contactEmail}
     `;
 }
 
@@ -416,8 +423,8 @@ function validateForm() {
     const formData = new FormData(patientForm);
     const data = Object.fromEntries(formData);
     const requiredFields = [
-        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano',
-        'contactName', 'contactRelation', 'contactPhone'
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano', 'carteirinha',
+        'contactName', 'contactRelation', 'contactPhone', 'contactEmail'
     ];
     requiredFields.forEach(field => {
         if (!data[field] || data[field].trim() === '') {
@@ -446,6 +453,10 @@ function validateForm() {
             isValid = false;
         }
     }
+    if (data.bloodType && !/^(A|B|AB|O)[+-]$/.test(data.bloodType)) {
+        showFieldError('bloodType', 'Tipo sanguíneo inválido');
+        isValid = false;
+    }
     if (data.contactName && !/^[A-Za-zÀ-ú ]+$/.test(data.contactName)) {
         showFieldError('contactName', 'Nome deve conter apenas letras e espaços');
         isValid = false;
@@ -454,16 +465,32 @@ function validateForm() {
         showFieldError('contactPhone', 'Telefone inválido (mínimo 10 dígitos)');
         isValid = false;
     }
+    if (data.contactRelation && !/^[A-Za-zÀ-ú ]+$/.test(data.contactRelation)) {
+        showFieldError('contactRelation', 'Parentesco deve conter apenas letras e espaços');
+        isValid = false;
+    }
+    if (data.contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contactEmail)) {
+        showFieldError('contactEmail', 'E-mail inválido');
+        isValid = false;
+    }
     return isValid;
 }
 
 // Função para atualizar paciente
 async function updatePatient(patientId, patientData) {
+    // Montar payload igual ao DTO do backend
+    const payload = {
+        ...patientData,
+        cpf: patientData.cpf.replace(/\D/g, ''),
+        rg: patientData.rg.replace(/\D/g, ''),
+        contactPhone: patientData.contactPhone.replace(/\D/g, ''),
+        birthdate: patientData.birthdate // ISO yyyy-mm-dd
+    };
     try {
         const response = await fetch(`${API_BASE_URL}/patients/${patientId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify(patientData)
+            body: JSON.stringify(payload)
         });
         if (response.ok) {
             showSuccess('Paciente atualizado com sucesso! Redirecionando...');
@@ -471,14 +498,17 @@ async function updatePatient(patientId, patientData) {
                 window.location.href = 'listagem_pacientes.html';
             }, 2000);
         } else {
-            const errorData = await response.text();
+            let errorMsg = await response.text();
             if (response.status === 409) {
-                if (errorData.includes('CPF')) {
-                    showFieldError('cpf', 'Este CPF já está cadastrado');
-                } else if (errorData.includes('RG')) {
-                    showFieldError('rg', 'Este RG já está cadastrado');
-                }
+                if (errorMsg.includes('CPF')) showFieldError('cpf', 'Este CPF já está cadastrado');
+                else if (errorMsg.includes('RG')) showFieldError('rg', 'Este RG já está cadastrado');
                 showError('Dados já cadastrados. Verifique CPF e RG.');
+            } else if (response.status === 400 && errorMsg) {
+                try {
+                    const json = JSON.parse(errorMsg);
+                    errorMsg = Object.values(json).join('\n');
+                } catch { /* ignore json parse error */ }
+                showError('Erro de validação: ' + errorMsg);
             } else {
                 showError('Erro ao atualizar paciente. Tente novamente.');
             }
@@ -524,11 +554,12 @@ patientForm.addEventListener('submit', async (e) => {
         birthdate: formData.get('birthdate'),
         bloodType: formData.get('bloodType'),
         plano: formData.get('plano').trim(),
-        carteirinha: formData.get('carteirinha').trim() || null,
+        carteirinha: formData.get('carteirinha').trim(),
         conditions: formData.get('conditions').trim() || null,
         contactName: formData.get('contactName').trim(),
         contactRelation: formData.get('contactRelation').trim(),
-        contactPhone: formData.get('contactPhone').trim()
+        contactPhone: formData.get('contactPhone').trim(),
+        contactEmail: formData.get('contactEmail').trim()
     };
     saveBtn.disabled = true;
     saveBtn.textContent = '💾 Salvando...';
