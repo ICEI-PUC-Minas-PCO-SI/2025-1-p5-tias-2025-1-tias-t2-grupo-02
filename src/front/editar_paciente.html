@@ -29,7 +29,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--branco-suave);
+            background-color: var(--branco-suave );
             color: var(--preto-suave);
             line-height: 1.6;
         }
@@ -269,6 +269,15 @@
             margin-bottom: 5px;
         }
 
+        .section-title {
+            font-size: 24px;
+            color: var(--preto-suave);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header {
@@ -307,11 +316,8 @@
     <img src="logo.jpg" alt="Logo Vovó">
     <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
     <nav>
-        <a href="principalsistema.html">Início</a>
-        <a href="Dash.html">Dashboard</a>
         <a href="gerenciamento.html">Medicamentos</a>
-        <a href="pesquisa_paciente.html" class="active">Pacientes</a>
-        <a href="relatorio.HTML">Relatórios</a>
+        <a href="listagem_pacientes.html" class="active">Pacientes</a>
         <a href="help_page_final.html">Ajuda</a>
     </nav>
 </header>
@@ -335,6 +341,7 @@
             <div id="success-message" class="success-message"></div>
 
             <form id="patient-form">
+                <div class="section-title">Dados Pessoais e Médicos</div>
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label for="name">Nome Completo *</label>
@@ -424,11 +431,35 @@
                     </div>
                 </div>
 
+                <div class="section-title">Contato de Emergência</div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="emergencyContactName">Nome do Contato de Emergência *</label>
+                        <input type="text" id="emergencyContactName" name="emergencyContactName" required placeholder="Nome completo do contato de emergência">
+                        <div class="help-text">Pessoa a ser contatada em caso de emergência</div>
+                        <div class="error-text" id="emergencyContactName-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyContactRelationship">Parentesco/Relação *</label>
+                        <input type="text" id="emergencyContactRelationship" name="emergencyContactRelationship" required placeholder="Ex: Filho(a), Cônjuge, Irmão(ã)">
+                        <div class="help-text">Grau de parentesco ou relação com o paciente</div>
+                        <div class="error-text" id="emergencyContactRelationship-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyContactPhone">Telefone do Contato de Emergência *</label>
+                        <input type="text" id="emergencyContactPhone" name="emergencyContactPhone" required placeholder="(XX) XXXXX-XXXX" maxlength="15">
+                        <div class="help-text">Telefone para contato em caso de emergência</div>
+                        <div class="error-text" id="emergencyContactPhone-error"></div>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
                         🗑️ Desativar Paciente
                     </button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='pesquisa_paciente.html'">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='listagem_pacientes.html'">
                         ← Cancelar
                     </button>
                     <button type="submit" class="btn btn-primary" id="save-btn">
@@ -446,7 +477,7 @@ let currentPatientId = null;
 let currentPatient = null;
 
 // Elementos do DOM
-const patientForm = document.getElementById('patient-form');
+const patientForm = document.getElementById('patient-form' );
 const saveBtn = document.getElementById('save-btn');
 const deactivateBtn = document.getElementById('deactivate-btn');
 const errorMessage = document.getElementById('error-message');
@@ -498,7 +529,10 @@ function clearFieldError(fieldId) {
 
 // Função para limpar todos os erros de campo
 function clearAllFieldErrors() {
-    const fields = ['name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano', 'carteirinha', 'conditions'];
+    const fields = [
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano', 'carteirinha', 'conditions',
+        'emergencyContactName', 'emergencyContactRelationship', 'emergencyContactPhone'
+    ];
     fields.forEach(fieldId => {
         clearFieldError(fieldId);
     });
@@ -530,6 +564,20 @@ function formatCEP(value) {
         .replace(/(-\d{3})\d+?$/, '$1');
 }
 
+function formatPhone(value) {
+    value = value.replace(/\D/g, ''); // Remove tudo que não é dígito
+    if (value.length > 10) { // Telefone com 9 dígitos (celular)
+        value = value.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+    } else if (value.length > 5) { // Telefone com 8 dígitos (fixo)
+        value = value.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    } else if (value.length > 2) { // Apenas DDD
+        value = value.replace(/^(\d*)/, '($1');
+    } else {
+        value = value.replace(/^(\d*)/, '($1');
+    }
+    return value;
+}
+
 // Event listeners para formatação
 document.getElementById('cpf').addEventListener('input', (e) => {
     e.target.value = formatCPF(e.target.value);
@@ -541,6 +589,10 @@ document.getElementById('rg').addEventListener('input', (e) => {
 
 document.getElementById('cep').addEventListener('input', (e) => {
     e.target.value = formatCEP(e.target.value);
+});
+
+document.getElementById('emergencyContactPhone').addEventListener('input', (e) => {
+    e.target.value = formatPhone(e.target.value);
 });
 
 // Função para calcular idade
@@ -586,13 +638,19 @@ function fillForm(patient) {
     document.getElementById('plano').value = patient.plano || '';
     document.getElementById('carteirinha').value = patient.carteirinha || '';
     document.getElementById('conditions').value = patient.conditions || '';
+    
+    // Novos campos de contato de emergência
+    document.getElementById('emergencyContactName').value = patient.emergencyContactName || '';
+    document.getElementById('emergencyContactRelationship').value = patient.emergencyContactRelationship || '';
+    document.getElementById('emergencyContactPhone').value = patient.emergencyContactPhone || '';
 
     // Atualizar informações atuais
     const age = calculateAge(patient.birthdate);
     currentInfo.innerHTML = `
         <strong>${patient.name}</strong> - ${age} anos<br>
         CPF: ${patient.cpf} | RG: ${patient.rg}<br>
-        Tipo Sanguíneo: ${patient.bloodType} | Plano: ${patient.plano}
+        Tipo Sanguíneo: ${patient.bloodType} | Plano: ${patient.plano}<br>
+        Contato de Emergência: ${patient.emergencyContactName} (${patient.emergencyContactRelationship}) - ${patient.emergencyContactPhone}
     `;
 }
 
@@ -605,7 +663,10 @@ function validateForm() {
     const data = Object.fromEntries(formData);
 
     // Validar campos obrigatórios
-    const requiredFields = ['name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano'];
+    const requiredFields = [
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano',
+        'emergencyContactName', 'emergencyContactRelationship', 'emergencyContactPhone'
+    ];
     
     requiredFields.forEach(field => {
         if (!data[field] || data[field].trim() === '') {
@@ -627,7 +688,7 @@ function validateForm() {
     }
 
     // Validar RG
-    if (data.rg && data.rg.replace(/\D/g, '').length < 7) {
+    if (data.rg && data.rg.replace(/\D/g, '').length < 7) { // RG pode ter 7 a 9 dígitos dependendo do estado
         showFieldError('rg', 'RG deve ter pelo menos 7 dígitos');
         isValid = false;
     }
@@ -638,7 +699,7 @@ function validateForm() {
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
         
-        if (age < 0 || age > 120) {
+        if (age < 0 || age > 120) { // Idade razoável para um paciente
             showFieldError('birthdate', 'Data de nascimento inválida');
             isValid = false;
         }
@@ -647,6 +708,18 @@ function validateForm() {
     // Validar CEP
     if (data.cep && data.cep.replace(/\D/g, '').length !== 8) {
         showFieldError('cep', 'CEP deve ter 8 dígitos');
+        isValid = false;
+    }
+
+    // Validar nome do contato de emergência
+    if (data.emergencyContactName && !/^[A-Za-zÀ-ú ]+$/.test(data.emergencyContactName)) {
+        showFieldError('emergencyContactName', 'Nome deve conter apenas letras e espaços');
+        isValid = false;
+    }
+
+    // Validar telefone de emergência
+    if (data.emergencyContactPhone && data.emergencyContactPhone.replace(/\D/g, '').length < 10) { // Mínimo 10 dígitos (DDD + 8 ou 9 dígitos)
+        showFieldError('emergencyContactPhone', 'Telefone inválido (mínimo 10 dígitos)');
         isValid = false;
     }
 
@@ -670,7 +743,7 @@ async function updatePatient(patientId, patientData) {
             
             // Redirecionar para a lista de pacientes após 2 segundos
             setTimeout(() => {
-                window.location.href = 'pesquisa_paciente.html';
+                window.location.href = 'listagem_pacientes.html';
             }, 2000);
             
         } else {
@@ -709,7 +782,7 @@ async function deactivatePatient() {
             
             // Redirecionar para a lista de pacientes após 2 segundos
             setTimeout(() => {
-                window.location.href = 'pesquisa_paciente.html';
+                window.location.href = 'listagem_pacientes.html';
             }, 2000);
             
         } else {
@@ -742,7 +815,11 @@ patientForm.addEventListener('submit', async (e) => {
         address: formData.get('address').trim(),
         plano: formData.get('plano'),
         carteirinha: formData.get('carteirinha').trim() || null,
-        conditions: formData.get('conditions').trim() || null
+        conditions: formData.get('conditions').trim() || null,
+        // Novos campos de contato de emergência
+        emergencyContactName: formData.get('emergencyContactName').trim(),
+        emergencyContactRelationship: formData.get('emergencyContactRelationship').trim(),
+        emergencyContactPhone: formData.get('emergencyContactPhone').trim()
     };
     
     // Desabilitar botão durante a atualização
@@ -760,10 +837,10 @@ patientForm.addEventListener('submit', async (e) => {
 
 // Inicializar página
 document.addEventListener('DOMContentLoaded', async () => {
-    // Verificar se está logado
+    // Verificar se está logado (se necessário, descomente e ajuste esta parte)
     // const currentUser = localStorage.getItem('currentUser');
     // if (!currentUser) {
-    //     window.location.href = 'editar_paciente.html';
+    //     window.location.href = 'login.html'; // Redirecione para a página de login
     //     return;
     // }
 
@@ -772,7 +849,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentPatientId = urlParams.get('id');
     
     if (!currentPatientId) {
-        showError('ID do paciente não fornecido.');
+        showError('ID do paciente não fornecido na URL.');
         loadingDiv.style.display = 'none';
         return;
     }
@@ -789,7 +866,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         formSection.style.display = 'block';
         
     } catch (error) {
-        showError('Erro ao carregar dados do paciente. Verifique se o paciente existe.');
+        showError('Erro ao carregar dados do paciente. Verifique se o paciente existe ou se a API está funcionando.');
         loadingDiv.style.display = 'none';
     }
 });
@@ -797,4 +874,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 </body>
 </html>
-
