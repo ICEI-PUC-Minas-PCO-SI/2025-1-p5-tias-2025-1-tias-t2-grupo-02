@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa de Pacientes - Casa de Repouso Do Jeitinho da Vovó</title>
+    <title>Lista de Pacientes - Casa de Repouso Do Jeitinho da Vovó</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="images/icons.css">
     <style>
         :root {
             --bege-claro: #E6D2B6;
@@ -633,69 +632,6 @@
             return `${dia}/${mes}/${ano}`;
         }
 
-        // // Monta uma linha da tabela
-        // function pacienteRow(p) {
-        //     return `
-        //         <tr>
-        //             <td>
-        //                 <div>
-        //                     <div class="patient-name">${p.name || ''}</div>
-        //                 </div>
-        //             </td>
-        //             <td>${calcularIdade(p.birthdate)}</td>
-        //             <td>${formatarCPF(p.cpf)}</td>
-        //             <td>${formatarData(p.addedAt)}</td>
-        //             <td>
-        //                 <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
-        //                     ${p.active ? 'Ativo' : 'Inativo'}
-        //                 </span>
-        //             </td>
-        //             <td>
-        //                 <div class="action-buttons">
-        //                     <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
-        //                         <i class="icon eye-icon"></i>
-        //                     </button>
-        //                 </div>
-        //             </td>
-        //         </tr>`;
-        // }
-
-        //    // Monta uma linha da tabela
-        //    function pacienteRow(p) {
-        //     const statusClass = p.active ? 'status-active' : 'status-inactive';
-        //     const statusText = p.active ? 'Ativo' : 'Inativo';
-        //     const toggleBtnClass = p.active ? 'btn-deactivate' : 'btn-activate';
-        //     const toggleBtnIcon = p.active ? 'power-off-icon' : 'power-on-icon'; // Assumindo que você tem esses ícones
-        //     const toggleBtnTitle = p.active ? 'Desativar Paciente' : 'Ativar Paciente';
-
-        //     return `
-        //         <tr>
-        //             <td>
-        //                 <div>
-        //                     <div class="patient-name">${p.name || ''}</div>
-        //                 </div>
-        //             </td>
-        //             <td>${calcularIdade(p.birthdate)}</td>
-        //             <td>${formatarCPF(p.cpf)}</td>
-        //             <td>${formatarData(p.addedAt)}</td>
-        //             <td>
-        //                 <span class="status-badge ${statusClass}">
-        //                     ${statusText}
-        //                 </span>
-        //             </td>
-        //             <td>
-        //                 <div class="action-buttons">
-        //                     <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
-        //                         <i class="icon eye-icon"></i>
-        //                     </button>
-        //                     <button class="btn-icon ${toggleBtnClass}" title="${toggleBtnTitle}" data-id="${p.patientId}" data-active="${p.active}">
-        //                         <i class="icon ${toggleBtnIcon}"></i>
-        //                     </button>
-        //                 </div>
-        //             </td>
-        //         </tr>`;
-        // }
-
         // Monta uma linha da tabela
 function pacienteRow(p) {
     const statusClass = p.active ? 'status-active' : 'status-inactive';
@@ -703,6 +639,7 @@ function pacienteRow(p) {
     const toggleBtnClass = p.active ? 'btn-deactivate' : 'btn-activate';
     const toggleBtnIcon = p.active ? 'power-off-icon' : 'power-on-icon'; // Assumindo que você tem esses ícones
     const toggleBtnTitle = p.active ? 'Desativar Paciente' : 'Ativar Paciente';
+    const toogleBtnText = p.active ? 'D' : 'A';
 
     return `
         <tr>
@@ -728,13 +665,7 @@ function pacienteRow(p) {
                         </button>
                     </div>
                     <div class="button-wrapper">
-                        <span class="button-initial">E</span>
-                        <button class="btn-icon btn-edit" title="Editar" data-id="${p.patientId}">
-                            <i class="icon edit-icon"></i>
-                        </button>
-                    </div>
-                    <div class="button-wrapper">
-                        <span class="button-initial">A</span>
+                        <span class="button-initial">${toogleBtnText}</span>
                         <button class="btn-icon ${toggleBtnClass}" title="${toggleBtnTitle}" data-id="${p.patientId}" data-active="${p.active}">
                             <i class="icon ${toggleBtnIcon}"></i>
                         </button>
@@ -823,20 +754,6 @@ function pacienteRow(p) {
         // Armazena todos pacientes carregados
         let todosPacientes = [];
 
-        // // Carrega lista ao abrir a página
-        // async function atualizarLista() {
-        //     // Só busca do backend se ainda não carregou
-        //     if (todosPacientes.length === 0) {
-        //         todosPacientes = await buscarPacientes();
-        //     }
-        //     const filtros = {
-        //         nome: document.getElementById("searchName").value.trim(),
-        //         cpf: document.getElementById("searchCPF").value.trim(),
-        //         status: document.getElementById("searchStatus").value
-        //     };
-        //     renderPacientes(todosPacientes, filtros);
-        // }
-
           // Carrega lista ao abrir a página
           async function atualizarLista() {
             // Sempre busca do backend para ter os dados mais recentes, especialmente após um toggle
@@ -872,31 +789,32 @@ function pacienteRow(p) {
             }
 
             try {
-                // Encontra o paciente na lista local para obter todos os dados
-                const pacienteToUpdate = todosPacientes.find(p => p.patientId == patientId);
-                if (!pacienteToUpdate) {
-                    alert("Paciente não encontrado para atualização.");
-                    return;
+                let response
+                if(currentStatus){
+                    response = await fetch(`${API_URL}/deactivate/${patientId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
                 }
-
-                // Cria uma cópia do paciente e atualiza o status na cópia
-                const updatedPatient = { ...pacienteToUpdate, active: newStatus };
-
-                const response = await fetch(`${API_URL}/${patientId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(updatedPatient), // Envia o objeto completo atualizado
-                });
-
+                else{
+                    response = await fetch(`${API_URL}/activate/${patientId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                }
                 if (response.ok) {
                     alert(`Paciente ${newStatus ? 'ativado' : 'desativado'} com sucesso!`);
                     atualizarLista(); // Recarrega a lista para refletir a mudança
+                    
                 } else {
                     const errorData = await response.json();
                     alert(`Erro ao ${actionText} paciente: ${errorData.message || response.statusText}`);
                     // Se der erro, não faz nada, pois a lista será recarregada de qualquer forma
+                    
                 }
             } catch (error) {
                 console.error('Erro na requisição:', error);

@@ -54,8 +54,8 @@ public class PatientController {
 
     @PutMapping("/activate/{id}")
     public ResponseEntity<PatientResponseDTO> activate(@PathVariable UUID id) {
-        PatientResponseDTO deactivated = patientService.activate(id);
-        return ResponseEntity.ok(deactivated);
+        PatientResponseDTO activated = patientService.activate(id);
+        return ResponseEntity.ok(activated);
     }
 
     @PutMapping("/deactivate/{id}")
