@@ -99,7 +99,7 @@ public class MedicationService {
         logger.info("Medication deletada: {}", id);
     }
 
-    private MedicationResponseDTO toDto(Medication m) {
+    public MedicationResponseDTO toDto(Medication m) {
         return MedicationResponseDTO.builder()
             .id(m.getId())
             .patientId(m.getPatient().getPatientId())
