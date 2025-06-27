@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -479,330 +480,168 @@
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <img src="logo.jpg" alt="Logo Vovó">
-    <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
-    <nav>
-      <a href="principalsistema.html" >Início</a>
-      <a href="listagem_paciente.html" >Pacientes</a>
-      <a href="gerenciamento.html" style="text-decoration: underline;">Medicamentos</a>
-      <a href="help_page_final.html" >Ajuda</a>
-    </nav>
-</header>
+    <header>
+        <img src="logo.jpg" alt="Logo Vovó">
+        <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
+        <nav>
+            <a href="principalsistema.html">Início</a>
+            <a href="listagem_paciente.html">Pacientes</a>
+            <a href="gerenciamento.html" style="text-decoration: underline;">Medicamentos</a>
+            <a href="help_page_final.html">Ajuda</a>
+        </nav>
+    </header>
 
-<div class="main-content">
-    <div class="page-header">
-        <h2>Gerenciamento de Estoque</h2>
-        <p>Controle e monitore o estoque de medicamentos e suprimentos</p>
-    </div>
-
-    <div class="search-controls">
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Buscar Por Paciente..." class="search-input">
-            <button class="btn btn-secondary" id="filter-btn">🔍 Filtros</button>
-            <button class="btn btn-primary" id="add-item-btn">➕ Adicionar Item</button>
+    <div class="main-content">
+        <div class="page-header">
+            <h2>Gerenciamento de Estoque</h2>
+            <p>Controle e monitore o estoque de medicamentos e suprimentos</p>
         </div>
 
-        <div class="filter-row">
-
-            <select id="status-filter" class="filter-select">
-                <option value="">Status</option>
-                <option value="ok">Estoque OK</option>
-                <option value="baixo">Estoque Baixo</option>
-                <option value="critico">Estoque Crítico</option>
-            </select>
-
-<select id="sort-filter" class="filter-select">
-    <option value="">Ordenar por</option>
-    <option value="nome">Nome do Paciente</option>
-    <option value="quantidade">Quantidade em Estoque</option>
-    <option value="validade">Data de Validade</option>
-</select>
-
-        </div>
-    </div>
-
-    <div class="table-container">
-        <table class="stock-table">
-            <thead>
-                <tr>
-<th>Nome do Paciente</th>
-<th>Descrição (Nome do Medicamento)</th>
-<th>Posologia/Dosagem</th>
-<th>Quantidade</th>
-<th>Data de Validade</th>
-<th>Status</th>
-<th>Data de Adição</th>
-<th>Ações</th>
-
-                </tr>
-            <tbody id="stock-table-body">
-  <tr>
-    <td>Maria Silva</td>
-    <td>Paracetamol 500mg</td>
-    <td>1 comp. de 8h em 8h</td>
-    <td>20</td>
-    <td>15/12/2025</td>
-    <td><span class="status-badge status-ok">Estoque OK</span></td>
-    <td>26/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(1)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(1)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>João Oliveira</td>
-    <td>Losartana 50mg</td>
-    <td>1 comprimido ao dia</td>
-    <td>60</td>
-    <td>10/01/2026</td>
-    <td><span class="status-badge status-ok">Estoque OK</span></td>
-    <td>25/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(2)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(2)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Ana Souza</td>
-    <td>Metformina 850mg</td>
-    <td>1 comp. após o café e jantar</td>
-    <td>30</td>
-    <td>15/09/2025</td>
-    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
-    <td>20/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(3)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(3)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Carlos Mendes</td>
-    <td>Omeprazol 20mg</td>
-    <td>1 cápsula 30min antes do café</td>
-    <td>15</td>
-    <td>01/12/2025</td>
-    <td><span class="status-badge status-critico">Estoque Crítico</span></td>
-    <td>21/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(4)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(4)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Beatriz Lima</td>
-    <td>Sinvastatina 40mg</td>
-    <td>1 comprimido à noite</td>
-    <td>90</td>
-    <td>30/05/2026</td>
-    <td><span class="status-badge status-ok">Estoque OK</span></td>
-    <td>18/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(5)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(5)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Rafael Silva</td>
-    <td>Ibuprofeno 600mg</td>
-    <td>1 comp. a cada 6h, se dor</td>
-    <td>10</td>
-    <td>10/11/2025</td>
-    <td><span class="status-badge status-critico">Estoque Crítico</span></td>
-    <td>22/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(6)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(6)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Luciana Rocha</td>
-    <td>Furosemida 40mg</td>
-    <td>1 comp. em jejum</td>
-    <td>25</td>
-    <td>05/10/2025</td>
-    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
-    <td>24/06/2024</td>
-    <td>
-      <button class="btn-icon edit-btn" onclick="editItem(7)" title="Editar">✏️</button>
-      <button class="btn-icon delete-btn" onclick="deleteItem(7)" title="Excluir">🗑️</button>
-    </td>
-  </tr>
-</tbody>
-
-        </table>
-    </div>
-</div>
-
-
-<!-- Modal para Adicionar/Editar Item -->
-<div class="modal-overlay" id="item-modal">
-    <div class="modal">
-        <div class="modal-header">
-            <h3 id="modal-title">Adicionar Prescrição</h3>
-            <button class="modal-close" id="close-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <form id="item-form">
-                <div class="form-group">
-                    <label for="patient-name">Nome do Paciente</label>
-                    <input type="text" id="patient-name" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="item-description">Descrição (Nome do Medicamento)</label>
-                    <input type="text" id="item-description" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="item-dosage">Posologia / Dosagem</label>
-                    <input type="text" id="item-dosage" class="form-input" required>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="item-quantity">Quantidade</label>
-                        <input type="number" id="item-quantity" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="item-expiry">Data de Validade</label>
-                        <input type="date" id="item-expiry" class="form-input">
-                    </div>
-                </div>
-                <div class="form-row">
-                    
-                    <div class="form-group">
-                        <label for="item-date-added">Data de Adição</label>
-                        <input type="date" id="item-date-added" class="form-input" required>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
-            <button type="submit" form="item-form" class="btn btn-primary" id="save-btn">Salvar</button>
-        </div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="logo.jpg" alt="Logo Vovó">
-            <p>Casa de Repouso<br>Do Jeitinho da Vovó</p>
-        </div>
-        <div class="footer-links">
-            <div>
-            <h4>Sistema</h4>
-                <ul>
-                    <li><a href="principalsistema.html">Início</a></li>
-                    <li><a href="listagem_paciente.html">Pacientes</a></li>
-                    <li><a href="gerenciamento.html">Medicamentos</a></li>
-
-                </ul>
+        <div class="search-controls">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Buscar Por Paciente..." class="search-input">
+                <button class="btn btn-primary" id="add-item-btn">➕ Adicionar Medicamento</button>
             </div>
-             <div>
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="help_page_final.html">Central de Ajuda</a></li>
 
-                </ul>
-            </div> 
-       <div>
-                <h4>Legal</h4>
-                <ul>
+            <div class="filter-row">
 
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">LGPD</a></li>
-                </ul>       
-            </div> 
+                <select id="status-filter" class="filter-select">
+                    <option value="">Status</option>
+                    <option value="ok">Estoque OK</option>
+                    <option value="baixo">Estoque Baixo</option>
+                    <option value="critico">Estoque Crítico</option>
+                </select>
+
+                <select id="sort-filter" class="filter-select">
+                    <option value="">Ordenar por</option>
+                    <option value="nome">Nome do Paciente</option>
+                    <option value="quantidade">Quantidade em Estoque</option>
+                    <option value="validade">Data de Validade</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="stock-table">
+                <thead>
+                    <tr>
+                        <th>Nome do Paciente</th>
+                        <th>Descrição</th>
+                        <th>Posologia</th>
+                        <th>Quantidade</th>
+                        <th>Data de Validade</th>
+                        <th>Status</th>
+                        <th>Data de Adição</th>
+                        <th>Ações</th>
+
+                    </tr>
+                <tbody id="stock-table-body">
+                </tbody>
+
+            </table>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.</p>
+
+
+    <!-- Modal para Adicionar/Editar Item -->
+    <div class="modal-overlay" id="item-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Adicionar Prescrição</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="item-form">
+                    <!-- Campo de paciente - só aparece no modo de adição -->
+                    <div class="form-group" id="patient-field-container">
+                        <label for="patient-select">Nome do Paciente</label>
+                        <select id="patient-select" class="form-input"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-description">Descrição (Nome do Medicamento)</label>
+                        <input type="text" id="item-description" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-dosage">Posologia / Dosagem</label>
+                        <input type="text" id="item-dosage" class="form-input" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="item-quantity">Quantidade</label>
+                            <input type="number" id="item-quantity" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="item-expiry">Data de Validade</label>
+                            <input type="date" id="item-expiry" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- Remover o campo de data de adição -->
+                    <!-- Esse bloco foi removido intencionalmente -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
+                <button type="submit" form="item-form" class="btn btn-primary" id="save-btn">Salvar</button>
+            </div>
+        </div>
     </div>
-</footer>
 
-<script>
-// Gerenciamento de Estoque JavaScript
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo.jpg" alt="Logo Vovó">
+                <p>Casa de Repouso<br>Do Jeitinho da Vovó</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Sistema</h4>
+                    <ul>
+                        <li><a href="principalsistema.html">Início</a></li>
+                        <li><a href="listagem_paciente.html">Pacientes</a></li>
+                        <li><a href="gerenciamento.html">Medicamentos</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="help_page_final.html">Central de Ajuda</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+
+                        <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">LGPD</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Casa de Repouso Do Jeitinho da Vovó. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+      // Gerenciamento de Estoque JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Dados simulados do estoque
-    let stockData = [
-        
-{
-  id: 1,
-  paciente: 'Maria Silva',
-  descricao: 'Paracetamol 500mg',
-  posologia: '1 comp. de 8h em 8h',
-  quantidade: 20,
-  validade: '2025-12-15',
-  dataAdicao: '2024-06-26',
-  status: 'ok'
-},
-{
-  id: 2,
-  paciente: 'João Oliveira',
-  descricao: 'Losartana 50mg',
-  posologia: '1 comprimido ao dia',
-  quantidade: 60,
-  validade: '2026-01-10',
-  dataAdicao: '2024-06-25',
-  status: 'ok'
-},
-{
-  id: 3,
-  paciente: 'Ana Souza',
-  descricao: 'Metformina 850mg',
-  posologia: '1 comp. após o café e jantar',
-  quantidade: 30,
-  validade: '2025-09-15',
-  dataAdicao: '2024-06-20',
-  status: 'baixo'
-},
-{
-  id: 4,
-  paciente: 'Carlos Mendes',
-  descricao: 'Omeprazol 20mg',
-  posologia: '1 cápsula 30min antes do café',
-  quantidade: 15,
-  validade: '2025-12-01',
-  dataAdicao: '2024-06-21',
-  status: 'critico'
-},
-{
-  id: 5,
-  paciente: 'Beatriz Lima',
-  descricao: 'Sinvastatina 40mg',
-  posologia: '1 comprimido à noite',
-  quantidade: 90,
-  validade: '2026-05-30',
-  dataAdicao: '2024-06-18',
-  status: 'ok'
-},
-{
-  id: 6,
-  paciente: 'Rafael Silva',
-  descricao: 'Ibuprofeno 600mg',
-  posologia: '1 comp. a cada 6h, se dor',
-  quantidade: 10,
-  validade: '2025-11-10',
-  dataAdicao: '2024-06-22',
-  status: 'critico'
-},
-{
-  id: 7,
-  paciente: 'Luciana Rocha',
-  descricao: 'Furosemida 40mg',
-  posologia: '1 comp. em jejum',
-  quantidade: 25,
-  validade: '2025-10-05',
-  dataAdicao: '2024-06-24',
-  status: 'baixo'
-}
-
-    ];
-
-    let filteredData = [...stockData];
+    // Variáveis para armazenar os dados
+    let stockData = [];
+    let filteredData = [];
     let editingItemId = null;
+    let patientMap = {}; // Para armazenar o mapeamento de IDs para nomes de pacientes
+    let currentPatientId = null; // Para armazenar o patientId durante a edição
 
     // Elementos DOM
     const searchInput = document.getElementById('search-input');
@@ -818,14 +657,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar eventos
     setupEventListeners();
-    renderTable();
+    
+    // Carregar dados da API
+    fetchAllData();
+
+    // Função única para buscar todos os dados necessários
+    async function fetchAllData() {
+        try {
+            // Primeiro, buscar os pacientes para criar o mapeamento
+            const patientsResponse = await fetch('http://localhost:8080/api/patients');
+            if (!patientsResponse.ok) {
+                throw new Error(`HTTP error! Status: ${patientsResponse.status}`);
+            }
+            
+            const patients = await patientsResponse.json();
+            
+            // Criar o mapeamento de ID para nome
+            patientMap = {};
+            patients.forEach(patient => {
+                patientMap[patient.patientId] = patient.name;
+            });
+            
+            // Depois de ter o mapeamento completo, buscar os medicamentos
+            const medicationsResponse = await fetch('http://localhost:8080/api/medications');
+            if (!medicationsResponse.ok) {
+                throw new Error(`HTTP error! Status: ${medicationsResponse.status}`);
+            }
+            
+            const medicationsData = await medicationsResponse.json();
+            
+            // Processar os dados dos medicamentos com os nomes dos pacientes já disponíveis
+            stockData = medicationsData.map(item => {
+                // Determinar status baseado na quantidade
+                let status = 'ok';
+                if (item.quantity <= 10) status = 'critico';
+                else if (item.quantity <= 30) status = 'baixo';
+                
+                return {
+                    id: item.id,
+                    patientId: item.patientId,
+                    paciente: patientMap[item.patientId] || 'Paciente não encontrado',
+                    descricao: item.description,
+                    posologia: item.dosage,
+                    quantidade: item.quantity,
+                    validade: item.expirationDate,
+                    dataAdicao: item.addedAt ? item.addedAt.split('T')[0] : null,
+                    status: item.status || status
+                };
+            });
+            
+            filteredData = [...stockData];
+            
+            // Finalmente, renderizar a tabela com todos os dados processados
+            renderTable();
+            
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+            showNotification('Erro ao carregar dados. Tente novamente.', 'error');
+            
+            // Em caso de erro, tentar renderizar com os dados que temos
+            renderTable();
+        }
+    }
+
+    // Função para buscar apenas os dados de pacientes
+    async function fetchPatients() {
+        try {
+            const response = await fetch('http://localhost:8080/api/patients');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const patients = await response.json();
+            
+            // Criar um mapeamento de ID para nome
+            patientMap = {};
+            patients.forEach(patient => {
+                patientMap[patient.patientId] = patient.name;
+            });
+            
+        } catch (error) {
+            console.error('Erro ao buscar dados de pacientes:', error);
+            showNotification('Erro ao carregar lista de pacientes.', 'error');
+        }
+    }
 
     function setupEventListeners() {
         // Busca
         searchInput.addEventListener('input', debounce(filterData, 300));
         
         // Filtros
-
         statusFilter.addEventListener('change', filterData);
         sortFilter.addEventListener('change', sortData);
         
@@ -859,21 +780,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-function filterData() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const statusValue = statusFilter.value;
+    function filterData() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const statusValue = statusFilter.value;
 
-    filteredData = stockData.filter(item => {
-        const matchesSearch = item.paciente.toLowerCase().includes(searchTerm); // corrigido: era item.nome
-        const matchesStatus = !statusValue || item.status === statusValue;
-        
-        return matchesSearch && matchesStatus;
-    });
+        filteredData = stockData.filter(item => {
+            const matchesSearch = item.paciente.toLowerCase().includes(searchTerm);
+            const matchesStatus = !statusValue || item.status === statusValue;
+            
+            return matchesSearch && matchesStatus;
+        });
 
-    sortData();
-    renderTable();
-}
-
+        sortData();
+        renderTable();
+    }
 
     function sortData() {
         const sortValue = sortFilter.value;
@@ -882,10 +802,8 @@ function filterData() {
 
         filteredData.sort((a, b) => {
             switch (sortValue) {
-case 'nome':
-    return a.paciente.localeCompare(b.paciente);
-
-
+                case 'nome':
+                    return a.paciente.localeCompare(b.paciente);
                 case 'quantidade':
                     return b.quantidade - a.quantidade;
                 case 'validade':
@@ -901,38 +819,36 @@ case 'nome':
         renderTable();
     }
 
-function renderTable() {
-    if (filteredData.length === 0) {
-        tableBody.innerHTML = `
+    function renderTable() {
+        if (!filteredData || filteredData.length === 0) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 40px; color: #9C9C9C;">
+                        <div style="font-size: 48px; margin-bottom: 20px;">📦</div>
+                        <div style="font-size: 18px; margin-bottom: 10px; color: #2B2B2B;">Nenhum item encontrado</div>
+                        <div>Tente ajustar os filtros ou adicionar novos itens</div>
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        tableBody.innerHTML = filteredData.map(item => `
             <tr>
-                <td colspan="8" style="text-align: center; padding: 40px; color: #9C9C9C;">
-                    <div style="font-size: 48px; margin-bottom: 20px;">📦</div>
-                    <div style="font-size: 18px; margin-bottom: 10px; color: #2B2B2B;">Nenhum item encontrado</div>
-                    <div>Tente ajustar os filtros ou adicionar novos itens</div>
+                <td>${item.paciente}</td>
+                <td>${item.descricao}</td>
+                <td>${item.posologia}</td>
+                <td>${item.quantidade}</td>
+                <td>${formatDate(item.validade)}</td>
+                <td><span class="status-badge status-${item.status}">${formatStatus(item.status)}</span></td>
+                <td>${formatDate(item.dataAdicao)}</td>
+                <td>
+                    <button class="btn-icon edit-btn" onclick="editItem('${item.id}')" title="Editar">✏️</button>
+                    <button class="btn-icon delete-btn" onclick="deleteItem('${item.id}')" title="Excluir">🗑️</button>
                 </td>
             </tr>
-        `;
-        return;
+        `).join('');
     }
-
-    tableBody.innerHTML = filteredData.map(item => `
-        <tr>
-            <td>${item.paciente}</td>
-            <td>${item.descricao}</td>
-            <td>${item.posologia}</td>
-            <td>${item.quantidade}</td>
-            <td>${formatDate(item.validade)}</td>
-            <td><span class="status-badge status-${item.status}">${formatStatus(item.status)}</span></td>
-            <td>${formatDate(item.dataAdicao)}</td>
-            <td>
-                <button class="btn-icon edit-btn" onclick="editItem(${item.id})" title="Editar">✏️</button>
-                <button class="btn-icon delete-btn" onclick="deleteItem(${item.id})" title="Excluir">🗑️</button>
-            </td>
-        </tr>
-    `).join('');
-}
-
-
     
     function formatStatus(status) {
         const statuses = {
@@ -949,88 +865,191 @@ function renderTable() {
         return date.toLocaleDateString('pt-BR');
     }
 
-    function openAddModal() {
-        editingItemId = null;
-        modalTitle.textContent = 'Adicionar Item';
-        itemForm.reset();
-        modal.classList.add('active');
-        document.getElementById('patient-name').focus();
+    // Função para popular o select de pacientes
+    async function populatePatientSelect() {
+        try {
+            // Se ainda não temos os dados dos pacientes, vamos buscá-los
+            if (Object.keys(patientMap).length === 0) {
+                await fetchPatients();
+            }
+            
+            // Obtenha o container do campo de paciente
+            const patientFieldContainer = document.getElementById('patient-field-container');
+            
+            // No modo de edição, ocultamos o campo de paciente
+            if (editingItemId) {
+                patientFieldContainer.style.display = 'none';
+                return;
+            } else {
+                patientFieldContainer.style.display = 'block';
+            }
+            
+            // Certifique-se de que estamos trabalhando com o elemento select
+            const patientSelect = document.getElementById('patient-select');
+            
+            // Limpar opções existentes
+            patientSelect.innerHTML = '';
+            
+            // Adicionar opção padrão
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Selecione um paciente';
+            patientSelect.appendChild(defaultOption);
+            
+            // Adicionar opções de pacientes
+            Object.entries(patientMap).forEach(([id, name]) => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = name;
+                patientSelect.appendChild(option);
+            });
+            
+        } catch (error) {
+            console.error('Erro ao carregar lista de pacientes:', error);
+        }
     }
 
-function openEditModal(item) {
-    editingItemId = item.id;
-    modalTitle.textContent = 'Editar Item';
+    async function openAddModal() {
+        editingItemId = null;
+        currentPatientId = null;
+        modalTitle.textContent = 'Adicionar Item';
+        itemForm.reset();
+        
+        // Mostrar e popular o campo de pacientes
+        await populatePatientSelect();
+        
+        modal.classList.add('active');
+    }
 
-    document.getElementById('patient-name').value = item.paciente;
-    document.getElementById('item-description').value = item.descricao;
-    document.getElementById('item-dosage').value = item.posologia;
-    document.getElementById('item-quantity').value = item.quantidade;
-    document.getElementById('item-expiry').value = item.validade || '';
-    document.getElementById('item-date-added').value = item.dataAdicao || '';
-    
-
-    modal.classList.add('active');
-    document.getElementById('patient-name').focus();
-}
-
-
+    async function openEditModal(id) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/medications/${id}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const item = await response.json();
+            editingItemId = item.id;
+            
+            // Armazenar o patientId original para uso posterior
+            currentPatientId = item.patientId;
+            console.log("PatientID salvo para edição:", currentPatientId);
+            
+            modalTitle.textContent = 'Editar Item';
+            
+            // Configurar campo de pacientes (será ocultado no modo de edição)
+            await populatePatientSelect();
+            
+            // Preencher o formulário com os dados do item
+            document.getElementById('item-description').value = item.description;
+            document.getElementById('item-dosage').value = item.dosage;
+            document.getElementById('item-quantity').value = item.quantity;
+            document.getElementById('item-expiry').value = item.expirationDate || '';
+            
+            modal.classList.add('active');
+        } catch (error) {
+            console.error('Erro ao carregar dados do item:', error);
+            showNotification('Erro ao carregar dados do item. Tente novamente.', 'error');
+        }
+    }
 
     function closeModalHandler() {
         modal.classList.remove('active');
         editingItemId = null;
+        currentPatientId = null; // Limpar o patientId armazenado
         itemForm.reset();
     }
-function handleFormSubmit(e) {
-    e.preventDefault();
 
-    const formData = {
-        paciente: document.getElementById('patient-name').value,
-        descricao: document.getElementById('item-description').value,
-        posologia: document.getElementById('item-dosage').value,
-        quantidade: parseInt(document.getElementById('item-quantity').value),
-        validade: document.getElementById('item-expiry').value || null,
-        dataAdicao: document.getElementById('item-date-added').value || new Date().toISOString().split('T')[0],
+    async function handleFormSubmit(e) {
+        e.preventDefault();
         
-    };
-
-    // Determinar status baseado na quantidade se o usuário não escolheu
-    if (!formData.status || formData.status === '') {
-        if (formData.quantidade <= 10) formData.status = 'critico';
-        else if (formData.quantidade <= 50) formData.status = 'baixo';
-        else formData.status = 'ok';
-    }
-
-    if (editingItemId) {
-        const index = stockData.findIndex(item => item.id === editingItemId);
-        if (index !== -1) {
-            stockData[index] = { id: editingItemId, ...formData };
-            showNotification('Item atualizado com sucesso!', 'success');
+        // Preparar os dados do formulário
+        const formData = {
+            description: document.getElementById('item-description').value,
+            dosage: document.getElementById('item-dosage').value,
+            quantity: parseInt(document.getElementById('item-quantity').value),
+            expirationDate: document.getElementById('item-expiry').value || null,
+        };
+        
+        try {
+            let response;
+            let method;
+            let url = 'http://localhost:8080/api/medications';
+            
+            if (editingItemId) {
+                // Modo de edição - incluir patientId original e id
+                method = 'PUT';
+                url = `${url}/${editingItemId}`;
+                formData.id = editingItemId;
+                formData.patientId = currentPatientId; // Usar o patientId armazenado
+                console.log("Enviando edição com patientId:", currentPatientId);
+            } else {
+                // Modo de adição - incluir patientId do select
+                method = 'POST';
+                formData.patientId = document.getElementById('patient-select').value;
+                
+                // Verificar se um paciente foi selecionado
+                if (!formData.patientId) {
+                    showNotification('Por favor, selecione um paciente.', 'error');
+                    return;
+                }
+            }
+            
+            console.log('Enviando dados:', formData); // Log para debug
+            
+            response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                console.error('Resposta de erro:', errorData);
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            // Recarregar os dados para atualizar a tabela
+            fetchAllData();
+            
+            showNotification(
+                editingItemId ? 'Item atualizado com sucesso!' : 'Item adicionado com sucesso!',
+                'success'
+            );
+            
+            closeModalHandler();
+        } catch (error) {
+            console.error('Erro ao salvar item:', error);
+            showNotification('Erro ao salvar item. Tente novamente.', 'error');
         }
-    } else {
-        const newId = Math.max(...stockData.map(item => item.id)) + 1;
-        stockData.push({ id: newId, ...formData });
-        showNotification('Item adicionado com sucesso!', 'success');
     }
-
-    closeModalHandler();
-    filterData();
-}
-
-
 
     // Funções globais para os botões da tabela
     window.editItem = function(id) {
-        const item = stockData.find(item => item.id === id);
-        if (item) {
-            openEditModal(item);
-        }
+        openEditModal(id);
     };
 
-    window.deleteItem = function(id) {
+    window.deleteItem = async function(id) {
         if (confirm('Tem certeza que deseja excluir este item?')) {
-            stockData = stockData.filter(item => item.id !== id);
-            filterData();
-            showNotification('Item excluído com sucesso!', 'success');
+            try {
+                const response = await fetch(`http://localhost:8080/api/medications/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                // Atualizar a tabela após exclusão
+                fetchAllData();
+                
+                showNotification('Item excluído com sucesso!', 'success');
+            } catch (error) {
+                console.error('Erro ao excluir item:', error);
+                showNotification('Erro ao excluir item. Tente novamente.', 'error');
+            }
         }
     };
 
@@ -1083,8 +1102,8 @@ function handleFormSubmit(e) {
         }, 3000);
     }
 });
-</script>
+    </script>
 
 </body>
-</html>
 
+</html>

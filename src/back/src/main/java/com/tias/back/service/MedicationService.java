@@ -3,6 +3,7 @@ package com.tias.back.service;
 import com.tias.back.dto.MedicationRequestDTO;
 import com.tias.back.dto.MedicationResponseDTO;
 import com.tias.back.entity.Medication;
+import com.tias.back.entity.MedicationStatus;
 import com.tias.back.repository.MedicationRepository;
 import com.tias.back.repository.PatientRepository;
 
@@ -58,6 +59,7 @@ public class MedicationService {
             .quantity(dto.getQuantity())
             .experirationDate(dto.getExpirationDate())
             .addedAt(LocalDateTime.now())
+            .status(MedicationStatus.OK)
             .build();
         Medication saved = repository.save(m);
         logger.info("Medication criada: {}", saved.getId());
