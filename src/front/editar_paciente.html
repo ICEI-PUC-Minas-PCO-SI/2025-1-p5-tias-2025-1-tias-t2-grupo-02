@@ -20,21 +20,13 @@
             --amarelo-suave: #FFC107;
             --azul-suave: #2196F3;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--branco-suave);
+            background-color: var(--branco-suave );
             color: var(--preto-suave);
             line-height: 1.6;
         }
-
-        /* Header */
         header {
             background-color: var(--bege-claro);
             padding: 15px 40px;
@@ -42,262 +34,93 @@
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         header img {
-            width: 60px;
-            height: 60px;
-            margin-right: 20px;
-            border-radius: 50%;
+            width: 60px; height: 60px; margin-right: 20px; border-radius: 50%;
         }
-
         header h1 {
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--preto-suave);
-            margin-right: auto;
+            font-size: 24px; font-weight: 500; color: var(--preto-suave); margin-right: auto;
         }
-
-        header nav {
-            display: flex;
-            gap: 25px;
-        }
-
+        header nav { display: flex; gap: 25px; }
         header nav a {
-            text-decoration: none;
-            color: var(--preto-suave);
-            font-weight: 500;
-            font-size: 16px;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            text-decoration: none; color: var(--preto-suave); font-weight: 500;
+            font-size: 16px; padding: 8px 16px; border-radius: 5px; transition: all 0.3s;
         }
-
-        header nav a:hover {
-            background-color: var(--bege-escuro);
-        }
-
-        header nav a.active {
-            background-color: var(--preto-suave);
-            color: var(--branco-suave);
-        }
-
-        /* Main Content */
+        header nav a:hover { background-color: var(--bege-escuro); }
+        header nav a.active { background-color: var(--preto-suave); color: var(--branco-suave); }
         .main-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 800px; margin: 0 auto; padding: 40px 20px;
         }
-
-        .page-header {
-            margin-bottom: 40px;
-        }
-
-        .page-header h2 {
-            font-size: 32px;
-            color: var(--preto-suave);
-            margin-bottom: 10px;
-        }
-
-        .page-header p {
-            font-size: 18px;
-            color: var(--cinza-medio);
-        }
-
+        .page-header { margin-bottom: 40px; }
+        .page-header h2 { font-size: 32px; color: var(--preto-suave); margin-bottom: 10px; }
+        .page-header p { font-size: 18px; color: var(--cinza-medio); }
         .form-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
+            background-color: white; padding: 40px; border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-
         .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--preto-suave);
-        }
-
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { font-weight: 500; margin-bottom: 8px; color: var(--preto-suave); }
         .form-group input,
         .form-group select,
         .form-group textarea {
-            padding: 12px;
-            border: 1px solid var(--cinza-claro);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            padding: 12px; border: 1px solid var(--cinza-claro); border-radius: 8px;
+            font-size: 16px; transition: border-color 0.3s;
         }
-
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-            outline: none;
-            border-color: var(--verde-suave);
+            outline: none; border-color: var(--verde-suave);
         }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group .help-text {
-            font-size: 12px;
-            color: var(--cinza-medio);
-            margin-top: 4px;
-        }
-
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-group .help-text { font-size: 12px; color: var(--cinza-medio); margin-top: 4px; }
         .form-group .error-text {
-            font-size: 12px;
-            color: var(--vermelho-suave);
-            margin-top: 4px;
-            display: none;
+            font-size: 12px; color: var(--vermelho-suave); margin-top: 4px; display: none;
         }
-
         .form-group input.error,
         .form-group select.error,
-        .form-group textarea.error {
-            border-color: var(--vermelho-suave);
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-            margin-top: 30px;
-        }
-
+        .form-group textarea.error { border-color: var(--vermelho-suave); }
+        .form-actions { display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px; }
         .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;
+            cursor: pointer; border: none; transition: all 0.3s; display: inline-flex;
+            align-items: center; gap: 8px; text-decoration: none;
         }
-
-        .btn-primary {
-            background-color: var(--verde-suave);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #7CB342;
-        }
-
-        .btn-secondary {
-            background-color: var(--cinza-claro);
-            color: var(--preto-suave);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--cinza-medio);
-        }
-
-        .btn-danger {
-            background-color: var(--vermelho-suave);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #E53935;
-        }
-
-        .btn:disabled {
-            background-color: var(--cinza-claro);
-            cursor: not-allowed;
-        }
-
+        .btn-primary { background-color: var(--verde-suave); color: white; }
+        .btn-primary:hover { background-color: #7CB342; }
+        .btn-secondary { background-color: var(--cinza-claro); color: var(--preto-suave); }
+        .btn-secondary:hover { background-color: var(--cinza-medio); }
+        .btn-danger { background-color: var(--vermelho-suave); color: white; }
+        .btn-danger:hover { background-color: #E53935; }
+        .btn:disabled { background-color: var(--cinza-claro); cursor: not-allowed; }
         .error-message {
-            background-color: #ffebee;
-            color: var(--vermelho-suave);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
+            background-color: #ffebee; color: var(--vermelho-suave); padding: 12px;
+            border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none;
         }
-
         .success-message {
-            background-color: #e8f5e8;
-            color: var(--verde-suave);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
+            background-color: #e8f5e8; color: var(--verde-suave); padding: 12px;
+            border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none;
         }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: var(--cinza-medio);
-        }
-
+        .loading { text-align: center; padding: 40px; color: var(--cinza-medio); }
         .patient-info {
-            background-color: var(--branco-suave);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+            background-color: var(--branco-suave); padding: 20px;
+            border-radius: 8px; margin-bottom: 30px;
         }
-
-        .patient-info h3 {
-            color: var(--preto-suave);
-            margin-bottom: 10px;
+        .patient-info h3 { color: var(--preto-suave); margin-bottom: 10px; }
+        .patient-info p { color: var(--cinza-medio); margin-bottom: 5px; }
+        .section-title {
+            font-size: 24px; color: var(--preto-suave); margin-top: 40px;
+            margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--cinza-claro);
         }
-
-        .patient-info p {
-            color: var(--cinza-medio);
-            margin-bottom: 5px;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
-
-            header nav {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .main-content {
-                padding: 20px 15px;
-            }
-
-            .form-container {
-                padding: 30px 20px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
+            header { flex-direction: column; text-align: center; padding: 20px; }
+            header nav { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .main-content { padding: 20px 15px; }
+            .form-container { padding: 30px 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-actions { flex-direction: column; }
         }
     </style>
 </head>
@@ -307,9 +130,8 @@
     <img src="logo.jpg" alt="Logo Vovó">
     <h1>Casa de Repouso Do Jeitinho da Vovó</h1>
     <nav>
-        <a href="principalsistema.html">Início</a>
         <a href="gerenciamento.html">Medicamentos</a>
-        <a href="listagem_paciente.html" class="active">Pacientes</a>
+        <a href="listagem_pacientes.html" class="active">Pacientes</a>
         <a href="help_page_final.html">Ajuda</a>
     </nav>
 </header>
@@ -333,6 +155,7 @@
             <div id="success-message" class="success-message"></div>
 
             <form id="patient-form">
+                <div class="section-title">Dados Pessoais e Médicos</div>
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label for="name">Nome Completo *</label>
@@ -340,28 +163,24 @@
                         <div class="help-text">Nome completo do paciente</div>
                         <div class="error-text" id="name-error"></div>
                     </div>
-
                     <div class="form-group">
                         <label for="cpf">CPF *</label>
                         <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" maxlength="14">
                         <div class="help-text">CPF do paciente (com pontos e traço)</div>
                         <div class="error-text" id="cpf-error"></div>
                     </div>
-
                     <div class="form-group">
                         <label for="rg">RG *</label>
-                        <input type="text" id="rg" name="rg" required placeholder="00.000.000-0" maxlength="12">
+                        <input type="text" id="rg" name="rg" required placeholder="00.000.000-0" maxlength="14">
                         <div class="help-text">RG do paciente (com pontos e traço)</div>
                         <div class="error-text" id="rg-error"></div>
                     </div>
-
                     <div class="form-group">
                         <label for="birthdate">Data de Nascimento *</label>
                         <input type="date" id="birthdate" name="birthdate" required>
                         <div class="help-text">Data de nascimento do paciente</div>
                         <div class="error-text" id="birthdate-error"></div>
                     </div>
-
                     <div class="form-group">
                         <label for="bloodType">Tipo Sanguíneo *</label>
                         <select id="bloodType" name="bloodType" required>
@@ -377,43 +196,18 @@
                         </select>
                         <div class="error-text" id="bloodType-error"></div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="cep">CEP *</label>
-                        <input type="text" id="cep" name="cep" required placeholder="00000-000" maxlength="9">
-                        <div class="help-text">CEP do endereço</div>
-                        <div class="error-text" id="cep-error"></div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="address">Endereço Completo *</label>
-                        <input type="text" id="address" name="address" required placeholder="Rua, número, bairro, cidade">
-                        <div class="help-text">Endereço completo do paciente</div>
-                        <div class="error-text" id="address-error"></div>
-                    </div>
-
                     <div class="form-group">
                         <label for="plano">Plano de Saúde *</label>
-                        <select id="plano" name="plano" required>
-                            <option value="">Selecione o plano</option>
-                            <option value="Unimed">Unimed</option>
-                            <option value="Bradesco Saúde">Bradesco Saúde</option>
-                            <option value="SulAmérica">SulAmérica</option>
-                            <option value="Amil">Amil</option>
-                            <option value="Porto Seguro">Porto Seguro</option>
-                            <option value="Particular">Particular</option>
-                            <option value="SUS">SUS</option>
-                        </select>
+                        <input type="text" id="plano" name="plano" required placeholder="Digite o plano de saúde do paciente">
+                        <div class="help-text">Plano de saúde do paciente</div>
                         <div class="error-text" id="plano-error"></div>
                     </div>
-
                     <div class="form-group">
-                        <label for="carteirinha">Número da Carteirinha</label>
-                        <input type="text" id="carteirinha" name="carteirinha" placeholder="Número da carteirinha do plano">
+                        <label for="carteirinha">Número da Carteirinha *</label>
+                        <input type="text" id="carteirinha" name="carteirinha" required placeholder="Número da carteirinha do plano">
                         <div class="help-text">Número da carteirinha do plano de saúde</div>
                         <div class="error-text" id="carteirinha-error"></div>
                     </div>
-
                     <div class="form-group full-width">
                         <label for="conditions">Condições Médicas</label>
                         <textarea id="conditions" name="conditions" placeholder="Descreva as condições médicas, alergias, medicamentos em uso, etc."></textarea>
@@ -422,9 +216,37 @@
                     </div>
                 </div>
 
+                <div class="section-title">Contato de Emergência</div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="contactName">Nome do Contato de Emergência *</label>
+                        <input type="text" id="contactName" name="contactName" required placeholder="Nome completo do contato de emergência">
+                        <div class="help-text">Pessoa a ser contatada em caso de emergência</div>
+                        <div class="error-text" id="contactName-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactRelation">Parentesco/Relação *</label>
+                        <input type="text" id="contactRelation" name="contactRelation" required placeholder="Ex: Filho(a), Cônjuge, Irmão(ã)">
+                        <div class="help-text">Grau de parentesco ou relação com o paciente</div>
+                        <div class="error-text" id="contactRelation-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Telefone do Contato de Emergência *</label>
+                        <input type="text" id="contactPhone" name="contactPhone" required placeholder="(XX) XXXXX-XXXX" maxlength="15">
+                        <div class="help-text">Telefone para contato em caso de emergência</div>
+                        <div class="error-text" id="contactPhone-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail do Contato de Emergência *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required placeholder="exemplo@email.com">
+                        <div class="help-text">E-mail válido para contato</div>
+                        <div class="error-text" id="contactEmail-error"></div>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-danger" id="deactivate-btn" onclick="deactivatePatient()">
-                        🗑️ Desativar Paciente
+                        🗑️ Deletar Paciente
                     </button>
                     <button type="button" class="btn btn-secondary" onclick="window.location.href='listagem_pacientes.html'">
                         ← Cancelar
@@ -444,9 +266,9 @@ let currentPatientId = null;
 let currentPatient = null;
 
 // Elementos do DOM
-const patientForm = document.getElementById('patient-form');
+const patientForm = document.getElementById('patient-form' );
 const saveBtn = document.getElementById('save-btn');
-const deactivateBtn = document.getElementById('deactivate-btn');
+// const deactivateBtn = document.getElementById('deactivate-btn');
 const errorMessage = document.getElementById('error-message');
 const successMessage = document.getElementById('success-message');
 const loadingDiv = document.getElementById('loading');
@@ -479,7 +301,6 @@ function hideMessages() {
 function showFieldError(fieldId, message) {
     const field = document.getElementById(fieldId);
     const errorElement = document.getElementById(fieldId + '-error');
-    
     field.classList.add('error');
     errorElement.textContent = message;
     errorElement.style.display = 'block';
@@ -489,56 +310,59 @@ function showFieldError(fieldId, message) {
 function clearFieldError(fieldId) {
     const field = document.getElementById(fieldId);
     const errorElement = document.getElementById(fieldId + '-error');
-    
     field.classList.remove('error');
     errorElement.style.display = 'none';
 }
 
 // Função para limpar todos os erros de campo
 function clearAllFieldErrors() {
-    const fields = ['name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano', 'carteirinha', 'conditions'];
+    const fields = [
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano', 'carteirinha', 'conditions',
+        'contactName', 'contactRelation', 'contactPhone', 'contactEmail'
+    ];
     fields.forEach(fieldId => {
         clearFieldError(fieldId);
     });
 }
 
-// Máscaras para formatação
+// Máscara para CPF, RG, Telefone
 function formatCPF(value) {
-    return value
-        .replace(/\D/g, '')
+    return value.replace(/\D/g, '')
         .replace(/(\d{3})(\d)/, '$1.$2')
         .replace(/(\d{3})(\d)/, '$1.$2')
         .replace(/(\d{3})(\d{1,2})/, '$1-$2')
         .replace(/(-\d{2})\d+?$/, '$1');
 }
-
 function formatRG(value) {
-    return value
-        .replace(/\D/g, '')
+    return value.replace(/\D/g, '')
         .replace(/(\d{2})(\d)/, '$1.$2')
         .replace(/(\d{3})(\d)/, '$1.$2')
         .replace(/(\d{3})(\d{1,2})/, '$1-$2')
         .replace(/(-\d{1})\d+?$/, '$1');
 }
-
-function formatCEP(value) {
-    return value
-        .replace(/\D/g, '')
-        .replace(/(\d{5})(\d)/, '$1-$2')
-        .replace(/(-\d{3})\d+?$/, '$1');
+function formatPhone(value) {
+    value = value.replace(/\D/g, '');
+    if (value.length > 10) {
+        value = value.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+    } else if (value.length > 5) {
+        value = value.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    } else if (value.length > 2) {
+        value = value.replace(/^(\d*)/, '($1');
+    } else {
+        value = value.replace(/^(\d*)/, '($1');
+    }
+    return value;
 }
 
 // Event listeners para formatação
 document.getElementById('cpf').addEventListener('input', (e) => {
     e.target.value = formatCPF(e.target.value);
 });
-
 document.getElementById('rg').addEventListener('input', (e) => {
     e.target.value = formatRG(e.target.value);
 });
-
-document.getElementById('cep').addEventListener('input', (e) => {
-    e.target.value = formatCEP(e.target.value);
+document.getElementById('contactPhone').addEventListener('input', (e) => {
+    e.target.value = formatPhone(e.target.value);
 });
 
 // Função para calcular idade
@@ -547,11 +371,9 @@ function calculateAge(birthdate) {
     const today = new Date();
     let age = today.getFullYear() - birth.getFullYear();
     const monthDiff = today.getMonth() - birth.getMonth();
-    
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
         age--;
     }
-    
     return age;
 }
 
@@ -559,7 +381,6 @@ function calculateAge(birthdate) {
 async function fetchPatient(patientId) {
     try {
         const response = await fetch(`${API_BASE_URL}/patients/${patientId}`);
-        
         if (response.ok) {
             const patient = await response.json();
             return patient;
@@ -579,18 +400,19 @@ function fillForm(patient) {
     document.getElementById('rg').value = patient.rg || '';
     document.getElementById('birthdate').value = patient.birthdate || '';
     document.getElementById('bloodType').value = patient.bloodType || '';
-    document.getElementById('cep').value = patient.cep || '';
-    document.getElementById('address').value = patient.address || '';
     document.getElementById('plano').value = patient.plano || '';
     document.getElementById('carteirinha').value = patient.carteirinha || '';
     document.getElementById('conditions').value = patient.conditions || '';
-
-    // Atualizar informações atuais
+    document.getElementById('contactName').value = patient.contactName || '';
+    document.getElementById('contactRelation').value = patient.contactRelation || '';
+    document.getElementById('contactPhone').value = patient.contactPhone || '';
+    document.getElementById('contactEmail').value = patient.contactEmail || '';
     const age = calculateAge(patient.birthdate);
     currentInfo.innerHTML = `
         <strong>${patient.name}</strong> - ${age} anos<br>
         CPF: ${patient.cpf} | RG: ${patient.rg}<br>
-        Tipo Sanguíneo: ${patient.bloodType} | Plano: ${patient.plano}
+        Tipo Sanguíneo: ${patient.bloodType} | Plano: ${patient.plano}<br>
+        Contato de Emergência: ${patient.contactName} (${patient.contactRelation}) - ${patient.contactPhone} - ${patient.contactEmail}
     `;
 }
 
@@ -598,89 +420,95 @@ function fillForm(patient) {
 function validateForm() {
     clearAllFieldErrors();
     let isValid = true;
-
     const formData = new FormData(patientForm);
     const data = Object.fromEntries(formData);
-
-    // Validar campos obrigatórios
-    const requiredFields = ['name', 'cpf', 'rg', 'birthdate', 'bloodType', 'cep', 'address', 'plano'];
-    
+    const requiredFields = [
+        'name', 'cpf', 'rg', 'birthdate', 'bloodType', 'plano', 'carteirinha',
+        'contactName', 'contactRelation', 'contactPhone', 'contactEmail'
+    ];
     requiredFields.forEach(field => {
         if (!data[field] || data[field].trim() === '') {
             showFieldError(field, 'Este campo é obrigatório');
             isValid = false;
         }
     });
-
-    // Validar nome
     if (data.name && !/^[A-Za-zÀ-ú ]+$/.test(data.name)) {
         showFieldError('name', 'Nome deve conter apenas letras e espaços');
         isValid = false;
     }
-
-    // Validar CPF
     if (data.cpf && data.cpf.replace(/\D/g, '').length !== 11) {
         showFieldError('cpf', 'CPF deve ter 11 dígitos');
         isValid = false;
     }
-
-    // Validar RG
     if (data.rg && data.rg.replace(/\D/g, '').length < 7) {
         showFieldError('rg', 'RG deve ter pelo menos 7 dígitos');
         isValid = false;
     }
-
-    // Validar data de nascimento
     if (data.birthdate) {
         const birthDate = new Date(data.birthdate);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
-        
         if (age < 0 || age > 120) {
             showFieldError('birthdate', 'Data de nascimento inválida');
             isValid = false;
         }
     }
-
-    // Validar CEP
-    if (data.cep && data.cep.replace(/\D/g, '').length !== 8) {
-        showFieldError('cep', 'CEP deve ter 8 dígitos');
+    if (data.bloodType && !/^(A|B|AB|O)[+-]$/.test(data.bloodType)) {
+        showFieldError('bloodType', 'Tipo sanguíneo inválido');
         isValid = false;
     }
-
+    if (data.contactName && !/^[A-Za-zÀ-ú ]+$/.test(data.contactName)) {
+        showFieldError('contactName', 'Nome deve conter apenas letras e espaços');
+        isValid = false;
+    }
+    if (data.contactPhone && data.contactPhone.replace(/\D/g, '').length < 10) {
+        showFieldError('contactPhone', 'Telefone inválido (mínimo 10 dígitos)');
+        isValid = false;
+    }
+    if (data.contactRelation && !/^[A-Za-zÀ-ú ]+$/.test(data.contactRelation)) {
+        showFieldError('contactRelation', 'Parentesco deve conter apenas letras e espaços');
+        isValid = false;
+    }
+    if (data.contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contactEmail)) {
+        showFieldError('contactEmail', 'E-mail inválido');
+        isValid = false;
+    }
     return isValid;
 }
 
 // Função para atualizar paciente
 async function updatePatient(patientId, patientData) {
+    // Montar payload igual ao DTO do backend
+    const payload = {
+        ...patientData,
+        cpf: patientData.cpf.replace(/\D/g, ''),
+        rg: patientData.rg.replace(/\D/g, ''),
+        contactPhone: patientData.contactPhone.replace(/\D/g, ''),
+        birthdate: patientData.birthdate // ISO yyyy-mm-dd
+    };
     try {
         const response = await fetch(`${API_BASE_URL}/patients/${patientId}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(patientData)
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify(payload)
         });
-
         if (response.ok) {
-            const patient = await response.json();
             showSuccess('Paciente atualizado com sucesso! Redirecionando...');
-            
-            // Redirecionar para a lista de pacientes após 2 segundos
             setTimeout(() => {
                 window.location.href = 'listagem_pacientes.html';
             }, 2000);
-            
         } else {
-            const errorData = await response.text();
-            
+            let errorMsg = await response.text();
             if (response.status === 409) {
-                if (errorData.includes('CPF')) {
-                    showFieldError('cpf', 'Este CPF já está cadastrado');
-                } else if (errorData.includes('RG')) {
-                    showFieldError('rg', 'Este RG já está cadastrado');
-                }
+                if (errorMsg.includes('CPF')) showFieldError('cpf', 'Este CPF já está cadastrado');
+                else if (errorMsg.includes('RG')) showFieldError('rg', 'Este RG já está cadastrado');
                 showError('Dados já cadastrados. Verifique CPF e RG.');
+            } else if (response.status === 400 && errorMsg) {
+                try {
+                    const json = JSON.parse(errorMsg);
+                    errorMsg = Object.values(json).join('\n');
+                } catch { /* ignore json parse error */ }
+                showError('Erro de validação: ' + errorMsg);
             } else {
                 showError('Erro ao atualizar paciente. Tente novamente.');
             }
@@ -691,30 +519,21 @@ async function updatePatient(patientId, patientData) {
     }
 }
 
-// Função para desativar paciente
+// Função para deletar paciente
 async function deactivatePatient() {
-    if (!confirm('Tem certeza que deseja desativar este paciente? Esta ação não pode ser desfeita.')) {
-        return;
-    }
-
+    if (!confirm('Tem certeza que deseja deletar este paciente? Esta ação não pode ser desfeita.')) return;
     try {
-        const response = await fetch(`${API_BASE_URL}/patients/${currentPatientId}`, {
-            method: 'DELETE'
-        });
-
+        const response = await fetch(`${API_BASE_URL}/patients/${currentPatientId}`, { method: 'DELETE' });
         if (response.ok) {
-            showSuccess('Paciente desativado com sucesso! Redirecionando...');
-            
-            // Redirecionar para a lista de pacientes após 2 segundos
+            showSuccess('Paciente deletado com sucesso! Redirecionando...');
             setTimeout(() => {
                 window.location.href = 'listagem_pacientes.html';
             }, 2000);
-            
         } else {
-            showError('Erro ao desativar paciente. Tente novamente.');
+            showError('Erro ao deletar paciente. Tente novamente.');
         }
     } catch (error) {
-        console.error('Erro ao desativar:', error);
+        console.error('Erro ao deletar:', error);
         showError('Erro de conexão. Verifique se o sistema está funcionando.');
     }
 }
@@ -723,12 +542,10 @@ async function deactivatePatient() {
 patientForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     hideMessages();
-    
     if (!validateForm()) {
         showError('Por favor, corrija os erros no formulário.');
         return;
     }
-    
     const formData = new FormData(patientForm);
     const patientData = {
         name: formData.get('name').trim(),
@@ -736,21 +553,18 @@ patientForm.addEventListener('submit', async (e) => {
         rg: formData.get('rg').trim(),
         birthdate: formData.get('birthdate'),
         bloodType: formData.get('bloodType'),
-        cep: formData.get('cep').trim(),
-        address: formData.get('address').trim(),
-        plano: formData.get('plano'),
-        carteirinha: formData.get('carteirinha').trim() || null,
-        conditions: formData.get('conditions').trim() || null
+        plano: formData.get('plano').trim(),
+        carteirinha: formData.get('carteirinha').trim(),
+        conditions: formData.get('conditions').trim() || null,
+        contactName: formData.get('contactName').trim(),
+        contactRelation: formData.get('contactRelation').trim(),
+        contactPhone: formData.get('contactPhone').trim(),
+        contactEmail: formData.get('contactEmail').trim()
     };
-    
-    // Desabilitar botão durante a atualização
     saveBtn.disabled = true;
     saveBtn.textContent = '💾 Salvando...';
-    
-    try {
-        await updatePatient(currentPatientId, patientData);
-    } finally {
-        // Reabilitar botão
+    try { await updatePatient(currentPatientId, patientData); }
+    finally {
         saveBtn.disabled = false;
         saveBtn.textContent = '💾 Salvar Alterações';
     }
@@ -758,41 +572,23 @@ patientForm.addEventListener('submit', async (e) => {
 
 // Inicializar página
 document.addEventListener('DOMContentLoaded', async () => {
-    // Verificar se está logado
-    // const currentUser = localStorage.getItem('currentUser');
-    // if (!currentUser) {
-    //     window.location.href = 'editar_paciente.html';
-    //     return;
-    // }
-
-    // Obter ID do paciente da URL
     const urlParams = new URLSearchParams(window.location.search);
     currentPatientId = urlParams.get('id');
-    
     if (!currentPatientId) {
-        showError('ID do paciente não fornecido.');
+        showError('ID do paciente não fornecido na URL.');
         loadingDiv.style.display = 'none';
         return;
     }
-
     try {
-        // Buscar dados do paciente
         currentPatient = await fetchPatient(currentPatientId);
-        
-        // Preencher formulário
         fillForm(currentPatient);
-        
-        // Mostrar formulário
         loadingDiv.style.display = 'none';
         formSection.style.display = 'block';
-        
     } catch (error) {
-        showError('Erro ao carregar dados do paciente. Verifique se o paciente existe.');
+        showError('Erro ao carregar dados do paciente. Verifique se o paciente existe ou se a API está funcionando.');
         loadingDiv.style.display = 'none';
     }
 });
 </script>
-
 </body>
 </html>
-

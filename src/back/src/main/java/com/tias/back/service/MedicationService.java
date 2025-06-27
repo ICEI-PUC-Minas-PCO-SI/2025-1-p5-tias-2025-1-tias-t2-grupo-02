@@ -55,6 +55,8 @@ public class MedicationService {
             .patient(patientRepo.getReferenceById(dto.getPatientId()))
             .description(dto.getDescription())
             .dosage(dto.getDosage())
+            .quantity(dto.getQuantity())
+            .experirationDate(dto.getExpirationDate())
             .addedAt(LocalDateTime.now())
             .build();
         Medication saved = repository.save(m);
@@ -82,22 +84,30 @@ public class MedicationService {
                 "Medication não encontrada: " + id));
         m.setDescription(dto.getDescription());
         m.setDosage(dto.getDosage());
+        m.setQuantity(dto.getQuantity());
+        m.setExperirationDate(dto.getExpirationDate());
         Medication updated = repository.save(m);
         logger.info("Medication atualizada: {}", id);
         return toDto(updated);
     }
 
     public void delete(UUID id) {
-        repository.deleteById(id);
+        Medication m = repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Medication não encontrada: " + id));
+        repository.delete(m);  // Excluir permanentemente o medicamento
         logger.info("Medication deletada: {}", id);
     }
 
-    private MedicationResponseDTO toDto(Medication m) {
+    public MedicationResponseDTO toDto(Medication m) {
         return MedicationResponseDTO.builder()
             .id(m.getId())
             .patientId(m.getPatient().getPatientId())
             .description(m.getDescription())
             .dosage(m.getDosage())
+            .quantity(m.getQuantity())
+            .expirationDate(m.getExperirationDate())
+            .status(m.getStatus())
             .addedAt(m.getAddedAt().toString())
             .build();
     }

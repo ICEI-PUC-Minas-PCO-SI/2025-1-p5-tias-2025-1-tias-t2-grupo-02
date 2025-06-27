@@ -23,14 +23,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> getById(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.getById(id));
-    }
-
     @GetMapping
     public List<UserResponseDTO> getAll() {
         return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @PutMapping("/{id}")
@@ -41,8 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/activate/{id}")
-    public ResponseEntity<UserResponseDTO> activate(
-            @PathVariable UUID id) {
+    public ResponseEntity<UserResponseDTO> activate(@PathVariable UUID id) {
         return ResponseEntity.ok(service.activate(id));
     }
 
@@ -52,7 +51,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> delete(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.deactivate(id));
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        ResponseEntity<String> deleted = service.delete(id);
+        return deleted;
     }
 }

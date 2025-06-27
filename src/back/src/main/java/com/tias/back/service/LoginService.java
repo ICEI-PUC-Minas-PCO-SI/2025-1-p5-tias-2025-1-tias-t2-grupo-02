@@ -100,7 +100,7 @@ public class LoginService {
         return ResponseEntity.ok("Login bem-sucedido");
     }
 
-    private LoginResponseDTO toDto(Login l) {
+    public LoginResponseDTO toDto(Login l) {
         return LoginResponseDTO.builder()
             .loginId(l.getLoginId())
             .userId(l.getUser().getUserId())

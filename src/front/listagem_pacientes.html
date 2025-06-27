@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa de Pacientes - Casa de Repouso Do Jeitinho da Vovó</title>
+    <title>Lista de Pacientes - Casa de Repouso Do Jeitinho da Vovó</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="images/icons.css">
     <style>
         :root {
             --bege-claro: #E6D2B6;
@@ -457,6 +456,42 @@
         @media (max-width: 768px) {
             .modal { max-width: 95vw; }
         }
+            /* New styles for activate/deactivate buttons */
+            .btn-deactivate {
+            color: var(--vermelho-suave);
+            border-color: var(--vermelho-suave);
+        }
+        .btn-deactivate:hover {
+            background-color: var(--vermelho-suave);
+            color: white;
+        }
+        .btn-activate {
+            color: var(--verde-suave);
+            border-color: var(--verde-suave);
+        }
+        .btn-activate:hover {
+            background-color: var(--verde-suave);
+            color: white;
+        }
+        /* NOVO: Estilos para as iniciais acima dos botões */
+        .button-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative; /* Para posicionar a inicial */
+        }
+
+        .button-initial {
+            font-size: 12px; /* Tamanho da fonte da inicial */
+            font-weight: bold;
+            color: var(--preto-suave); /* Cor da inicial */
+            margin-bottom: 2px; /* Espaço entre a inicial e o botão */
+            position: absolute;
+            top: -15px; /* Ajuste a posição vertical conforme necessário */
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none; /* Garante que o clique passe para o botão */
+            }
     </style>
 </head>
 
@@ -468,10 +503,8 @@
                 <div class="logo-text">Casa de Repouso Do Jeitinho da Vovó</div>
             </div>
             <div class="nav-container">
-                <a href="Dash.html" class="nav-link">Início</a>
                 <a href="listagem_pacientes.html" class="nav-link active">Pacientes</a>
                 <a href="gerenciamento.html" class="nav-link">Medicamentos</a>
-                <a href="relatorio.HTML" class="nav-link">Relatórios</a>
                 <a href="help_page_final.html" class="nav-link">Ajuda</a>
             </div>
         </header>
@@ -487,7 +520,11 @@
                             sistema. Você pode visualizar, editar ou gerenciar os registros encontrados.</p>
                     </div>
                 </div>
-                <div>
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn btn-success" onclick="location.href='cadastro.html'">
+                        <i class="icon plus-icon"></i>
+                        CADASTRAR NOVO PACIENTE
+                    </button>
                     <button class="btn btn-primary" onclick="location.href='gerenciamento.html'">
                         <i class="icon search-icon"></i>
                         GERENCIMENTO DE ESTOQUE POR PACIENTE
@@ -596,31 +633,48 @@
         }
 
         // Monta uma linha da tabela
-        function pacienteRow(p) {
-            return `
-                <tr>
-                    <td>
-                        <div>
-                            <div class="patient-name">${p.name || ''}</div>
-                        </div>
-                    </td>
-                    <td>${calcularIdade(p.birthdate)}</td>
-                    <td>${formatarCPF(p.cpf)}</td>
-                    <td>${formatarData(p.addedAt)}</td>
-                    <td>
-                        <span class="status-badge ${p.active ? 'status-active' : 'status-inactive'}">
-                            ${p.active ? 'Ativo' : 'Inativo'}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
-                                <i class="icon eye-icon"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>`;
-        }
+function pacienteRow(p) {
+    const statusClass = p.active ? 'status-active' : 'status-inactive';
+    const statusText = p.active ? 'Ativo' : 'Inativo';
+    const toggleBtnClass = p.active ? 'btn-deactivate' : 'btn-activate';
+    const toggleBtnIcon = p.active ? 'power-off-icon' : 'power-on-icon'; // Assumindo que você tem esses ícones
+    const toggleBtnTitle = p.active ? 'Desativar Paciente' : 'Ativar Paciente';
+    const toogleBtnText = p.active ? 'D' : 'A';
+
+    return `
+        <tr>
+            <td>
+                <div>
+                    <div class="patient-name">${p.name || ''}</div>
+                </div>
+            </td>
+            <td>${calcularIdade(p.birthdate)}</td>
+            <td>${formatarCPF(p.cpf)}</td>
+            <td>${formatarData(p.addedAt)}</td>
+            <td>
+                <span class="status-badge ${statusClass}">
+                    ${statusText}
+                </span>
+            </td>
+            <td>
+                <div class="action-buttons">
+                    <div class="button-wrapper">
+                        <span class="button-initial">V</span>
+                        <button class="btn-icon btn-view" title="Visualizar" data-id="${p.patientId}">
+                            <i class="icon eye-icon"></i>
+                        </button>
+                    </div>
+                    <div class="button-wrapper">
+                        <span class="button-initial">${toogleBtnText}</span>
+                        <button class="btn-icon ${toggleBtnClass}" title="${toggleBtnTitle}" data-id="${p.patientId}" data-active="${p.active}">
+                            <i class="icon ${toggleBtnIcon}"></i>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>`;
+}
+
 
         // Busca pacientes do backend (SEM filtros, pois backend não aceita parâmetros)
         async function buscarPacientes() {
@@ -683,17 +737,27 @@
             resultsCount.textContent = `${listaFiltrada.length} paciente${listaFiltrada.length !== 1 ? 's' : ''} encontrado${listaFiltrada.length !== 1 ? 's' : ''}`;
             // Vincula evento de visualização
             vincularEventosViewBtn();
+            vincularEventosEditBtn();
+            vincularEventosToggleStatusBtn();
         }
+    // NOVO: Ao renderizar a tabela, vincule evento aos botões "editar"
+    function vincularEventosEditBtn() {
+        document.querySelectorAll('.btn-icon.btn-edit[data-id]').forEach(btn => {
+            btn.onclick = function() {
+                const id = btn.getAttribute('data-id');
+                // Redireciona para a página de edição com o ID do paciente
+                window.location.href = `editar_paciente.html?id=${encodeURIComponent(id)}`;
+            };
+        });
+    }
 
         // Armazena todos pacientes carregados
         let todosPacientes = [];
 
-        // Carrega lista ao abrir a página
-        async function atualizarLista() {
-            // Só busca do backend se ainda não carregou
-            if (todosPacientes.length === 0) {
-                todosPacientes = await buscarPacientes();
-            }
+          // Carrega lista ao abrir a página
+          async function atualizarLista() {
+            // Sempre busca do backend para ter os dados mais recentes, especialmente após um toggle
+            todosPacientes = await buscarPacientes();
             const filtros = {
                 nome: document.getElementById("searchName").value.trim(),
                 cpf: document.getElementById("searchCPF").value.trim(),
@@ -714,7 +778,59 @@
             form.reset();
             atualizarLista();
         });
+        // Função para alternar o status do paciente (ativar/desativar)
+        async function togglePatientStatus(patientId, currentStatus) {
+            const newStatus = !currentStatus;
+            const actionText = newStatus ? 'ativar' : 'desativar';
+            const confirmMessage = `Tem certeza que deseja ${actionText} este paciente?`;
 
+            if (!confirm(confirmMessage)) {
+                return; // Usuário cancelou
+            }
+
+            try {
+                let response
+                if(currentStatus){
+                    response = await fetch(`${API_URL}/deactivate/${patientId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                }
+                else{
+                    response = await fetch(`${API_URL}/activate/${patientId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                }
+                if (response.ok) {
+                    alert(`Paciente ${newStatus ? 'ativado' : 'desativado'} com sucesso!`);
+                    atualizarLista(); // Recarrega a lista para refletir a mudança
+                    
+                } else {
+                    const errorData = await response.json();
+                    alert(`Erro ao ${actionText} paciente: ${errorData.message || response.statusText}`);
+                    // Se der erro, não faz nada, pois a lista será recarregada de qualquer forma
+                    
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                alert(`Erro de conexão ao tentar ${actionText} o paciente.`);
+            }
+        }
+   // Ao renderizar a tabela, vincule evento aos botões de ativar/desativar
+   function vincularEventosToggleStatusBtn() {
+            document.querySelectorAll('.btn-icon[data-active]').forEach(btn => {
+                btn.onclick = function() {
+                    const id = btn.getAttribute('data-id');
+                    const activeStatus = btn.getAttribute('data-active') === 'true'; // Converte string para booleano
+                    togglePatientStatus(id, activeStatus);
+                };
+            });
+        }
         // ---------- MODAL LÓGICA ----------
 
         // Função para abrir o modal e preencher os dados

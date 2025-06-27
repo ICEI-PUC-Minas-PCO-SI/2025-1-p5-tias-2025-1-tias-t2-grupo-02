@@ -1,12 +1,15 @@
 package com.tias.back.service;
 
+import com.tias.back.dto.MedicationResponseDTO;
 import com.tias.back.dto.PatientRequestDTO;
 import com.tias.back.dto.PatientResponseDTO;
 import com.tias.back.entity.Patient;
+import com.tias.back.repository.MedicationRepository;
 import com.tias.back.repository.PatientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,10 +24,14 @@ import java.util.stream.Collectors;
 public class PatientService {
 
     private static final Logger logger = LoggerFactory.getLogger(PatientService.class);
-    private final PatientRepository repository;
+    private final PatientRepository patientRepo;
+    private final MedicationRepository medicationRepo;
+    private final MedicationService medicationService;
 
-    public PatientService(PatientRepository repository) {
-        this.repository = repository;
+    public PatientService(PatientRepository patientRepo, MedicationRepository medicationRepo, MedicationService medicationService) {
+        this.patientRepo = patientRepo;
+        this.medicationRepo = medicationRepo;
+        this.medicationService = medicationService;
     }
 
     private void validateRequest(PatientRequestDTO dto) {
@@ -73,17 +80,17 @@ public class PatientService {
     public PatientResponseDTO create(PatientRequestDTO dto) {
         validateRequest(dto);
 
-        if (repository.existsByCpf(dto.getCpf())) {
+        if (patientRepo.existsByCpf(dto.getCpf())) {
             logger.warn("Paciente com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "Paciente com CPF '" + dto.getCpf() + "' já existe.");
         }
-        if (repository.existsByRg(dto.getRg())) {
+        if (patientRepo.existsByRg(dto.getRg())) {
             logger.warn("Paciente com RG duplicado: {}", dto.getRg());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "Paciente com RG '" + dto.getRg() + "' já existe.");
         }
-        if (repository.existsByCarteirinha(dto.getCarteirinha())) {
+        if (patientRepo.existsByCarteirinha(dto.getCarteirinha())) {
             logger.warn("Paciente com carteirinha duplicada: {}", dto.getCarteirinha());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "Paciente com carteirinha '" + dto.getCarteirinha() + "' já existe.");
@@ -106,21 +113,21 @@ public class PatientService {
             .addedAt(LocalDate.now())
             .build();
 
-        Patient saved = repository.save(p);
+        Patient saved = patientRepo.save(p);
         logger.info("Paciente criado: {} (addedAt={})",
                     saved.getPatientId(), saved.getAddedAt());
         return toDto(saved);
     }
 
     public PatientResponseDTO getById(UUID id) {
-        Patient p = repository.findById(id)
+        Patient p = patientRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
         return toDto(p);
     }
 
     public List<PatientResponseDTO> getAll() {
-        return repository.findAll().stream()
+        return patientRepo.findAll().stream()
             .map(this::toDto)
             .collect(Collectors.toList());
     }
@@ -128,22 +135,22 @@ public class PatientService {
     public PatientResponseDTO update(UUID id, PatientRequestDTO dto) {
         validateRequest(dto);
 
-        Patient p = repository.findById(id)
+        Patient p = patientRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
 
-        if (!p.getCpf().equals(dto.getCpf()) && repository.existsByCpf(dto.getCpf())) {
+        if (!p.getCpf().equals(dto.getCpf()) && patientRepo.existsByCpf(dto.getCpf())) {
             logger.warn("Atualização com CPF duplicado: {}", dto.getCpf());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "CPF '" + dto.getCpf() + "' já está cadastrado.");
         }
-        if (!p.getRg().equals(dto.getRg()) && repository.existsByRg(dto.getRg())) {
+        if (!p.getRg().equals(dto.getRg()) && patientRepo.existsByRg(dto.getRg())) {
             logger.warn("Atualização com RG duplicado: {}", dto.getRg());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "RG '" + dto.getRg() + "' já está cadastrado.");
         }
         if (!p.getCarteirinha().equals(dto.getCarteirinha())
-            && repository.existsByCarteirinha(dto.getCarteirinha())) {
+            && patientRepo.existsByCarteirinha(dto.getCarteirinha())) {
             logger.warn("Atualização com carteirinha duplicada: {}", dto.getCarteirinha());
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                 "Carteirinha '" + dto.getCarteirinha() + "' já está cadastrada.");
@@ -163,13 +170,13 @@ public class PatientService {
         p.setContactPhone(dto.getContactPhone());
         p.setContactRelation(dto.getContactRelation());
 
-        Patient updated = repository.save(p);
+        Patient updated = patientRepo.save(p);
         logger.info("Paciente atualizado: {}", id);
         return toDto(updated);
     }
 
     public PatientResponseDTO deactivate(UUID id) {
-        Patient p = repository.findById(id)
+        Patient p = patientRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
 
@@ -180,13 +187,13 @@ public class PatientService {
         }
 
         p.setActive(false);
-        Patient saved = repository.save(p);
+        Patient saved = patientRepo.save(p);
         logger.info("Paciente desativado: {}", id);
         return toDto(saved);
     }
 
     public PatientResponseDTO activate(UUID id) {
-        Patient p = repository.findById(id)
+        Patient p = patientRepo.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Paciente não encontrado: " + id));
 
@@ -197,9 +204,24 @@ public class PatientService {
         }
 
         p.setActive(true);
-        Patient saved = repository.save(p);
+        Patient saved = patientRepo.save(p);
         logger.info("Paciente ativado: {}", id);
         return toDto(saved);
+    }
+
+    public ResponseEntity<String> delete(UUID id) {
+        Patient patient = patientRepo.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Paciente não encontrado: " + id));
+        List<MedicationResponseDTO> medicamentos = medicationRepo.findAll().stream().map(medicationService::toDto).collect(Collectors.toList());
+        for (MedicationResponseDTO medicamento : medicamentos) {
+            if(medicamento.getPatientId()==patient.getPatientId()){
+                medicationRepo.deleteById(medicamento.getId());
+            }
+        }
+        patientRepo.deleteById(id);
+        logger.info("Paciente desativado: {}", id);
+        return ResponseEntity.ok("Paciente deletado com sucesso");
     }
 
     private PatientResponseDTO toDto(Patient p) {

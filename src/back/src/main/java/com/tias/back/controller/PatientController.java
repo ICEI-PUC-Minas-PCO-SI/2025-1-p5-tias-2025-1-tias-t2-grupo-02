@@ -34,14 +34,14 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PatientResponseDTO> getById(@PathVariable UUID id) {
-        return ResponseEntity.ok(patientService.getById(id));
-    }
-
     @GetMapping
     public List<PatientResponseDTO> getAll() {
         return patientService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(patientService.getById(id));
     }
 
     @PutMapping("/{id}")
@@ -52,21 +52,21 @@ public class PatientController {
         return ResponseEntity.ok(updated);
     }
 
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<PatientResponseDTO> activate(@PathVariable UUID id) {
+        PatientResponseDTO activated = patientService.activate(id);
+        return ResponseEntity.ok(activated);
+    }
+
     @PutMapping("/deactivate/{id}")
     public ResponseEntity<PatientResponseDTO> deactivate(@PathVariable UUID id) {
         PatientResponseDTO deactivated = patientService.deactivate(id);
         return ResponseEntity.ok(deactivated);
     }
 
-    @PutMapping("/activate/{id}")
-    public ResponseEntity<PatientResponseDTO> activate(@PathVariable UUID id) {
-        PatientResponseDTO deactivated = patientService.activate(id);
-        return ResponseEntity.ok(deactivated);
-    }
-
-    @DeleteMapping("/deactivate/{id}")
-    public ResponseEntity<PatientResponseDTO> delete(@PathVariable UUID id) {
-        PatientResponseDTO deactivated = patientService.deactivate(id);
-        return ResponseEntity.ok(deactivated);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        ResponseEntity<String> deleted = patientService.delete(id);
+        return deleted;
     }
 }
