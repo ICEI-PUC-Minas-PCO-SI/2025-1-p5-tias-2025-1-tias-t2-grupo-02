@@ -500,19 +500,12 @@
 
     <div class="search-controls">
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Buscar item..." class="search-input">
+            <input type="text" id="search-input" placeholder="Buscar Por Paciente..." class="search-input">
             <button class="btn btn-secondary" id="filter-btn">🔍 Filtros</button>
             <button class="btn btn-primary" id="add-item-btn">➕ Adicionar Item</button>
         </div>
 
         <div class="filter-row">
-            <select id="category-filter" class="filter-select">
-                <option value="">Categoria</option>
-                <option value="medicamentos">Medicamentos</option>
-                <option value="higiene">Higiene</option>
-                <option value="limpeza">Limpeza</option>
-                <option value="alimentos">Alimentos</option>
-            </select>
 
             <select id="status-filter" class="filter-select">
                 <option value="">Status</option>
@@ -521,13 +514,13 @@
                 <option value="critico">Estoque Crítico</option>
             </select>
 
-            <select id="sort-filter" class="filter-select">
-                <option value="">Ordenar por</option>
-                <option value="nome">Nome</option>
-                <option value="categoria">Categoria</option>
-                <option value="quantidade">Quantidade</option>
-                <option value="validade">Data de Validade</option>
-            </select>
+<select id="sort-filter" class="filter-select">
+    <option value="">Ordenar por</option>
+    <option value="nome">Nome do Paciente</option>
+    <option value="quantidade">Quantidade em Estoque</option>
+    <option value="validade">Data de Validade</option>
+</select>
+
         </div>
     </div>
 
@@ -535,127 +528,135 @@
         <table class="stock-table">
             <thead>
                 <tr>
-                    <th>Nome do Item</th>
-                    <th>Categoria</th>
-                    <th>Quantidade</th>
-                    <th>Unidade</th>
-                    <th>Data de Validade</th>
-                    <th>Status</th>
-                    <th>Ações</th>
+<th>Nome do Paciente</th>
+<th>Descrição (Nome do Medicamento)</th>
+<th>Posologia/Dosagem</th>
+<th>Quantidade</th>
+<th>Data de Validade</th>
+<th>Status</th>
+<th>Data de Adição</th>
+<th>Ações</th>
+
                 </tr>
-            </thead>
             <tbody id="stock-table-body">
-                <tr>
-                    <td>Paracetamol 500mg</td>
-                    <td>Medicamentos</td>
-                    <td>120</td>
-                    <td>Comprimidos</td>
-                    <td>15/12/2025</td>
-                    <td><span class="status-badge status-ok">Estoque OK</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(1)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(1)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Dipirona 1g</td>
-                    <td>Medicamentos</td>
-                    <td>45</td>
-                    <td>Comprimidos</td>
-                    <td>10/08/2025</td>
-                    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(2)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(2)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Fraldas Geriátricas G</td>
-                    <td>Higiene</td>
-                    <td>8</td>
-                    <td>Pacotes</td>
-                    <td>N/A</td>
-                    <td><span class="status-badge status-critico">Estoque Crítico</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(3)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(3)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Luvas Descartáveis</td>
-                    <td>Higiene</td>
-                    <td>15</td>
-                    <td>Caixas</td>
-                    <td>N/A</td>
-                    <td><span class="status-badge status-ok">Estoque OK</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(4)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(4)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Losartana 50mg</td>
-                    <td>Medicamentos</td>
-                    <td>90</td>
-                    <td>Comprimidos</td>
-                    <td>05/03/2026</td>
-                    <td><span class="status-badge status-ok">Estoque OK</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(5)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(5)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Álcool 70%</td>
-                    <td>Limpeza</td>
-                    <td>5</td>
-                    <td>Litros</td>
-                    <td>20/10/2026</td>
-                    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(6)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(6)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Leite Integral</td>
-                    <td>Alimentos</td>
-                    <td>12</td>
-                    <td>Litros</td>
-                    <td>30/06/2025</td>
-                    <td><span class="status-badge status-ok">Estoque OK</span></td>
-                    <td>
-                        <button class="btn-icon edit-btn" onclick="editItem(7)" title="Editar">✏️</button>
-                        <button class="btn-icon delete-btn" onclick="deleteItem(7)" title="Excluir">🗑️</button>
-                    </td>
-                </tr>
-            </tbody>
+  <tr>
+    <td>Maria Silva</td>
+    <td>Paracetamol 500mg</td>
+    <td>1 comp. de 8h em 8h</td>
+    <td>20</td>
+    <td>15/12/2025</td>
+    <td><span class="status-badge status-ok">Estoque OK</span></td>
+    <td>26/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(1)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(1)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>João Oliveira</td>
+    <td>Losartana 50mg</td>
+    <td>1 comprimido ao dia</td>
+    <td>60</td>
+    <td>10/01/2026</td>
+    <td><span class="status-badge status-ok">Estoque OK</span></td>
+    <td>25/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(2)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(2)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Ana Souza</td>
+    <td>Metformina 850mg</td>
+    <td>1 comp. após o café e jantar</td>
+    <td>30</td>
+    <td>15/09/2025</td>
+    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
+    <td>20/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(3)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(3)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Carlos Mendes</td>
+    <td>Omeprazol 20mg</td>
+    <td>1 cápsula 30min antes do café</td>
+    <td>15</td>
+    <td>01/12/2025</td>
+    <td><span class="status-badge status-critico">Estoque Crítico</span></td>
+    <td>21/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(4)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(4)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Beatriz Lima</td>
+    <td>Sinvastatina 40mg</td>
+    <td>1 comprimido à noite</td>
+    <td>90</td>
+    <td>30/05/2026</td>
+    <td><span class="status-badge status-ok">Estoque OK</span></td>
+    <td>18/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(5)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(5)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Rafael Silva</td>
+    <td>Ibuprofeno 600mg</td>
+    <td>1 comp. a cada 6h, se dor</td>
+    <td>10</td>
+    <td>10/11/2025</td>
+    <td><span class="status-badge status-critico">Estoque Crítico</span></td>
+    <td>22/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(6)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(6)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Luciana Rocha</td>
+    <td>Furosemida 40mg</td>
+    <td>1 comp. em jejum</td>
+    <td>25</td>
+    <td>05/10/2025</td>
+    <td><span class="status-badge status-baixo">Estoque Baixo</span></td>
+    <td>24/06/2024</td>
+    <td>
+      <button class="btn-icon edit-btn" onclick="editItem(7)" title="Editar">✏️</button>
+      <button class="btn-icon delete-btn" onclick="deleteItem(7)" title="Excluir">🗑️</button>
+    </td>
+  </tr>
+</tbody>
+
         </table>
     </div>
 </div>
+
 
 <!-- Modal para Adicionar/Editar Item -->
 <div class="modal-overlay" id="item-modal">
     <div class="modal">
         <div class="modal-header">
-            <h3 id="modal-title">Adicionar Item</h3>
+            <h3 id="modal-title">Adicionar Prescrição</h3>
             <button class="modal-close" id="close-modal">&times;</button>
         </div>
         <div class="modal-body">
             <form id="item-form">
                 <div class="form-group">
-                    <label for="item-name">Nome do Item</label>
-                    <input type="text" id="item-name" class="form-input" required>
+                    <label for="patient-name">Nome do Paciente</label>
+                    <input type="text" id="patient-name" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="item-category">Categoria</label>
-                    <select id="item-category" class="form-select" required>
-                        <option value="">Selecione uma categoria</option>
-                        <option value="medicamentos">Medicamentos</option>
-                        <option value="higiene">Higiene</option>
-                        <option value="limpeza">Limpeza</option>
-                        <option value="alimentos">Alimentos</option>
-                    </select>
+                    <label for="item-description">Descrição (Nome do Medicamento)</label>
+                    <input type="text" id="item-description" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-dosage">Posologia / Dosagem</label>
+                    <input type="text" id="item-dosage" class="form-input" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -663,13 +664,16 @@
                         <input type="number" id="item-quantity" class="form-input" required>
                     </div>
                     <div class="form-group">
-                        <label for="item-unit">Unidade</label>
-                        <input type="text" id="item-unit" class="form-input" required>
+                        <label for="item-expiry">Data de Validade</label>
+                        <input type="date" id="item-expiry" class="form-input">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="item-expiry">Data de Validade</label>
-                    <input type="date" id="item-expiry" class="form-input">
+                <div class="form-row">
+                    
+                    <div class="form-group">
+                        <label for="item-date-added">Data de Adição</label>
+                        <input type="date" id="item-date-added" class="form-input" required>
+                    </div>
                 </div>
             </form>
         </div>
@@ -677,8 +681,9 @@
             <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
             <button type="submit" form="item-form" class="btn btn-primary" id="save-btn">Salvar</button>
         </div>
-    </div>
+    </div>
 </div>
+
 
 <footer class="footer">
     <div class="footer-container">
@@ -722,69 +727,78 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Dados simulados do estoque
     let stockData = [
-        {
-            id: 1,
-            nome: 'Paracetamol 500mg',
-            categoria: 'medicamentos',
-            quantidade: 120,
-            unidade: 'Comprimidos',
-            validade: '2025-12-15',
-            status: 'ok'
-        },
-        {
-            id: 2,
-            nome: 'Dipirona 1g',
-            categoria: 'medicamentos',
-            quantidade: 45,
-            unidade: 'Comprimidos',
-            validade: '2025-08-10',
-            status: 'baixo'
-        },
-        {
-            id: 3,
-            nome: 'Fraldas Geriátricas G',
-            categoria: 'higiene',
-            quantidade: 8,
-            unidade: 'Pacotes',
-            validade: null,
-            status: 'critico'
-        },
-        {
-            id: 4,
-            nome: 'Luvas Descartáveis',
-            categoria: 'higiene',
-            quantidade: 15,
-            unidade: 'Caixas',
-            validade: null,
-            status: 'ok'
-        },
-        {
-            id: 5,
-            nome: 'Losartana 50mg',
-            categoria: 'medicamentos',
-            quantidade: 90,
-            unidade: 'Comprimidos',
-            validade: '2026-03-05',
-            status: 'ok'
-        },
-        {
-            id: 6,
-            nome: 'Álcool 70%',
-            categoria: 'limpeza',
-            quantidade: 5,
-            unidade: 'Litros',
-            validade: '2026-10-20',
-            status: 'baixo'
-        },
-        {
-            id: 7,
-            nome: 'Leite Integral',
-            categoria: 'alimentos',
-            quantidade: 12,
-            unidade: 'Litros',
-            validade: '2025-06-30',
-            status: 'ok'
-        }
+        
+{
+  id: 1,
+  paciente: 'Maria Silva',
+  descricao: 'Paracetamol 500mg',
+  posologia: '1 comp. de 8h em 8h',
+  quantidade: 20,
+  validade: '2025-12-15',
+  dataAdicao: '2024-06-26',
+  status: 'ok'
+},
+{
+  id: 2,
+  paciente: 'João Oliveira',
+  descricao: 'Losartana 50mg',
+  posologia: '1 comprimido ao dia',
+  quantidade: 60,
+  validade: '2026-01-10',
+  dataAdicao: '2024-06-25',
+  status: 'ok'
+},
+{
+  id: 3,
+  paciente: 'Ana Souza',
+  descricao: 'Metformina 850mg',
+  posologia: '1 comp. após o café e jantar',
+  quantidade: 30,
+  validade: '2025-09-15',
+  dataAdicao: '2024-06-20',
+  status: 'baixo'
+},
+{
+  id: 4,
+  paciente: 'Carlos Mendes',
+  descricao: 'Omeprazol 20mg',
+  posologia: '1 cápsula 30min antes do café',
+  quantidade: 15,
+  validade: '2025-12-01',
+  dataAdicao: '2024-06-21',
+  status: 'critico'
+},
+{
+  id: 5,
+  paciente: 'Beatriz Lima',
+  descricao: 'Sinvastatina 40mg',
+  posologia: '1 comprimido à noite',
+  quantidade: 90,
+  validade: '2026-05-30',
+  dataAdicao: '2024-06-18',
+  status: 'ok'
+},
+{
+  id: 6,
+  paciente: 'Rafael Silva',
+  descricao: 'Ibuprofeno 600mg',
+  posologia: '1 comp. a cada 6h, se dor',
+  quantidade: 10,
+  validade: '2025-11-10',
+  dataAdicao: '2024-06-22',
+  status: 'critico'
+},
+{
+  id: 7,
+  paciente: 'Luciana Rocha',
+  descricao: 'Furosemida 40mg',
+  posologia: '1 comp. em jejum',
+  quantidade: 25,
+  validade: '2025-10-05',
+  dataAdicao: '2024-06-24',
+  status: 'baixo'
+}
+
     ];
 
     let filteredData = [...stockData];
@@ -792,7 +806,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Elementos DOM
     const searchInput = document.getElementById('search-input');
-    const categoryFilter = document.getElementById('category-filter');
     const statusFilter = document.getElementById('status-filter');
     const sortFilter = document.getElementById('sort-filter');
     const addItemBtn = document.getElementById('add-item-btn');
@@ -812,7 +825,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.addEventListener('input', debounce(filterData, 300));
         
         // Filtros
-        categoryFilter.addEventListener('change', filterData);
+
         statusFilter.addEventListener('change', filterData);
         sortFilter.addEventListener('change', sortData);
         
@@ -846,22 +859,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function filterData() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const categoryValue = categoryFilter.value;
-        const statusValue = statusFilter.value;
+function filterData() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const statusValue = statusFilter.value;
 
-        filteredData = stockData.filter(item => {
-            const matchesSearch = item.nome.toLowerCase().includes(searchTerm);
-            const matchesCategory = !categoryValue || item.categoria === categoryValue;
-            const matchesStatus = !statusValue || item.status === statusValue;
-            
-            return matchesSearch && matchesCategory && matchesStatus;
-        });
+    filteredData = stockData.filter(item => {
+        const matchesSearch = item.paciente.toLowerCase().includes(searchTerm); // corrigido: era item.nome
+        const matchesStatus = !statusValue || item.status === statusValue;
+        
+        return matchesSearch && matchesStatus;
+    });
 
-        sortData();
-        renderTable();
-    }
+    sortData();
+    renderTable();
+}
+
 
     function sortData() {
         const sortValue = sortFilter.value;
@@ -870,10 +882,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         filteredData.sort((a, b) => {
             switch (sortValue) {
-                case 'nome':
-                    return a.nome.localeCompare(b.nome);
-                case 'categoria':
-                    return a.categoria.localeCompare(b.categoria);
+case 'nome':
+    return a.paciente.localeCompare(b.paciente);
+
+
                 case 'quantidade':
                     return b.quantidade - a.quantidade;
                 case 'validade':
@@ -889,46 +901,39 @@ document.addEventListener('DOMContentLoaded', function() {
         renderTable();
     }
 
-    function renderTable() {
-        if (filteredData.length === 0) {
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="7" style="text-align: center; padding: 40px; color: #9C9C9C;">
-                        <div style="font-size: 48px; margin-bottom: 20px;">📦</div>
-                        <div style="font-size: 18px; margin-bottom: 10px; color: #2B2B2B;">Nenhum item encontrado</div>
-                        <div>Tente ajustar os filtros ou adicionar novos itens</div>
-                    </td>
-                </tr>
-            `;
-            return;
-        }
-
-        tableBody.innerHTML = filteredData.map(item => `
+function renderTable() {
+    if (filteredData.length === 0) {
+        tableBody.innerHTML = `
             <tr>
-                <td>${item.nome}</td>
-                <td>${formatCategory(item.categoria)}</td>
-                <td>${item.quantidade}</td>
-                <td>${item.unidade}</td>
-                <td>${formatDate(item.validade)}</td>
-                <td><span class="status-badge status-${item.status}">${formatStatus(item.status)}</span></td>
-                <td>
-                    <button class="btn-icon edit-btn" onclick="editItem(${item.id})" title="Editar">✏️</button>
-                    <button class="btn-icon delete-btn" onclick="deleteItem(${item.id})" title="Excluir">🗑️</button>
+                <td colspan="8" style="text-align: center; padding: 40px; color: #9C9C9C;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">📦</div>
+                    <div style="font-size: 18px; margin-bottom: 10px; color: #2B2B2B;">Nenhum item encontrado</div>
+                    <div>Tente ajustar os filtros ou adicionar novos itens</div>
                 </td>
             </tr>
-        `).join('');
+        `;
+        return;
     }
 
-    function formatCategory(category) {
-        const categories = {
-            'medicamentos': 'Medicamentos',
-            'higiene': 'Higiene',
-            'limpeza': 'Limpeza',
-            'alimentos': 'Alimentos'
-        };
-        return categories[category] || category;
-    }
+    tableBody.innerHTML = filteredData.map(item => `
+        <tr>
+            <td>${item.paciente}</td>
+            <td>${item.descricao}</td>
+            <td>${item.posologia}</td>
+            <td>${item.quantidade}</td>
+            <td>${formatDate(item.validade)}</td>
+            <td><span class="status-badge status-${item.status}">${formatStatus(item.status)}</span></td>
+            <td>${formatDate(item.dataAdicao)}</td>
+            <td>
+                <button class="btn-icon edit-btn" onclick="editItem(${item.id})" title="Editar">✏️</button>
+                <button class="btn-icon delete-btn" onclick="deleteItem(${item.id})" title="Excluir">🗑️</button>
+            </td>
+        </tr>
+    `).join('');
+}
 
+
+    
     function formatStatus(status) {
         const statuses = {
             'ok': 'Estoque OK',
@@ -949,70 +954,69 @@ document.addEventListener('DOMContentLoaded', function() {
         modalTitle.textContent = 'Adicionar Item';
         itemForm.reset();
         modal.classList.add('active');
-        document.getElementById('item-name').focus();
+        document.getElementById('patient-name').focus();
     }
 
-    function openEditModal(item) {
-        editingItemId = item.id;
-        modalTitle.textContent = 'Editar Item';
-        
-        document.getElementById('item-name').value = item.nome;
-        document.getElementById('item-category').value = item.categoria;
-        document.getElementById('item-quantity').value = item.quantidade;
-        document.getElementById('item-unit').value = item.unidade;
-        document.getElementById('item-expiry').value = item.validade || '';
-        
-        modal.classList.add('active');
-        document.getElementById('item-name').focus();
-    }
+function openEditModal(item) {
+    editingItemId = item.id;
+    modalTitle.textContent = 'Editar Item';
+
+    document.getElementById('patient-name').value = item.paciente;
+    document.getElementById('item-description').value = item.descricao;
+    document.getElementById('item-dosage').value = item.posologia;
+    document.getElementById('item-quantity').value = item.quantidade;
+    document.getElementById('item-expiry').value = item.validade || '';
+    document.getElementById('item-date-added').value = item.dataAdicao || '';
+    
+
+    modal.classList.add('active');
+    document.getElementById('patient-name').focus();
+}
+
+
 
     function closeModalHandler() {
         modal.classList.remove('active');
         editingItemId = null;
         itemForm.reset();
     }
+function handleFormSubmit(e) {
+    e.preventDefault();
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
+    const formData = {
+        paciente: document.getElementById('patient-name').value,
+        descricao: document.getElementById('item-description').value,
+        posologia: document.getElementById('item-dosage').value,
+        quantidade: parseInt(document.getElementById('item-quantity').value),
+        validade: document.getElementById('item-expiry').value || null,
+        dataAdicao: document.getElementById('item-date-added').value || new Date().toISOString().split('T')[0],
         
-        const formData = {
-            nome: document.getElementById('item-name').value,
-            categoria: document.getElementById('item-category').value,
-            quantidade: parseInt(document.getElementById('item-quantity').value),
-            unidade: document.getElementById('item-unit').value,
-            validade: document.getElementById('item-expiry').value || null
-        };
+    };
 
-        // Determinar status baseado na quantidade
-        let status = 'ok';
-        if (formData.quantidade <= 10) status = 'critico';
-        else if (formData.quantidade <= 50) status = 'baixo';
-
-        if (editingItemId) {
-            // Editar item existente
-            const itemIndex = stockData.findIndex(item => item.id === editingItemId);
-            if (itemIndex !== -1) {
-                stockData[itemIndex] = {
-                    ...stockData[itemIndex],
-                    ...formData,
-                    status
-                };
-                showNotification('Item atualizado com sucesso!', 'success');
-            }
-        } else {
-            // Adicionar novo item
-            const newItem = {
-                id: Math.max(...stockData.map(item => item.id)) + 1,
-                ...formData,
-                status
-            };
-            stockData.push(newItem);
-            showNotification('Item adicionado com sucesso!', 'success');
-        }
-
-        closeModalHandler();
-        filterData();
+    // Determinar status baseado na quantidade se o usuário não escolheu
+    if (!formData.status || formData.status === '') {
+        if (formData.quantidade <= 10) formData.status = 'critico';
+        else if (formData.quantidade <= 50) formData.status = 'baixo';
+        else formData.status = 'ok';
     }
+
+    if (editingItemId) {
+        const index = stockData.findIndex(item => item.id === editingItemId);
+        if (index !== -1) {
+            stockData[index] = { id: editingItemId, ...formData };
+            showNotification('Item atualizado com sucesso!', 'success');
+        }
+    } else {
+        const newId = Math.max(...stockData.map(item => item.id)) + 1;
+        stockData.push({ id: newId, ...formData });
+        showNotification('Item adicionado com sucesso!', 'success');
+    }
+
+    closeModalHandler();
+    filterData();
+}
+
+
 
     // Funções globais para os botões da tabela
     window.editItem = function(id) {
