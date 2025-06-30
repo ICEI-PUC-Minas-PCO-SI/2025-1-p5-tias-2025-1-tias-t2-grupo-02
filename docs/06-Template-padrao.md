@@ -1,12 +1,32 @@
 # Template padrão da aplicação
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>, <a href="03-Metodologia.md"> Metodologia</a>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
+![Tela Base](images/Tela_base.png)
 
-Layout padrão da aplicação que será utilizado em todas as páginas com a definição de identidade visual, descrição sobre o significado e os elementos visuais do logotipo da aplicação, aspectos de responsividade e iconografia.
+A aplicação segue um layout padronizado e coeso, desenvolvido no Figma, visando garantir uma experiência de usuário (UX) consistente, responsiva e agradável em todas as páginas.
 
-> **Links úteis**:
->
-> - [CSS website layout (W3Schools)](https://www.w3schools.com/css/css_website_layout.asp)
-> - [Website page layouts](http://www.cellbiol.com/bioinformatics_web_development/chapter-3-your-first-web-page-learning-html-and-css/website-page-layouts/)
-> - [Perfect liquid layout](https://matthewjamestaylor.com/perfect-liquid-layouts)
-> - [How and why icons improve your web design](https://usabilla.com/blog/how-and-why-icons-improve-you-web-design/)
+ **Paleta de Cores**
+A identidade visual foi definida a partir de cores que transmitem confiança, simplicidade e acessibilidade. A paleta inclui:
+
+Bege Claro (fundo da casa): #E6D2B6
+
+Cinza Claro (cabelo da vovó): #BEBEBE
+
+Preto Suave (traços e roupa): #2B2B2B
+
+Branco Suave (rosto e fundo): #F5F3EF
+
+Cinza Médio (contorno da casa): #9C9C9C
+
+**Logotipo e Elementos Visuais**
+O logotipo foi projetado para ser minimalista e simbólico, utilizando formas geométricas simples e fontes legíveis.
+Significado:
+
+As formas e cores transmitem inovação, colaboração e objetividade. O nome da aplicação está em destaque, com uma tipografia moderna, para reforçar a marca.
+
+* Elementos visuais adicionais:
+
+Ícones circulares com traços finos.
+
+Botões com cantos arredondados e sombra suave.
+
+Áreas bem espaçadas para facilitar a navegação.
