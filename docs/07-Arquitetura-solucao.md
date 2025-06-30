@@ -26,80 +26,110 @@ Apresente o modelo de dados por meio de um modelo relacional que contemple todos
 
 ### Esquema relacional
 
-
 Com base no Diagrama Entidade-Relacionamento (DER), o modelo relacional é definido pelas seguintes tabelas:
 
 Tabela: USERS
 
+•
 id (INT, PRIMARY KEY)
 
+•
 username (VARCHAR(255), UNIQUE, NOT NULL)
 
+•
 password_hash (VARCHAR(255), NOT NULL)
 
+•
 role (VARCHAR(50), NOT NULL)
 
 Tabela: PATIENTS
 
+•
 id (INT, PRIMARY KEY)
 
+•
 name (VARCHAR(255), NOT NULL)
 
+•
 date_of_birth (DATE)
 
+•
 address (VARCHAR(255))
 
+•
 phone (VARCHAR(20))
 
+•
 email (VARCHAR(255))
 
 Tabela: MEDICATIONS
 
+•
 id (INT, PRIMARY KEY)
 
+•
 name (VARCHAR(255), NOT NULL)
 
+•
 dosage (VARCHAR(100))
 
+•
 description (TEXT)
 
 Tabela: LOGINS
 
+•
 id (INT, PRIMARY KEY)
 
+•
 user_id (INT, FOREIGN KEY REFERENCES USERS(id), NOT NULL)
 
+•
 login_time (DATETIME, NOT NULL)
 
+•
 ip_address (VARCHAR(45))
 
 Tabela: DOCUMENTATIONS
 
+•
 id (INT, PRIMARY KEY)
 
+•
 title (VARCHAR(255), NOT NULL)
 
+•
 content (TEXT)
 
+•
 creation_date (DATETIME, NOT NULL)
 
+•
 user_id (INT, FOREIGN KEY REFERENCES USERS(id), NOT NULL)
 
+•
 document_type (VARCHAR(100))
 
+•
 patient_id (INT, FOREIGN KEY REFERENCES PATIENTS(id), NULLABLE)
 
+•
 medication_id (INT, FOREIGN KEY REFERENCES MEDICATIONS(id), NULLABLE)
 
 Relacionamentos:
 
+•
 Um USER pode ter muitos LOGINS (1:N).
 
+•
 Um USER pode criar muitas DOCUMENTATIONS (1:N).
 
+•
 Um PATIENT pode ter muitas DOCUMENTATIONS relacionadas (1:N).
 
+•
 Um MEDICATION pode ser referenciado em muitas DOCUMENTATIONS (1:N).
+
 
 
 ### Modelo físico
