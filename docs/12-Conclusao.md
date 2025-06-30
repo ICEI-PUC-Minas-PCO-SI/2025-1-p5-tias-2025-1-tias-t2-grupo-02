@@ -5,6 +5,7 @@ A execução do projeto Jeitinho da Vovó e do Vovô permitiu uma significativa 
 Dentre os principais resultados, destacam-se:
 
 Centralização das informações em um único sistema acessível por dispositivos móveis;
+
 Redução de erros e retrabalho com dados de pacientes e medicamentos;
 Interface intuitiva, que facilita o uso mesmo por profissionais com pouca familiaridade com tecnologia;
 Automatização de tarefas repetitivas, como controle de estoque e administração de medicamentos.
