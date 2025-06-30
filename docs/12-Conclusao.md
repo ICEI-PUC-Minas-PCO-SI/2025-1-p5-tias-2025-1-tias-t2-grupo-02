@@ -2,7 +2,7 @@
 
 A execução do projeto Jeitinho da Vovó e do Vovô permitiu uma significativa melhoria nos processos internos da instituição parceira, principalmente no que se refere ao acesso, organização e segurança das informações dos pacientes. Ao substituir registros físicos e um sistema anterior excessivamente complexo por uma aplicação web responsiva e centrada no usuário, foi possível reduzir o tempo de consulta de dados, evitar perdas de informação e otimizar a rotina dos colaboradores, o que contribuiu diretamente para a qualidade do atendimento aos residentes.
 
-Dentre os principais resultados, destacam-se:
+* Dentre os principais resultados, destacam-se:
 
 Centralização das informações em um único sistema acessível por dispositivos móveis;
 
