@@ -4,7 +4,9 @@
 A seguir, apresentamos uma visão geral das telas desenvolvidas para o sistema, com base nos requisitos funcionais e não funcionais descritos na Especificação do Projeto. As telas foram elaboradas no Figma, com atenção à usabilidade, fluidez na navegação e clareza das ações para o usuário.
 
 🔗 Link para o protótipo interativo:
-Figma - Protótipo de Interface do Sistema
+
+https://www.figma.com/design/VqTzr0XPoxf7ExrdXQ6Gvm/Untitled?node-id=0-1&t=qDvXOjgvB4uyfmA0-1
+
  ## User flow
 
 O fluxo de navegação foi projetado para guiar o usuário de maneira intuitiva pelas principais funcionalidades da aplicação. Desde o login até a realização de ações específicas (como cadastrar, editar ou visualizar informações), o objetivo é reduzir o número de cliques e manter a consistência visual.
