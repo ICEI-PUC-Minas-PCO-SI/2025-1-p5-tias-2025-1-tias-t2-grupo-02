@@ -1,42 +1,110 @@
-# Especificação do projeto
+# Especificação do Projeto
 
 Nesta seção, são apresentados os requisitos necessários para o desenvolvimento do sistema de gestão de pacientes e controle de medicamentos. A especificação foi elaborada com base na análise das necessidades dos usuários e nas particularidades do ambiente da instituição, visando garantir que a solução seja funcional, eficiente e segura.
 
 Foram utilizadas técnicas como levantamento de requisitos através de entrevistas, análise de processos e construção de histórias de usuários. Além disso, foi aplicado um método de priorização por níveis (Alta, Média e Baixa), levando em conta a criticidade de cada funcionalidade para o funcionamento do sistema e o impacto direto na experiência do usuário e na operação da instituição.
 
+---
+
 ## Personas
 
-Exemplo: _Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente por meio de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros._
+Para o sistema de gestão de pacientes da Casa de Repouso "Jeitinho da Vovó e do Vovô", identificamos as seguintes personas:
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+### 1. Maria Eduarda, a Enfermeira Dedicada
 
-> **Links úteis**:
-> - [Rock content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+* **Dados demográficos:** 35 anos, enfermeira-chefe da Casa de Repouso, possui ensino superior em enfermagem e experiência de 10 anos em cuidados com idosos.
+* **Personalidade:** Organizada, proativa, atenta aos detalhes e muito zelosa com o bem-estar dos pacientes. Valoriza a praticidade e a agilidade no dia a dia.
+* **Objetivos:**
+    * Ter acesso rápido e seguro a todas as informações de saúde dos pacientes, especialmente medicações e alergias.
+    * Garantir que a administração de medicamentos seja feita de forma correta e no horário certo.
+    * Reduzir o tempo gasto com burocracia e arquivos físicos para focar mais no cuidado direto aos idosos.
+    * Manter um histórico detalhado da evolução clínica de cada paciente.
+* **Frustrações:**
+    * A demora em encontrar informações nos arquivos físicos.
+    * O risco de erros na administração de medicamentos devido à falta de acesso rápido a dados atualizados.
+    * A dificuldade em gerenciar o grande volume de informações de forma eficiente.
+    * O sistema atual ser complexo e não otimizado para uso móvel.
+* **Comportamento:** Utiliza o celular e o tablet para diversas tarefas pessoais e busca soluções digitais que simplifiquem seu trabalho. Gosta de aplicativos intuitivos e fáceis de usar.
 
-## Histórias de usuários
+### 2. João Silva, o Auxiliar de Enfermagem Prático
 
-Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
+* **Dados demográficos:** 28 anos, auxiliar de enfermagem, recém-chegado à instituição, com curso técnico em enfermagem.
+* **Personalidade:** Atencioso, prestativo e sempre disposto a aprender. Busca otimizar seu tempo e realizar suas tarefas com eficiência.
+* **Objetivos:**
+    * Registrar de forma simples e rápida as atividades diárias de cuidado com os pacientes (medicações, aferição de sinais vitais, alimentação).
+    * Consultar informações básicas dos pacientes, como nome, quarto e histórico de atendimentos.
+    * Ter uma ferramenta que facilite a comunicação com a equipe de enfermagem.
+* **Frustrações:**
+    * A necessidade de preencher formulários em papel.
+    * A dificuldade em acessar o sistema atual da instituição.
+    * Perder tempo procurando informações sobre os pacientes.
+    * Falta de um método padronizado para registrar dados.
+* **Comportamento:** Usuário frequente de smartphones para comunicação e acesso a informações, familiarizado com aplicativos de mensagem e redes sociais.
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+### 3. Aira, a Diretora Administrativa Visionária
 
-Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
+* **Dados demográficos:** 45 anos, Diretora Administrativa da Casa de Repouso "Jeitinho da Vovó e do Vovô", possui graduação em administração e experiência em gestão de instituições de saúde.
+* **Personalidade:** Estratégica, focada em resultados, preocupada com a qualidade dos serviços e a eficiência operacional. Busca soluções que otimizem os processos e reduzam custos.
+* **Objetivos:**
+    * Garantir a segurança e integridade dos dados dos pacientes.
+    * Ter uma visão geral da gestão de pacientes e medicamentos.
+    * Reduzir custos operacionais, incluindo a manutenção de sistemas antigos e o uso excessivo de papel.
+    * Melhorar a reputação da instituição através da modernização e eficiência.
+    * Facilitar a auditoria e conformidade com as normas de saúde.
+* **Frustrações:**
+    * A ineficiência e o alto custo do sistema atual (Gerifácil).
+    * O risco de perda de informações importantes devido aos registros físicos.
+    * A dificuldade em ter relatórios e dados para tomadas de decisão.
+    * A falta de mobilidade para a equipe.
+* **Comportamento:** Toma decisões baseadas em dados e busca tecnologias que tragam retorno sobre o investimento. Utiliza o computador e o smartphone para gerenciar a instituição.
 
-> **Links úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (user stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 common user story mistakes](https://airfocus.com/blog/user-story-mistakes/)
+---
+
+## Histórias de Usuários
+
+Com base na análise das personas, foram identificadas as seguintes histórias de usuários, agrupadas por contexto para facilitar consultas recorrentes:
+
+### Gestão de Pacientes
+
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
+| :------------------- | :--------------------------------- | :---------------------- |
+| Maria Eduarda        | Cadastrar novos pacientes no sistema | Ter todos os dados centralizados e acessíveis |
+| João Silva           | Consultar o perfil de um paciente específico (nome, quarto, idade) | Saber quem é o residente e sua localização |
+| Maria Eduarda        | Visualizar o histórico completo de saúde de um paciente (laudos, diagnósticos, evolução) | Acompanhar sua condição e tomar decisões informadas |
+| João Silva           | Registrar o estado de saúde diário de um paciente (sinais vitais, observações) | Manter o histórico atualizado para a equipe |
+| Maria Eduarda        | Editar as informações de um paciente (endereço, telefone, contato de emergência) | Manter os dados sempre atualizados |
+| Aira                 | Ter uma visão geral da quantidade de pacientes ativos na casa | Gerenciar a capacidade da instituição |
+
+### Controle de Medicamentos
+
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
+| :------------------- | :--------------------------------- | :---------------------- |
+| Maria Eduarda        | Cadastrar os medicamentos prescritos para cada paciente | Garantir a administração correta |
+| João Silva           | Visualizar a lista de medicamentos a serem administrados a um paciente em um determinado horário | Não esquecer de nenhuma medicação |
+| Maria Eduarda        | Registrar a administração de cada medicamento (dose, horário, responsável) | Ter um controle preciso e evitar erros |
+| Maria Eduarda        | Receber alertas sobre horários de medicação | Evitar atrasos ou esquecimentos |
+| Aira                 | Acessar relatórios sobre o consumo de medicamentos por paciente e por período | Otimizar o estoque e controlar os gastos |
+
+### Acessibilidade e Segurança
+
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
+| :------------------- | :--------------------------------- | :---------------------- |
+| Maria Eduarda        | Acessar o sistema de qualquer dispositivo móvel (celular, tablet) | Ter as informações à mão em qualquer lugar da instituição |
+| João Silva           | Que a interface do sistema seja intuitiva e fácil de usar | Agilizar meu trabalho e reduzir a curva de aprendizado |
+| Aira                 | Que o sistema tenha diferentes níveis de acesso para os usuários (administrador, enfermeiro, auxiliar) | Garantir a segurança e confidencialidade dos dados |
+| Aira                 | Que todas as informações dos pacientes sejam armazenadas de forma segura e protegida por criptografia | Cumprir com as normas de privacidade de dados |
+| Qualquer Usuário     | Que o sistema seja rápido e responsivo | Não perder tempo esperando o carregamento das telas |
+
+### Gestão de Documentos e Laudos
+
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
+| :------------------- | :--------------------------------- | :---------------------- |
+| Maria Eduarda        | Anexar laudos médicos e exames aos perfis dos pacientes | Ter todos os documentos em um só lugar |
+| João Silva           | Visualizar os laudos e exames de um paciente | Entender sua condição de saúde |
+| Maria Eduarda        | Fazer upload de novas receitas e prescrições médicas | Manter o prontuário atualizado |
+| Maria Eduarda        | Poder baixar os documentos anexados | Imprimir ou compartilhar quando necessário |
+
+---
 
 ## Requisitos
 
