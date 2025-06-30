@@ -4,7 +4,7 @@
 
 A aplicação segue um layout padronizado e coeso, desenvolvido no Figma, visando garantir uma experiência de usuário (UX) consistente, responsiva e agradável em todas as páginas.
 
- **Paleta de Cores**
+# **Paleta de Cores**
 A identidade visual foi definida a partir de cores que transmitem confiança, simplicidade e acessibilidade. A paleta inclui:
 
 Bege Claro (fundo da casa): #E6D2B6
@@ -17,7 +17,7 @@ Branco Suave (rosto e fundo): #F5F3EF
 
 Cinza Médio (contorno da casa): #9C9C9C
 
-**Logotipo e Elementos Visuais**
+# **Logotipo e Elementos Visuais**
 O logotipo foi projetado para ser minimalista e simbólico, utilizando formas geométricas simples e fontes legíveis.
 Significado:
 
