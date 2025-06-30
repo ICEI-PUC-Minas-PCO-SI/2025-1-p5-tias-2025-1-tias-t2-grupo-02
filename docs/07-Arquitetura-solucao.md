@@ -8,11 +8,8 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Diagrama de classes
 
-O diagrama de classes ilustra graficamente a estrutura do software e como cada uma das classes estará interligada. Essas classes servem de modelo para materializar os objetos que serão executados na memória.
+![class_diagram](https://github.com/user-attachments/assets/71dafa54-6312-4340-af7c-1ba9b292530d)
 
-> **Links úteis**:
-> - [Diagramas de classes - documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.7.0?topic=diagrams-class)
-> - [O que é um diagrama de classe UML?](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
 
 ##  Modelo de dados
 
@@ -24,104 +21,247 @@ Apresente o modelo de dados por meio de um modelo relacional que contemple todos
 
 ### Modelo ER
 
-O Modelo ER representa, por meio de um diagrama, como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
+![er_diagram](https://github.com/user-attachments/assets/94c1ec10-05bf-41c4-b07f-d8c296c61509)
 
-> **Links úteis**:
-> - [Como fazer um diagrama entidade relacionamento](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 
 ### Esquema relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
- 
 
-![Exemplo de um modelo relacional](images/modelo_relacional.png "Exemplo de modelo relacional.")
----
+Com base no Diagrama Entidade-Relacionamento (DER), o modelo relacional é definido pelas seguintes tabelas:
 
-> **Links úteis**:
-> - [Criando um modelo relacional - documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/12.0.0?topic=designer-creating-relational-model)
+Tabela: USERS
+
+id (INT, PRIMARY KEY)
+
+username (VARCHAR(255), UNIQUE, NOT NULL)
+
+password_hash (VARCHAR(255), NOT NULL)
+
+role (VARCHAR(50), NOT NULL)
+
+Tabela: PATIENTS
+
+id (INT, PRIMARY KEY)
+
+name (VARCHAR(255), NOT NULL)
+
+date_of_birth (DATE)
+
+address (VARCHAR(255))
+
+phone (VARCHAR(20))
+
+email (VARCHAR(255))
+
+Tabela: MEDICATIONS
+
+id (INT, PRIMARY KEY)
+
+name (VARCHAR(255), NOT NULL)
+
+dosage (VARCHAR(100))
+
+description (TEXT)
+
+Tabela: LOGINS
+
+id (INT, PRIMARY KEY)
+
+user_id (INT, FOREIGN KEY REFERENCES USERS(id), NOT NULL)
+
+login_time (DATETIME, NOT NULL)
+
+ip_address (VARCHAR(45))
+
+Tabela: DOCUMENTATIONS
+
+id (INT, PRIMARY KEY)
+
+title (VARCHAR(255), NOT NULL)
+
+content (TEXT)
+
+creation_date (DATETIME, NOT NULL)
+
+user_id (INT, FOREIGN KEY REFERENCES USERS(id), NOT NULL)
+
+document_type (VARCHAR(100))
+
+patient_id (INT, FOREIGN KEY REFERENCES PATIENTS(id), NULLABLE)
+
+medication_id (INT, FOREIGN KEY REFERENCES MEDICATIONS(id), NULLABLE)
+
+Relacionamentos:
+
+Um USER pode ter muitos LOGINS (1:N).
+
+Um USER pode criar muitas DOCUMENTATIONS (1:N).
+
+Um PATIENT pode ter muitas DOCUMENTATIONS relacionadas (1:N).
+
+Um MEDICATION pode ser referenciado em muitas DOCUMENTATIONS (1:N).
+
 
 ### Modelo físico
 
-Insira aqui o script de criação das tabelas do banco de dados.
-
-Veja um exemplo:
-
-```sql
--- Criação da tabela Medico
-CREATE TABLE Medico (
-    MedCodigo INTEGER PRIMARY KEY,
-    MedNome VARCHAR(100)
+-- Criação da tabela USERS
+CREATE TABLE USERS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
 );
 
--- Criação da tabela Paciente
-CREATE TABLE Paciente (
-    PacCodigo INTEGER PRIMARY KEY,
-    PacNome VARCHAR(100)
+-- Criação da tabela PATIENTS
+CREATE TABLE PATIENTS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    date_of_birth DATE,
+    address VARCHAR(255),
+    phone VARCHAR(20),
+    email VARCHAR(255)
 );
 
--- Criação da tabela Consulta
-CREATE TABLE Consulta (
-    ConCodigo INTEGER PRIMARY KEY,
-    MedCodigo INTEGER,
-    PacCodigo INTEGER,
-    Data DATE,
-    FOREIGN KEY (MedCodigo) REFERENCES Medico(MedCodigo),
-    FOREIGN KEY (PacCodigo) REFERENCES Paciente(PacCodigo)
+-- Criação da tabela MEDICATIONS
+CREATE TABLE MEDICATIONS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    dosage VARCHAR(100),
+    description TEXT
 );
 
--- Criação da tabela Medicamento
-CREATE TABLE Medicamento (
-    MdcCodigo INTEGER PRIMARY KEY,
-    MdcNome VARCHAR(100)
+-- Criação da tabela LOGINS
+CREATE TABLE LOGINS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    login_time DATETIME NOT NULL,
+    ip_address VARCHAR(45),
+    FOREIGN KEY (user_id) REFERENCES USERS(id)
 );
 
--- Criação da tabela Prescricao
-CREATE TABLE Prescricao (
-    ConCodigo INTEGER,
-    MdcCodigo INTEGER,
-    Posologia VARCHAR(200),
-    PRIMARY KEY (ConCodigo, MdcCodigo),
-    FOREIGN KEY (ConCodigo) REFERENCES Consulta(ConCodigo),
-    FOREIGN KEY (MdcCodigo) REFERENCES Medicamento(MdcCodigo)
+-- Criação da tabela DOCUMENTATIONS
+CREATE TABLE DOCUMENTATIONS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    creation_date DATETIME NOT NULL,
+    user_id INT NOT NULL,
+    document_type VARCHAR(100),
+    patient_id INT,
+    medication_id INT,
+    FOREIGN KEY (user_id) REFERENCES USERS(id),
+    FOREIGN KEY (patient_id) REFERENCES PATIENTS(id),
+    FOREIGN KEY (medication_id) REFERENCES MEDICATIONS(id)
 );
-```
-Esse script deverá ser incluído em um arquivo .sql na pasta [de scripts SQL](../src/db).
-
 
 ## Tecnologias
 
-Descreva qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+As tecnologias selecionadas para a implementação da solução são:
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Front-end: HTML + CSS + JS + React
 
+Back-end: Node.js
 
-| **Dimensão**   | **Tecnologia**  |
-| ---            | ---             |
-| Front-end      | HTML + CSS + JS + React |
-| Back-end       | Node.js         |
-| SGBD           | MySQL           |
-| Deploy         | Vercel          |
+SGBD: MySQL
 
+Relação entre as Tecnologias:
 
-## Hospedagem
+A interação do usuário com o sistema será conduzida da seguinte forma:
 
-Explique como a hospedagem e o lançamento da plataforma foram realizados.
+1.
+O usuário interage com a interface Front-end (desenvolvida em React, HTML, CSS, JS) através de um navegador web.
 
-> **Links úteis**:
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando seu site no Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+2.
+As requisições do Front-end são enviadas para o Back-end (desenvolvido em Node.js).
+
+3.
+O Back-end processa as requisições, interage com o SGBD (MySQL) para persistência e recuperação de dados.
+
+4.
+O Back-end retorna a resposta para o Front-end.
+
+5.
+O Front-end atualiza a interface do usuário com os dados recebidos.
+
 
 ## Qualidade de software
 
-Conceituar qualidade é uma tarefa complexa, mas ela pode ser vista como um método gerencial que, por meio de procedimentos disseminados por toda a organização, busca garantir um produto final que satisfaça às expectativas dos stakeholders.
+Qualidade de Software
 
-No contexto do desenvolvimento de software, qualidade pode ser entendida como um conjunto de características a serem atendidas, de modo que o produto de software atenda às necessidades de seus usuários. Entretanto, esse nível de satisfação nem sempre é alcançado de forma espontânea, devendo ser continuamente construído. Assim, a qualidade do produto depende fortemente do seu respectivo processo de desenvolvimento.
+Com base na norma internacional ISO/IEC 25010, que define características e subcaracterísticas de qualidade para produtos de software, identificamos as seguintes subcaracterísticas como base para nortear o desenvolvimento do projeto Jeitinho da Vovó e do Vovô:
 
-A norma internacional ISO/IEC 25010, que é uma atualização da ISO/IEC 9126, define oito características e 30 subcaracterísticas de qualidade para produtos de software. Com base nessas características e nas respectivas subcaracterísticas, identifique as subcaracterísticas que sua equipe utilizará como base para nortear o desenvolvimento do projeto de software, considerando alguns aspectos simples de qualidade. Justifique as subcaracterísticas escolhidas pelo time e elenque as métricas que permitirão à equipe avaliar os objetos de interesse.
+1. Adequação Funcional (Functional Suitability)
 
-> **Links úteis**:
-> - [ISO/IEC 25010:2011 - Systems and Software Engineering — Systems and Software Quality Requirements and Evaluation (SQuaRE) — System and Software Quality Models](https://www.iso.org/standard/35733.html/)
-> - [Análise sobre a ISO 9126 – NBR 13596](https://www.tiespecialistas.com.br/analise-sobre-iso-9126-nbr-13596/)
-> - [Qualidade de software - Engenharia de Software](https://www.devmedia.com.br/qualidade-de-software-engenharia-de-software-29/18209)
+Subcaracterística: Completude Funcional (Functional Completeness)
+
+Justificativa: O projeto buscou substituir registros físicos e um sistema anterior complexo, centralizando as informações e automatizando tarefas. A completude funcional garante que todas as funções necessárias para atender aos requisitos do usuário (acesso, organização e segurança das informações dos pacientes, controle de estoque, administração de medicamentos) foram implementadas.
+
+Métricas: Número de requisitos funcionais implementados com sucesso; Percentual de funcionalidades cobertas pelos testes de aceitação.
+
+
+Subcaracterística: Correção Funcional (Functional Correctness)
+
+Justificativa: A precisão dos dados e a execução correta das funcionalidades são cruciais para um sistema de gestão de pacientes e medicamentos, onde erros podem ter consequências sérias. Esta subcaracterística assegura que o sistema fornece os resultados corretos com a precisão esperada.
+
+Métricas: Número de defeitos funcionais encontrados por funcionalidade; Taxa de sucesso das operações de CRUD (Create, Read, Update, Delete) de dados.
+
+
+2. Usabilidade (Usability)
+
+Subcaracterística: Capacidade de Aprendizagem (Learnability)
+
+Justificativa: O projeto visa uma interface intuitiva, facilitando o uso mesmo por profissionais com pouca familiaridade com tecnologia. A capacidade de aprendizagem mede a facilidade com que novos usuários podem aprender a operar o sistema e se tornar proficientes.
+
+Métricas: Tempo médio para novos usuários completarem tarefas básicas; Número de erros cometidos por novos usuários durante a primeira interação.
+
+
+
+Subcaracterística: Operabilidade (Operability)
+
+Justificativa: A otimização da rotina dos colaboradores e a redução do tempo de consulta de dados dependem de um sistema fácil de operar. Esta subcaracterística foca na facilidade de controle e operação do sistema pelos usuários.
+
+Métricas: Tempo médio para completar tarefas complexas; Número de cliques ou passos necessários para realizar uma operação.
+
+
+3. Confiabilidade (Reliability)
+
+Subcaracterística: Tolerância a Falhas (Fault Tolerance)
+
+Justificativa: A segurança das informações e a continuidade do serviço são essenciais em um sistema de saúde. A tolerância a falhas garante que o sistema pode operar corretamente mesmo na presença de falhas de hardware ou software.
+
+Métricas: Tempo médio entre falhas (MTBF); Tempo médio para reparo (MTTR); Número de recuperações bem-sucedidas após falhas.
+
+Subcaracterística: Maturidade (Maturity)
+
+Justificativa: Um sistema maduro é aquele que demonstra estabilidade e baixa frequência de falhas. Isso é vital para a confiança dos usuários e para a operação contínua da instituição.
+
+Métricas: Número de falhas por unidade de tempo; Densidade de defeitos (número de defeitos por linha de código ou ponto de função).
+
+
+4. Eficiência de Desempenho (Performance Efficiency)
+
+Subcaracterística: Comportamento Temporal (Time-behaviour)
+
+Justificativa: A redução do tempo de consulta de dados é um dos principais resultados esperados. O comportamento temporal avalia os tempos de resposta e processamento do sistema sob diferentes condições de carga.
+
+Métricas: Tempo de resposta para operações críticas (e.g., busca de paciente, registro de medicamento); Vazão (throughput) de transações por segundo.
+
+
+
+5. Segurança (Security)
+
+Subcaracterística: Confidencialidade (Confidentiality)
+
+Justificativa: A segurança das informações dos pacientes é um requisito crítico. A confidencialidade garante que os dados sensíveis são protegidos contra acesso não autorizado.
+
+Métricas: Número de tentativas de acesso não autorizado bloqueadas; Conformidade com políticas de privacidade de dados.
+
+Subcaracterística: Integridade (Integrity)
+
+Justificativa: A integridade dos dados assegura que as informações não são alteradas ou destruídas de forma não autorizada. Isso é fundamental para a confiabilidade dos registros médicos.
+
+Métricas: Número de violações de integridade de dados detectadas e corrigidas; Percentual de dados com validação de entrada implementada.
+
+
+
+
