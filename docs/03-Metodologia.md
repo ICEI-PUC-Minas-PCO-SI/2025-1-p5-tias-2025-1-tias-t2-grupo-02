@@ -60,15 +60,30 @@ O projeto segue a seguinte convenção para o nome de branches:
 
 ### Processo
 
-Coloque informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links úteis**:
-> - [Planejamento e gestão ágil de projetos](https://pucminas.instructure.com/courses/87878/pages/unidade-2-tema-2-utilizacao-de-ferramentas-para-controle-de-versoes-de-software)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Como criar backlogs no GitHub](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial slack](https://slack.com/intl/en-br/)
+O grupo adotou a metodologia ágil Scrum para conduzir o desenvolvimento do projeto, dividindo o trabalho em ciclos iterativos e incrementais (sprints). A seguir estão os principais pontos da nossa abordagem:
 
+* Papéis definidos no time
+Product Owner (PO): Responsável por priorizar as funcionalidades e garantir o alinhamento com as necessidades do cliente.
+
+Scrum Master: Facilitador do processo ágil, ajudando a remover impedimentos e garantir o bom andamento das sprints.
+
+Time de Desenvolvimento: Composto por membros responsáveis pela análise, design, codificação, testes e documentação do sistema.
+
+* Cerimônias aplicadas
+Sprint Planning (Planejamento da Sprint): Definimos as tarefas que serão realizadas com base na prioridade do backlog.
+
+Daily Scrum (Reunião Diária): Realizamos reuniões rápidas para atualização de progresso e identificação de bloqueios.
+
+Sprint Review: Apresentamos as funcionalidades entregues ao final de cada sprint.
+
+Sprint Retrospective: Avaliamos o que funcionou bem e o que pode ser melhorado nas próximas sprints.
+
+* Artefatos usados
+Product Backlog: Lista de funcionalidades e melhorias planejadas, criada no GitHub Projects.
+
+Sprint Backlog: Seleção de itens do Product Backlog que serão desenvolvidos na sprint atual.
+
+Incremento: Funcionalidades entregues ao final de cada sprint.
 
 ## Relação de ambientes de trabalho
 
@@ -80,4 +95,3 @@ Os artefatos do projeto são desenvolvidos a partir de diversas plataformas. Tod
 |-------------------------------------|------------------------------------|----------------------------------------|
 | Repositório de código fonte         | GitHub                             | https://github.com/ICEI-PUC-Minas-PCO-SI/TIAS-2025 |
 | Projeto de interface                | Figma                              | https://www.figma.com/design/VqTzr0XPoxf7ExrdXQ6Gvm/Untitled?node-id=0-1&p=f&t=GLlCR4eIMJev9y6H-0 |
-| Hospedagem                          | Hostinger                             | ... |
