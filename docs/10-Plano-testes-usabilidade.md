@@ -23,7 +23,7 @@ Com base nos requisitos funcionais e nas histórias de usuário levantadas, elab
 Serão convidados **seis (6) participantes**, divididos em dois grupos, que se encaixem nos perfis de usuários identificados na documentação:
 
 * **Grupo 1: Colaboradores da Casa de Repouso (4 participantes)**: Idealmente, funcionários que atualmente lidam com o registro e consulta de informações de pacientes. Este grupo é crucial para avaliar a **Interface Intuitiva (RNF-004)** e o **Tempo de Resposta (RNF-001)** em suas rotinas diárias.
-* **Grupo 2: Administradores da Casa de Repouso (2 participantes)**: Diretores ou supervisores que serão responsáveis pela gestão de usuários no sistema.
+* **Grupo 2: Administradores da Casa de Repouso (1 participante)**: Diretores ou supervisores que serão responsáveis pela gestão de usuários no sistema.
 
 Objetivando respeitar as diretrizes da **Lei Geral de Proteção de Dados (LGPD)**, as informações pessoais dos usuários que participarem do teste não serão coletadas.
 
