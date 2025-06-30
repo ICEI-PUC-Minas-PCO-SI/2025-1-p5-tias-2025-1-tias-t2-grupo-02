@@ -56,7 +56,7 @@ Tela que permite anexar documentos como exames, laudos e receitas, com campos pa
 ### Tela Gerenciamento de Estoque
 Permite monitorar, adicionar, editar e excluir os medicamentos de cada paciente, além de acompanhar o nível de estoque.
 
-![Gerenciamento](images/Gerenciamento.jpg)
+![Gerenciamento](images/Gerenciamento1.png)
 
 ### Tela Ajuda
 É uma página de perguntas frequentes (FAQ) para auxiliar os usuários com dúvidas comuns.
