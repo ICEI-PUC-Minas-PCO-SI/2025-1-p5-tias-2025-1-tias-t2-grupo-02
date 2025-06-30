@@ -11,6 +11,7 @@ O fluxo de navegação foi projetado para guiar o usuário de maneira intuitiva 
 
 ### Diagrama de fluxo
 
+![Diagrama](images/DIAGRAMA.png)
 
 ## Wireframes
 
