@@ -1,19 +1,16 @@
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc.) utilizadas no desenvolvimento do trabalho.
+- **ALURA**. Cursos online de tecnologia. Disponível em: https://www.alura.com.br. Acesso em: 20 abr. 2025.
 
-Exemplo:
+- **DIO - Digital Innovation One**. Plataforma gratuita de cursos e bootcamps em tecnologia. Disponível em: https://www.dio.me. Acesso em: 16 mai. 2025.
 
-- BENYON, David. **Interação humano-computador**. 2. ed. São Paulo: Pearson Prentice Hall, 2011.
+- **COURSERA**. Plataforma de cursos online de universidades e empresas. Disponível em: https://www.coursera.org. Acesso em: 16 mai. 2025.
 
-- CORMEN, Thomas H et al. **Algoritmos:** teoria e prática. 4. ed. Rio de Janeiro: GEN LTC, 2024.
- 
-- ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019.
+- **UDEMY**. Cursos online sobre programação, design e negócios. Disponível em: https://www.udemy.com. Acesso em: 10 abr. 2025.
 
-- RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial:** uma abordagem moderna. 4. ed. Rio de Janeiro, RJ: LTC, 2022.
+- **FREECODECAMP**. Plataforma gratuita para aprender desenvolvimento web e back-end. Disponível em: https://www.freecodecamp.org. Acesso em: 15 mai. 2025.
 
-- SUTHERLAND, Jeffrey Victor; SUTHERLAND, J. J. **Scrum:** a arte de fazer o dobro do trabalho na metade do tempo. Rio de Janeiro, RJ: Sextante, 2019. 254 p.
+- **YOUTUBE** – Curso em Vídeo. Gustavo Guanabara. Curso completo de Git, GitHub, HTML, CSS e Java. Disponível em: https://www.youtube.com/cursoemvideo. Acesso em: 23 abr. 2025.
 
-> **Links úteis**:
-> - [Padrão PUC Minas de normalização ABNT](http://portal.pucminas.br/biblioteca/documentos/GUIA-COMPLETO-ABNT-Elaborar-formatar-trabalho-cientificoNOVO.pdf)
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/)
+- **YOUTUBE** – Filipe Deschamps. Canal sobre desenvolvimento de software, Git, GitHub e carreira. Disponível em: https://www.youtube.com/@FilipeDeschamps. Acesso em: 26 mai. 2025.
+
