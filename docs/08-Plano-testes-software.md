@@ -12,7 +12,7 @@ Por exemplo:
 
 | **Caso de teste**  | **CT-001 – Cadastrar Paciente**  |
 |:---: |:---: |
-| Requisito associado |  |
+| Requisito associado | RF-001	Cadastro de Pacientes |
 | Objetivo do teste | Verificar se o usuário consegue se cadastrar na aplicação. |
 | Passos |	- Acessar o sistema através do navegador <br> - Navegar até a seção “Pacientes” <br> - Clicar em  “ Cadastrar novo Paciente” <br> - Preencher os campos obrigatórios (Nome Completo, Data de Nascimento, CPF, RG, Tipo Sanguíneo, Plano de Saúde, Carteirinha, Doenças Crônicas, Nome (Contato de Emergência), Parentesco, Telefone, E-mail) <br> - Clicar no botão “Cadastrar Paciente” |
 | Critério de êxito | - O cadastro foi realizado com sucesso. |
@@ -24,14 +24,9 @@ Por exemplo:
 |:---: |:---: |
 | Requisito associado | RRF-002 – Edição de dados de paciente |
 | Objetivo do teste | Verificar se o usuário consegue editar os dados de um paciente cadastrado. |
-| Passos | - Acessar o sistema através do navegador <br> 
-- Navegar até a seção “Pacientes” <br> 
-- Selecionar um paciente já cadastrado <br> 
-- Clicar no botão “Editar” <br> 
-- Alterar um ou mais campos obrigatórios (Nome Completo, Data de Nascimento, CPF, RG, Tipo Sanguíneo, Plano de Saúde, Carteirinha, Doenças Crônicas, Nome (Contato de Emergência), Parentesco, Telefone, E-mail) <br> 
-- Clicar no botão “Salvar alterações” |
+| Passos | - Acessar o sistema através do navegador <br> - Navegar até a seção “Pacientes” <br> - Selecionar um paciente já cadastrado <br> - Clicar no botão “Editar” <br> - Alterar um ou mais campos obrigatórios (Nome Completo, Data de Nascimento, CPF, RG, Tipo Sanguíneo, Plano de Saúde, Carteirinha, Doenças Crônicas, Nome (Contato de Emergência), Parentesco, Telefone, E-mail) <br> - Clicar no botão “Salvar alterações” |
 | Critério de êxito | - Os dados atualizados devem ser salvos com sucesso e refletidos na listagem de pacientes. |
-| Responsável pela elaboração do caso de teste | Ana Clara |
+| Responsável pela elaboração do caso de teste | Ana Flavia |
 
 
 ## Ferramentas de testes (opcional)
