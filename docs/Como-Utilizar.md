@@ -32,89 +32,41 @@ cd nome-do-repositorio
 code .
 O comando code . abre o VS Code na pasta atual (funciona se você selecionou "Add to PATH" na instalação do VS Code).
 
-##  4. Instalar o Java JDK 17
-Baixe de: AdoptOpenJDK
+# Passo a Passo para Rodar a Aplicação no Windows (Sem Docker e Sem Node.js)
 
-Instale com a opção “add to PATH” marcada.
+## 1. Extrair o Código Fonte
+- O código fonte foi extraído corretamente, e a pasta do projeto contém os arquivos necessários.
 
- Verificar instalação:
-bash
-Copiar
-Editar
-java -version
+## 2. Instalar o Java Development Kit (JDK)
+- Baixe e instale o JDK 17. Certifique-se de adicionar o JDK ao PATH do sistema.
+- Verifique a instalação com o comando: `java -version`.
 
-## 5. Instalar o PostgreSQL
-Baixe de: https://www.postgresql.org/download/windows/
+## 3. Instalar o Maven
+- Baixe e instale o Apache Maven. Extraia o arquivo para um diretório e adicione ao PATH do sistema.
+- Verifique a instalação com o comando: `mvn -version`.
 
-Instale com o usuário padrão postgres e senha root (ou configure outro).
+## 4. Instalar o PostgreSQL
+- Baixe e instale o PostgreSQL. Durante a instalação, configure o banco de dados com as credenciais:
+  - **Database Name**: asilo
+  - **User**: postgres
+  - **Password**: root
+  - **Port**: 5432.
+- Após a instalação, inicie o PostgreSQL e teste a conexão com o comando: `psql -h localhost -U postgres -d asilo`.
 
-## 6. Criar o Banco de Dados
-No pgAdmin ou terminal PostgreSQL, execute:
+## 5. Configurar o Backend
+- Acesse a pasta do backend no código.
+- Configure o arquivo `application.properties` com as credenciais do banco.
+- Compile e rode o backend com os comandos:
+  ```bash
+  mvn clean install
+  mvn spring-boot:run
+  ```
+- O servidor backend estará disponível em `http://localhost:8080`.
 
-sql
-Copiar
-Editar
-CREATE DATABASE asilo;
-CREATE USER postgres WITH PASSWORD 'root';
-GRANT ALL PRIVILEGES ON DATABASE asilo TO postgres;
+## 6. Configurar o Frontend
+- Navegue até a pasta `src/front` e encontre o arquivo `listagem_pacientes.html`.
+- Dê um duplo clique no arquivo HTML para abri-lo diretamente no navegador.
 
-## 7. Configurar o application.properties
-No VS Code, abra:
+## 7. Acessar a Página de Listagem de Pacientes
+- Após configurar o backend, o frontend será exibido diretamente no navegador.
 
-plaintext
-Copiar
-Editar
-src/main/resources/application.properties
-E adicione:
-
-properties
-Copiar
-Editar
-spring.datasource.url=jdbc:postgresql://localhost:5432/asilo
-spring.datasource.username=postgres
-spring.datasource.password=root
-spring.datasource.driver-class-name=org.postgresql.Driver
-
-## 8. Instalar o Maven
-Baixe: https://maven.apache.org/download.cgi
-
-Verificar instalação:
-bash
-Copiar
-Editar
-mvn -v
-## 9. Compilar o Projeto
-No terminal, dentro do diretório do projeto:
-
-bash
-Copiar
-Editar
-mvn clean install
-## 10. Executar o Projeto
-a) Rodar diretamente:
-bash
-Copiar
-Editar
-mvn spring-boot:run
-b) Rodar o .jar gerado:
-bash
-Copiar
-Editar
-java -jar target/nome-do-seu-projeto.jar
-
-## 11. Acessar a Aplicação
-Abra no navegador:
-
-arduino
-Copiar
-Editar
-http://localhost:8080
-Ou use o Postman para testar os endpoints.
-
- ## 12. Verificar as Tabelas no Banco
-No terminal do PostgreSQL:
-
-sql
-Copiar
-Editar
-\dt
