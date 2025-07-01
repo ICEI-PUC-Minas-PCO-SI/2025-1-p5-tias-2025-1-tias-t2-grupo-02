@@ -2,13 +2,6 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
 
-O plano de testes de software é gerado a partir da especificação do sistema e consiste em casos de teste que deverão ser executados quando a implementação estiver parcial ou totalmente pronta. Apresente os cenários de teste utilizados na realização dos testes da sua aplicação. Escolha cenários de teste que demonstrem os requisitos sendo satisfeitos.
-
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico, o grupo deve detalhar quais funcionalidades foram avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
-
-Não deixe de enumerar os casos de teste de forma sequencial e garantir que o(s) requisito(s) associado(s) a cada um deles esteja(m) correto(s) — de acordo com o que foi definido na <a href="02-Especificacao.md">Especificação do projeto</a>.
-
-Por exemplo:
 
 | **Caso de teste**  | **CT-001 – Cadastrar Paciente**  |
 |:---: |:---: |
@@ -28,15 +21,35 @@ Por exemplo:
 | Critério de êxito | - Os dados atualizados devem ser salvos com sucesso e refletidos na listagem de pacientes. |
 | Responsável pela elaboração do caso de teste | Ana Flavia |
 
+<br>
 
-## Ferramentas de testes (opcional)
+| **Caso de teste**  | **CT-003 – Adicionar Medicamento ao Estoque**  |
+|:---: |:---: |
+| Requisito associado | RF-007 – Adicionar medicamentos ao estoque |
+| Objetivo do teste | Verificar se o usuário consegue adicionar corretamente um novo medicamento ao estoque vinculado a um paciente. |
+| Passos | - Acessar o sistema através do navegador <br> - Navegar até a seção “Medicamentos” <br> - Clicar em “Adicionar Itens” <br> - Preencher os campos obrigatórios (Nome do Paciente, Descrição (Nome do Medicamento), Posologia / Dosagem, Quantidade, Data de Validade, Data de Adição) <br> - Clicar no botão “Salvar” |
+| Critério de êxito | - O medicamento deve ser salvo com sucesso e aparecer na listagem de estoque associado ao paciente informado. |
+| Responsável pela elaboração do caso de teste | Pedro, Igor |
 
-Comente sobre as ferramentas de testes utilizadas.
- 
-> **Links úteis**:
-> - [IBM - criação e geração de planos de teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e técnicas de testes ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> - [Teste de software: conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
-> - [Criação e geração de planos de teste de software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de teste para JavaScript](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
+<br>
+
+| **Caso de teste**  | **CT-004 – Autenticação de Usuário**  |
+|:---: |:---: |
+| Requisito associado | RF-006 – Autenticação de usuário |
+| Objetivo do teste | Verificar se o usuário consegue se autenticar no sistema utilizando suas credenciais. |
+| Passos | - Acessar o sistema através do navegador <br> - Informar o e-mail do usuário cadastrado <br> - Informar a senha correspondente <br> - Clicar no botão “Entrar” |
+| Critério de êxito | - O sistema deve validar as credenciais e redirecionar o usuário para a página inicial do sistema. |
+| Responsável pela elaboração do caso de teste | Eduarda |
+
+<br>
+
+| **Caso de teste**  | **CT-005 – Busca Rápida por Pacientes**  |
+|:---: |:---: |
+| Requisito associado | RF-005 – Busca Rápida por Pacientes |
+| Objetivo do teste | Verificar se o sistema permite localizar rapidamente pacientes cadastrados a partir de um termo de busca. |
+| Passos | - Acessar o sistema através do navegador <br> - Navegar até a seção “Pacientes” <br> - Localizar o campo de busca <br> - Digitar parte do nome, CPF ou status de um paciente <br> - Verificar se a lista é filtrada automaticamente conforme o termo inserido |
+| Critério de êxito | - O sistema deve exibir os pacientes que correspondem ao termo digitado, atualizando a lista em tempo real ou após a busca. |
+| Responsável pela elaboração do caso de teste | Diogo |
+
+
+
