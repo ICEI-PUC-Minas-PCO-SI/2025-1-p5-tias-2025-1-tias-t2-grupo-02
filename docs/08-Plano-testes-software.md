@@ -10,23 +10,28 @@ Não deixe de enumerar os casos de teste de forma sequencial e garantir que o(s)
 
 Por exemplo:
 
-| **Caso de teste**  | **CT-001 – Cadastrar perfil**  |
+| **Caso de teste**  | **CT-001 – Cadastrar Paciente**  |
 |:---: |:---: |
-| Requisito associado | RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que estes consigam criar e gerenciar seu perfil. |
+| Requisito associado |  |
 | Objetivo do teste | Verificar se o usuário consegue se cadastrar na aplicação. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar em "Criar conta" <br> - Preencher os campos obrigatórios (e-mail, nome, sobrenome, celular, CPF, senha, confirmação de senha) <br> - Aceitar os termos de uso <br> - Clicar em "Registrar" |
+| Passos |	- Acessar o sistema através do navegador <br> - Navegar até a seção “Pacientes” <br> - Clicar em  “ Cadastrar novo Paciente” <br> - Preencher os campos obrigatórios (Nome Completo, Data de Nascimento, CPF, RG, Tipo Sanguíneo, Plano de Saúde, Carteirinha, Doenças Crônicas, Nome (Contato de Emergência), Parentesco, Telefone, E-mail) <br> - Clicar no botão “Cadastrar Paciente” |
 | Critério de êxito | - O cadastro foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
+| Responsável pela elaboração do caso de teste | Ana Clara. |
 
 <br>
 
-| **Caso de teste**  | **CT-002 – Efetuar login**  |
+| **Caso de teste**  | **CT-002 – Editar Dados Paciente**  |
 |:---: |:---: |
-| Requisito associado | RF-00Y - A aplicação deve possuir opção de fazer login, sendo o login o endereço de e-mail. |
-| Objetivo do teste | Verificar se o usuário consegue realizar login. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar no botão "Entrar" <br> - Preencher o campo de e-mail <br> - Preencher o campo de senha <br> - Clicar em "Login" |
-| Critério de êxito | - O login foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
+| Requisito associado | RRF-002 – Edição de dados de paciente |
+| Objetivo do teste | Verificar se o usuário consegue editar os dados de um paciente cadastrado. |
+| Passos | - Acessar o sistema através do navegador <br> 
+- Navegar até a seção “Pacientes” <br> 
+- Selecionar um paciente já cadastrado <br> 
+- Clicar no botão “Editar” <br> 
+- Alterar um ou mais campos obrigatórios (Nome Completo, Data de Nascimento, CPF, RG, Tipo Sanguíneo, Plano de Saúde, Carteirinha, Doenças Crônicas, Nome (Contato de Emergência), Parentesco, Telefone, E-mail) <br> 
+- Clicar no botão “Salvar alterações” |
+| Critério de êxito | - Os dados atualizados devem ser salvos com sucesso e refletidos na listagem de pacientes. |
+| Responsável pela elaboração do caso de teste | Ana Clara |
 
 
 ## Ferramentas de testes (opcional)
