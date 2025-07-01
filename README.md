@@ -37,10 +37,11 @@ O link e o usuário/senha descritos acima são apenas exemplos de como tais info
 # Documentação
 
 <ol>
-<li><a href="docs/01-Contexto.md"> Documentação de contexto</a></li>
-<li><a href="docs/02-Especificacao.md"> Especificação do projeto</a></li>
-<li><a href="docs/03-Metodologia.md"> Metodologia</a></li>
-<li><a href="docs/04-Projeto-interface.md"> Projeto de interface</a></li>
-<li><a href="docs/05-Arquitetura-solucao.md"> Arquitetura da solução</a></li>
-<li><a href="docs/06-Referencias.md"> Referências</a></li>
+<li><a href="docs/01-Como-Utilizar.md"> Como Utilizar</a></li>
+<li><a href="docs/02-Contexto.md"> Documentação de contexto</a></li>
+<li><a href="docs/03-Especificacao.md"> Especificação do projeto</a></li>
+<li><a href="docs/04-Metodologia.md"> Metodologia</a></li>
+<li><a href="docs/05-Projeto-interface.md"> Projeto de interface</a></li>
+<li><a href="docs/06-Arquitetura-solucao.md"> Arquitetura da solução</a></li>
+<li><a href="docs/07-Referencias.md"> Referências</a></li>
 </ol>
