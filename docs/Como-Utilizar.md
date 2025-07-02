@@ -21,8 +21,7 @@ Comando:
 bash
 Copiar
 Editar
-git clone https://github.com/usuario/nome-do-repositorio.git
-Substitua o link pelo do seu projeto.
+git clone https://github.com/ICEI-PUC-Minas-PCO-SI/2025-1-p5-tias-2025-1-tias-t2-grupo-02.git
 
 ## 3. Abrir o Projeto no VS Code
 bash
